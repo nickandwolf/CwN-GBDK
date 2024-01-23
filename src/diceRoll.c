@@ -1,0 +1,394 @@
+#include <rand.h>
+#include <stdbool.h>
+#include <gb/gb.h>
+#include <stdint.h>
+#include "../res/Dice_sprite.h"
+#include "inc/diceRoll.h"
+#include "inc/textFunctions.h"
+
+uint8_t previous_keys = 0;
+uint8_t keys = 0;
+
+void InitDiceData(void) {
+	set_sprite_data(0, 33, Dice_sprite);
+}
+
+uint8_t RollDie(uint8_t die) {
+	
+	switch (die) {
+		case 4:
+			set_sprite_tile(17, 0x1A);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 79, 68);
+			move_sprite(18, 75, 68);
+			move_sprite(19, 87, 68);
+		break;
+		
+		case 6:
+			set_sprite_tile(17, 0x1C);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 79, 68);
+			move_sprite(18, 75, 68);
+			move_sprite(19, 87, 68);
+		break;
+		
+		case 8:
+			set_sprite_tile(17, 0x1E);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 79, 68);
+			move_sprite(18, 75, 68);
+			move_sprite(19, 87, 68);
+		break;
+		
+		case 10:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x16);
+			
+			move_sprite(17, 75, 68);
+			move_sprite(18, 83, 68);
+		break;
+		
+		case 12:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x18);
+			
+			move_sprite(17, 75, 68);
+			move_sprite(18, 83, 68);
+		break;
+		
+		case 20:
+			set_sprite_tile(17, 0x18);
+			set_sprite_tile(18, 0x16);
+			
+			move_sprite(17, 75, 68);
+			move_sprite(18, 83, 68);
+		break;
+		
+	}
+	
+	set_sprite_tile(20, 0x00);
+	set_sprite_tile(21, 0x02);
+	set_sprite_tile(22, 0x08);
+	set_sprite_tile(4, 0x0A);
+	
+	set_sprite_tile(5, 0x01);
+	set_sprite_tile(6, 0x03);
+	set_sprite_tile(7, 0x09);
+	set_sprite_tile(8, 0x0B);
+	
+	set_sprite_tile(9, 0x04);
+	set_sprite_tile(10, 0x06);
+	set_sprite_tile(11,0x09);//flip h
+	set_sprite_tile(12,0x0B);//flip h
+	set_sprite_prop(11, S_FLIPY);
+	set_sprite_prop(12, S_FLIPY);
+	
+	
+	set_sprite_tile(13,0x05);
+	set_sprite_tile(14,0x07);
+	set_sprite_tile(15,0x0C);
+	set_sprite_tile(16,0x0D);
+	
+	//put 'em in the center
+	move_sprite(20, 64, 56);
+	move_sprite(21, 72, 56);
+	move_sprite(22, 80, 56);
+	move_sprite(4, 88, 56);
+	
+	move_sprite(5, 64, 64);
+	move_sprite(6, 72, 64);
+	move_sprite(7, 80, 64);
+	move_sprite(8, 88, 64);
+	
+	move_sprite(9, 64, 72);
+	move_sprite(10, 72, 72);
+	move_sprite(11, 80, 72);
+	move_sprite(12, 88, 72);
+	
+	move_sprite(13, 64, 80);
+	move_sprite(14, 72, 80);
+	move_sprite(15, 80, 80);
+	move_sprite(16, 88, 80);
+	
+	waitpadup();
+	vsync();
+	waitpad(J_A);
+	
+	move_sprite(18, 168, 152);
+	move_sprite(19, 168, 152);
+	
+	set_sprite_prop(11, !S_FLIPY);
+	set_sprite_prop(12, !S_FLIPY);
+	
+	initrand(LY_REG | (uint16_t)DIV_REG << 8);
+	uint8_t r = ((uint8_t)rand()) % (uint8_t)die + 1;
+	
+	//DICE
+	set_sprite_tile(20, 0x10);//flip x
+	set_sprite_tile(21, 0xE);//flip x
+	set_sprite_prop(20, S_FLIPX);
+	set_sprite_prop(21, S_FLIPX);
+	
+	set_sprite_tile(22, 0xE);
+	set_sprite_tile(4, 0x10);
+	
+	set_sprite_tile(5, 0x11);//flip x
+	set_sprite_tile(6, 0xF);//flip x
+	set_sprite_prop(5, S_FLIPX);
+	set_sprite_prop(6, S_FLIPX);
+	
+	set_sprite_tile(7, 0xF);
+	set_sprite_tile(8, 0x11);
+	
+	set_sprite_tile(9, 0x14);//flip x
+	set_sprite_tile(10, 0x12);//flip x
+	set_sprite_prop(9, S_FLIPX);
+	set_sprite_prop(10, S_FLIPX);
+	
+	set_sprite_tile(11,0x12);
+	set_sprite_tile(12,0x14);
+	
+	set_sprite_tile(13,0x15);//flip x
+	set_sprite_tile(14,0x13);//flip x
+	set_sprite_prop(13, S_FLIPX);
+	set_sprite_prop(14, S_FLIPX);
+	
+	set_sprite_tile(15,0x13);
+	set_sprite_tile(16,0x15);
+	
+	switch (r) {
+		case 1:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 2:
+			set_sprite_tile(17, 0x18);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 3:
+			set_sprite_tile(17, 0x19);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 4:
+			set_sprite_tile(17, 0x1A);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 5:
+			set_sprite_tile(17, 0x1B);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 6:
+			set_sprite_tile(17, 0x1C);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 7:
+			set_sprite_tile(17, 0x1D);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 8:
+			set_sprite_tile(17, 0x1E);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 9:
+			set_sprite_tile(17, 0x1F);
+			set_sprite_tile(18, 0x20);
+			set_sprite_tile(19, 0x20);
+			
+			move_sprite(17, 76, 68);
+			move_sprite(18, 72, 68);
+			move_sprite(19, 84, 68);
+		break;
+		
+		case 10:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x16);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 11:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x17);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 12:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x18);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 13:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x19);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 14:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x1A);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 15:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x1B);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 16:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x1C);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 17:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x1D);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 18:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x1E);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 19:
+			set_sprite_tile(17, 0x17);
+			set_sprite_tile(18, 0x1F);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+		
+		case 20:
+			set_sprite_tile(17, 0x18);
+			set_sprite_tile(18, 0x16);
+			
+			move_sprite(17, 73, 68);
+			move_sprite(18, 79, 68);
+		break;
+	}
+	
+	vsync();
+	waitpadup();
+	waitpad(J_A);
+	
+	set_sprite_tile(20, 0x20);
+	set_sprite_tile(21, 0x20);
+	set_sprite_tile(22, 0x20);
+	set_sprite_tile(4, 0x20);
+	
+	set_sprite_tile(5, 0x20);
+	set_sprite_tile(6, 0x20);
+	set_sprite_tile(7, 0x20);
+	set_sprite_tile(8, 0x20);
+	
+	set_sprite_tile(9, 0x20);
+	set_sprite_tile(10, 0x20);
+	set_sprite_tile(11,0x20);
+	set_sprite_tile(12,0x20);
+	
+	set_sprite_tile(13,0x20);
+	set_sprite_tile(14,0x20);
+	set_sprite_tile(15,0x20);
+	set_sprite_tile(16,0x20);
+	
+	set_sprite_tile(17, 0x20);
+	set_sprite_tile(18, 0x20);
+	set_sprite_tile(19, 0x20);
+	
+	set_sprite_tile(20, 0x20);
+	set_sprite_tile(21, 0x20);
+	set_sprite_tile(22, 0x20);
+	
+	move_sprite(17, 168, 152);
+	move_sprite(18, 168, 152);
+	move_sprite(19, 168, 152);
+	
+	set_sprite_prop(20, !S_FLIPX);
+	set_sprite_prop(21, !S_FLIPX);
+	
+	set_sprite_prop(5, !S_FLIPX);
+	set_sprite_prop(6, !S_FLIPX);
+	
+	set_sprite_prop(9, !S_FLIPX);
+	set_sprite_prop(10, !S_FLIPX);
+	
+	set_sprite_prop(13, !S_FLIPX);
+	set_sprite_prop(14, !S_FLIPX);
+	return r;
+}
+
