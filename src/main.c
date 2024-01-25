@@ -8,6 +8,7 @@
 #include "inc/diceRoll.h"
 #include "../res/dialog_frame.h"
 #include "inc/textFunctions.h"
+#include "inc/splashscreen.h"
 
 //So we may need to struct for the main character. Other people don't really move...
 
@@ -135,19 +136,30 @@ void Move_MainCharacter() {
 void main(void)
 {	
 	//TEST
-	playerMapX = 3;
-	playerMapY = 3;
-	PlacePlayer();
+	//playerMapX = 3;
+	//playerMapY = 3;
+	//PlacePlayer();
+	//InitDiceData();
+	//InitCharacterSprite();
+		
+    //SHOW_SPRITES;
 	
-    InitDiceData();
-	InitCharacterSprite();
-    SHOW_SPRITES;
+	InitSplashScreen();
+	char skip_intro = 0;
 	
     DISPLAY_ON;
 	while(1)
 	{
 		//update
-		MainCharacterUpdate();
+		//MainCharacterUpdate();
+		while (skip_intro == 0) {
+			UpdateSplashScreen();
+			
+			if (ANY_KEY_PRESSED) {
+				skip_intro = 1;
+				HIDE_BKG;
+			}
+		}
 		
 		UPDATE_KEYS();
 		
