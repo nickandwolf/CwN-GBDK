@@ -29,4 +29,6 @@ extern const unsigned char Font_symbols[25];
 
 void dialog_print(unsigned char *text, uint8_t size);
 
+void screen_print(unsigned char *text, uint8_t size);
+
 #endif

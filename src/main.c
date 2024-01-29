@@ -4,11 +4,13 @@
 //#include <stdbool.h>
 #include "inc/Font.h"
 #include "inc/main.h"
-#include "inc/MainCharacter.h"
-#include "inc/diceRoll.h"
 #include "../res/dialog_frame.h"
 #include "inc/textFunctions.h"
-#include "inc/splashscreen.h"
+//#include "inc/splashscreen.h"
+//#include "inc/CharacterCreation.h" //none yet, premade for first game
+#include "../data/inc/MikeHall.h"
+#include "inc/MainCharacter.h"
+//#include "inc/diceRoll.h"
 
 //So we may need to struct for the main character. Other people don't really move...
 
@@ -20,7 +22,6 @@ void PlacePlayer() {//stays here because of TILES
     playerX = playerMapX * TILES;
     playerY = playerMapY * TILES;
 }
-
 
 int8_t CheckCollision() {
     int8_t x = 0;
@@ -56,14 +57,14 @@ int8_t CheckCollision() {
 void MainCharacterUpdate() {
 	//check what state we are in
 	
-	if ((((playerX) % TILES) == 0) && (((playerY) % TILES) == 0)) {
-		playerState = OVERWORLD;
-		AnimateCharacterSprite(); //simplify this?
-	}
-	else {
-		playerState = PLAYER_MOVING;
-		AnimateCharacterSprite();
-	}
+	//if ((((playerX) % TILES) == 0) && (((playerY) % TILES) == 0)) {
+	//	playerState = OVERWORLD;
+	//	AnimateCharacterSprite(); //simplify this?
+	//}
+	//else {
+	//	playerState = PLAYER_MOVING;
+	//	AnimateCharacterSprite();
+	//}
 	
 	switch (playerState) {
 		case OVERWORLD:
@@ -72,10 +73,10 @@ void MainCharacterUpdate() {
 		break;
 	}
 	
-	move_sprite(0, playerX+8, playerY);
-	move_sprite(1, playerX+8, playerY+8);
-	move_sprite(2, playerX+16, playerY);
-	move_sprite(3, playerX+16, playerY+8);
+	//move_sprite(0, playerX+8, playerY);
+	//move_sprite(1, playerX+8, playerY+8);
+	//move_sprite(2, playerX+16, playerY);
+	//move_sprite(3, playerX+16, playerY+8);
 	
 	
 }
@@ -135,47 +136,18 @@ void Move_MainCharacter() {
 
 void main(void)
 {	
-	//TEST
-	//playerMapX = 3;
-	//playerMapY = 3;
-	//PlacePlayer();
-	//InitDiceData();
-	//InitCharacterSprite();
-		
-    //SHOW_SPRITES;
-	
 	InitSplashScreen();
-	char skip_intro = 0;
 	
-    DISPLAY_ON;
+    
 	while(1)
 	{
 		//update
-		//MainCharacterUpdate();
-		while (skip_intro == 0) {
-			UpdateSplashScreen();
-			
-			if (ANY_KEY_PRESSED) {
-				skip_intro = 1;
-				HIDE_BKG;
-			}
-		}
 		
-		UPDATE_KEYS();
+		
+		
 		
 		//doodle
+		UPDATE_KEYS();
 		vsync();
 	}
-    // Loop forever
-/*    while(1) {
-		//char text1[] = "bonk!";
-		//dialog_print(text1, sizeof(text1));
-		
-        //Move_MainCharacter();
-        //move_sprite(0, playerX+8, playerY+16);
-        //move_sprite(2, playerX+16, playerY+16);
-
-        UPDATE_KEYS();
-        vsync();
-    }*/
 }

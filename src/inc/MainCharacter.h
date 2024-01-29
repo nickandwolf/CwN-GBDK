@@ -1,6 +1,8 @@
 #ifndef MainCharacter_h
 #define MainCharacter_h
 
+#include <stdint.h>
+
 //CHARACTER SHIT
 typedef struct Contact {
 	char* name;
@@ -11,7 +13,7 @@ typedef struct Contact {
 	char* how_well_do_you_know_them;
 	char* how_did_you_first_meet;
 	char* what_can_they_do_for_you;
-	uint8_t friend;
+	//uint8_t friend;
 } contact;
 
 typedef struct Character {
@@ -80,6 +82,8 @@ void SetPlayerAttributeBonus(uint8_t p);
 void ImprovePlayerSkill(uint8_t p, uint8_t skill);
 void SetPlayerEdge(uint8_t p, uint8_t edge);
 void ImprovePlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+
+char* GetPlayerName(uint8_t p);
 
 //PROGRAMMING SHIT
 extern uint8_t facing;

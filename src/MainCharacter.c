@@ -16,7 +16,7 @@ uint8_t playerTalking = 0;
 uint8_t playerState = 0;
 
 //should we allow multiple characters?
-character PC[10]; //may need to work on optimization later
+character PC[1]; //may need to work on optimization later
 
 void InitalizeCharacter(uint8_t p) {
     PC[p].level = 1;
@@ -353,6 +353,14 @@ void SetPlayerEdge(uint8_t p, uint8_t edge) {
     else if (PC[p].edges[2] == 0) PC[p].edges[2] = edge;
     else if (PC[p].edges[3] == 0) PC[p].edges[3] = edge;
 }
+
+/*****************************************************************/
+
+char* GetPlayerName(uint8_t p) {
+	return PC[p].name;
+}
+
+/*****************************************************************/
 
 void InitCharacterSprite() {
 	set_sprite_data(33, 24, CharacterSprite);
