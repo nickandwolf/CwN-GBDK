@@ -2,3 +2,33 @@ Main Character is Mike Hall
 He has lung cancer, the same thing that claimed his father
 He is in disbelief as he thought he made enough lifestyle changes (not smoking for example)
 He needs new lungs and that's gonna cost him
+
+0_ Intro Flow
+Nick&Wolf -> Death Mask -> Garmon -> Title Screen
+Title Screen -> New Game / Continue
+
+0_1 New Game
+0_1_1 Hospital Scene (Doctor and PC are at a desk. Doctor lifts clipboard [character sheet {age 23}]. After (A) initiate dialog)
+Doctor> I'm afraid it has spread through your lungs. We can operate but your insurance is only for basic care.
+Mike> How much would it cost?
+Doctor> For transplant, surgery, and therapy; $25,000.
+Mike> ... how much time do I have?
+Doctor> Between four days and two weeks.
+Mike> ...
+Doctor> ...
+*FADE OUT*
+
+0_1_2 Dad's Urn (Shows a funeral urn)
+Mike> I... I thought... I didn't...
+Mike> You smoked two packs a day for twenty years... Dead at 34.
+Mike> I saw what it did, I loved the way it reminded me of you, but never even once!
+Mike> Why? Why!?
+
+1_1 Apartment (Single room)
+Phone is ringing, have to search for phone.
+Mike> Hello?
+JD> Heard your are in a tough spot.
+Mike> Who is this?
+JD> A fixer. You do a job for me and I'll give you 50k.
+Mike> ...
+Mike> What's the job?
