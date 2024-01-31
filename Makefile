@@ -11,9 +11,12 @@ LCC = $(GBDK_HOME)bin/lcc
 
 # You can set flags for LCC here
 # For example, you can uncomment the line below to turn on debug output
-# LCCFLAGS += -debug # Uncomment to enable debug output
+LCCFLAGS += -debug
 # LCCFLAGS += -v     # Uncomment for lcc verbose output
 
+#Banking?
+LCCFLAGS += -Wl-yt0x1B
+LCCFLAGS += -Wl-j -Wm-ya4 -autobank -Wb-ext=.rel -Wb-v
 
 # You can set the name of the .gb ROM file here
 PROJECTNAME    = CwN-alpha

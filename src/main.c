@@ -1,18 +1,22 @@
 #include <gb/gb.h>
 #include <stdint.h>
 #include <stdio.h>
-//#include <stdbool.h>
+
 #include "inc/Font.h"
+#include "inc/textFunctions.h"
 #include "inc/main.h"
 #include "../res/dialog_frame.h"
-#include "inc/textFunctions.h"
-//#include "inc/splashscreen.h"
+
+#include "inc/splashscreen.h"
+#include "inc/title_1.h"
+
 //#include "inc/CharacterCreation.h" //none yet, premade for first game
 #include "../data/inc/MikeHall.h"
 #include "inc/MainCharacter.h"
+
 //#include "inc/diceRoll.h"
 
-//So we may need to struct for the main character. Other people don't really move...
+uint8_t game_state = 0;
 
 void (*action_func)(void);
 
@@ -136,13 +140,24 @@ void Move_MainCharacter() {
 
 void main(void)
 {	
-	InitSplashScreen();
-	
+	//InitSplashScreen(); //KEEP
+	InitTitle_1();
     
 	while(1)
 	{
 		//update
-		
+		switch (game_state) {
+			case 0: //Title Screen
+				game_state = Title_1_Update();
+			break;
+			
+			case 1: //New Game Cutscene
+				dialog_print("testing this kind of stuff bores members but i need to  get it to automatically go to a new line.", sizeof("testing this kind of stuff bores members but i need  to get it to automatically go to a new line."));
+			break;
+			
+			case 2: //Load game (somehow, wtf)
+			break;
+		}
 		
 		
 		

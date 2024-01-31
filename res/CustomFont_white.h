@@ -1,6 +1,6 @@
 /*
 
- DEATHMASK_TILES.H
+ CUSTOMFONT_WHITE.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 158
+  Tiles                : 0 to 51
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -22,15 +22,12 @@
 
 */
 
-#ifndef __DeathMask_tiles_h_INCLUDE
-#define __DeathMask_tiles_h_INCLUDE
+#ifndef __CustomFont_white_h_INCLUDE
+#define __CustomFont_white_h_INCLUDE
 
-/* Bank of tiles. */
-#define DeathMask_tilesBank 1
 /* Start of tile array. */
-extern const void __bank_DeathMask_tiles;
-extern const unsigned char DeathMask_tiles[];
+extern const unsigned char CustomFont_white[];
 
 #endif
 
-/* End of DEATHMASK_TILES.H */
+/* End of CUSTOMFONT_WHITE.H */

@@ -2,8 +2,6 @@
 #include <gb/gb.h>
 #include "../res/NickAndWolf_tiles.h"
 #include "../res/NickAndWolf_map.h"
-#include "../res/DeathMask_tiles.h"
-#include "../res/DeathMask_map.h"
 #include "inc/textFunctions.h"
 #include "inc/splashscreen.h"
 
@@ -12,9 +10,9 @@ void InitSplashScreen() {
 	set_bkg_tiles(2,2,16,16,NickAndWolf_map);
 	SHOW_BKG;
 	
-	FadeInDMG(10);
+	//FadeInDMG(10);
 	VBlankDelay(120)
-	FadeOutDMG(10);
+	//FadeOutDMG(10);
 	
 	HIDE_BKG;
 }
