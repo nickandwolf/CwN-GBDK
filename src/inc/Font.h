@@ -14,7 +14,7 @@
 #define Font_sprite_size 59
 #define Font_sprite_start 0
 #define DIALOG_WIDTH 18
-#define DIALOG_HEIGHT 5
+#define DIALOG_HEIGHT 3
 #define DIALOG_INIT_X 1
 #define DIALOG_INIT_Y 1
 #define DIALOG_WIN_HEIGHT 106
@@ -27,7 +27,7 @@ BANKREF_EXTERN(Font)
 extern uint8_t DIALOG_DELAY;
 extern const unsigned char Font_symbols[25];
 
-void dialog_print_p(unsigned char *name, unsigned char *text, uint8_t size);
+void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text, uint8_t size);
 
 void dialog_print(unsigned char *text, uint8_t size);
 

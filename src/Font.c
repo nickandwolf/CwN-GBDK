@@ -28,7 +28,7 @@ const unsigned char Font_symbols[25] = {
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
 };
 
-void dialog_print_p(unsigned char *name, unsigned char *text, uint8_t size) {
+void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text, uint8_t size) {
 	set_win_data(0,59,CustomFont);
 	init_win(0x00);//wipe the screen
 	set_win_tiles(0,0,20,5,dialog_frame);//throw up a fresh border
@@ -51,6 +51,18 @@ void dialog_print_p(unsigned char *name, unsigned char *text, uint8_t size) {
         move_sprite(2, playerX+16, tempPlayerY+16);
 	}
 	
+	//PUT A DUDE'S NAME
+	uint8_t name_xpos=0, name_ypos=0;
+	uint8_t name_index = 0;
+	
+	while (name_index < name_size-1) {
+		const unsigned char *name_current = &name[name_index];
+		set_win_tile_xy(name_xpos, name_ypos, (*name_current-0x47+Font_sprite_start));
+		name_xpos++;
+		name_index++;
+	}
+	
+	
     // This is an imaginary cursor.
 	uint8_t xpos=0, ypos=0;
     // This is the string index.
@@ -66,37 +78,42 @@ void dialog_print_p(unsigned char *name, unsigned char *text, uint8_t size) {
 		(xpos == 1 && text[index] == ' ')?index++:index;
 
         // This put a - sign if there's no width space and a word isn't finished.
-		/*if (xpos == DIALOG_WIDTH && text[index] != ' ')
-			//&& text[index+1] != ' ') // This line is optional. Just remember to close the brackets.
-			{set_win_tile_xy(xpos, ypos, ('-'-0x20+Font_sprite_start)); xpos=1; ypos++;}
-		*/
+		if (xpos == DIALOG_WIDTH && text[index] != ' ' && text[index+1] != ' ') {
+			set_win_tile_xy(xpos, ypos, ('-'-0x20+Font_sprite_start)); xpos=1; ypos++;
+		}
 		
-        // This variable sets the current character of the string based on its index.
+		(xpos == 1 && text[index] == ' ')?index++:index;
+        
+		// This variable sets the current character of the string based on its index.
 		const unsigned char *current = &text[index];
-
+		
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
+				set_win_tile_xy(19,3,0x06);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
 				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, 0x00);
 				xpos=ypos=1;
+				set_win_tile_xy(19,3,0x39);
 			}
 
         // This print the letters.
 		if (*current != ' ') set_win_tile_xy(xpos, ypos, (*current-0x47+Font_sprite_start));
-
+		
+		
         // This print the symbols.
 		for (uint8_t i=0; i<(sizeof(Font_symbols)); i++)
 			if (*current == Font_symbols[i]) set_win_tile_xy(xpos, ypos, (*current-0x20+Font_sprite_start));
-
+		
         VBlankDelay(DIALOG_DELAY);
 
 		index++;
 	}
 	
 	//we don't have buttons to accidentially close dialog
+	set_win_tile_xy(19,3,0x0A);
 	waitpadup();
 	waitpad(J_A);
 	
@@ -118,8 +135,7 @@ void dialog_print_p(unsigned char *name, unsigned char *text, uint8_t size) {
 	HIDE_WIN;
 }
 
-void dialog_print(unsigned char *text, uint8_t size)
-{
+void dialog_print(unsigned char *text, uint8_t size) {
 	set_win_data(0,59,CustomFont);
 	init_win(0x00);//wipe the screen
 	set_win_tiles(0,0,20,5,dialog_frame);//throw up a fresh border
@@ -157,37 +173,42 @@ void dialog_print(unsigned char *text, uint8_t size)
 		(xpos == 1 && text[index] == ' ')?index++:index;
 
         // This put a - sign if there's no width space and a word isn't finished.
-		/*if (xpos == DIALOG_WIDTH && text[index] != ' ')
-			//&& text[index+1] != ' ') // This line is optional. Just remember to close the brackets.
-			{set_win_tile_xy(xpos, ypos, ('-'-0x20+Font_sprite_start)); xpos=1; ypos++;}
-		*/
+		if (xpos == DIALOG_WIDTH && text[index] != ' ' && text[index+1] != ' ') {
+			set_win_tile_xy(xpos, ypos, ('-'-0x20+Font_sprite_start)); xpos=1; ypos++;
+		}
 		
-        // This variable sets the current character of the string based on its index.
+		(xpos == 1 && text[index] == ' ')?index++:index;
+        
+		// This variable sets the current character of the string based on its index.
 		const unsigned char *current = &text[index];
-
+		
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
+				set_win_tile_xy(19,3,0x06);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
 				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, 0x00);
 				xpos=ypos=1;
+				set_win_tile_xy(19,3,0x39);
 			}
 
         // This print the letters.
 		if (*current != ' ') set_win_tile_xy(xpos, ypos, (*current-0x47+Font_sprite_start));
-
+		
+		
         // This print the symbols.
 		for (uint8_t i=0; i<(sizeof(Font_symbols)); i++)
 			if (*current == Font_symbols[i]) set_win_tile_xy(xpos, ypos, (*current-0x20+Font_sprite_start));
-
+		
         VBlankDelay(DIALOG_DELAY);
 
 		index++;
 	}
 	
 	//we don't have buttons to accidentially close dialog
+	set_win_tile_xy(19,3,0x0A);
 	waitpadup();
 	waitpad(J_A);
 	

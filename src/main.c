@@ -152,7 +152,7 @@ void main(void)
 			break;
 			
 			case 1: //New Game Cutscene
-				dialog_print("testing this kind of stuff bores members but i need to  get it to automatically go to a new line.", sizeof("testing this kind of stuff bores members but i need  to get it to automatically go to a new line."));
+				dialog_print_p("jim", sizeof("jim"), "here's a new line of shit i'm trying out. let's see if it still works but if not, whatever.", sizeof("here's a new line of shit i'm trying out. let's see if it still works but if not, whatever."));
 			break;
 			
 			case 2: //Load game (somehow, wtf)
