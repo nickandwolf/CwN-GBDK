@@ -8,7 +8,7 @@
 #include "../res/dialog_frame.h"
 
 #include "inc/splashscreen.h"
-#include "inc/title_1.h"
+#include "../data/inc/title_1.h"
 
 //#include "inc/CharacterCreation.h" //none yet, premade for first game
 #include "../data/inc/MikeHall.h"
