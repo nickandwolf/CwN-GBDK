@@ -6,6 +6,10 @@
 #include "inc/splashscreen.h"
 
 void InitSplashScreen() {
+	HIDE_BKG;
+	HIDE_WIN;
+	HIDE_SPRITES;
+	
 	set_bkg_data(0,105,NickAndWolf_tiles);
 	set_bkg_tiles(2,2,16,16,NickAndWolf_map);
 	SHOW_BKG;

@@ -7,8 +7,10 @@
 #include "inc/main.h"
 #include "../res/dialog_frame.h"
 
+//Levels and stuff
 #include "inc/splashscreen.h"
 #include "../data/inc/title_1.h"
+#include "../data/inc/hospital_1.h"
 
 //#include "inc/CharacterCreation.h" //none yet, premade for first game
 #include "../data/inc/MikeHall.h"
@@ -16,7 +18,7 @@
 
 //#include "inc/diceRoll.h"
 
-uint8_t game_state = 0;
+uint8_t game_state = TITLE_SCREEN_STATE; //TODO: ENUM all this shit
 
 void (*action_func)(void);
 
@@ -140,22 +142,29 @@ void Move_MainCharacter() {
 
 void main(void)
 {	
-	//InitSplashScreen(); //KEEP
+	InitSplashScreen(); //KEEP
 	InitTitle_1();
     
+	//game_state = 1;
 	while(1)
 	{
 		//update
 		switch (game_state) {
-			case 0: //Title Screen
+			case CHAR_SHEET_STATE: //pause screen
+				game_state = CharacterSheetUpdate();
+			break;
+			
+			//maybe a second pause screen?
+			
+			case TITLE_SCREEN_STATE: //Title Screen
 				game_state = Title_1_Update();
 			break;
 			
-			case 1: //New Game Cutscene
-				dialog_print_p("jim", sizeof("jim"), "here's a new line of shit i'm trying out. let's see if it still works but if not, whatever.", sizeof("here's a new line of shit i'm trying out. let's see if it still works but if not, whatever."));
+			case HOSPITAL_1_STATE: //Load Hospital TODO: make hospital handle this
+				game_state = Hospital_1_Update();
 			break;
 			
-			case 2: //Load game (somehow, wtf)
+			case 5: //Load game (somehow, wtf)
 			break;
 		}
 		

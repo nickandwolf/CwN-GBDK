@@ -1,5 +1,5 @@
 //Mike Hall
-#include "inc/MainCharacter.h"
+#include "../src/inc/MainCharacter.h"
 
 void MikeHall_Init() {
 	InitalizeCharacter(0);

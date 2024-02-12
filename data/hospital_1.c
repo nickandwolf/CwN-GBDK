@@ -1,28 +1,31 @@
 #include <stdint.h>
 #include <gb/gb.h>
 #include "../src/inc/textFunctions.h"
+#include "../src/inc/main.h"
+#include "../src/inc/Font.h"
 
-#include "../res/title_1_tiles.h"
-#include "../res/title_1_map.h"
+#include "../res/hospital_1_tiles.h"
+#include "../res/hospital_1_map.h"
 #include "../res/CustomFont_white.h"
 
-#include "../src/inc/main.h"
+#include "inc/hospital_1.h"
 
-#include "inc/title_1.h"
+char pointerH1 = 0;
 
-char newGame = 1;
-
-void InitTitle_1() {
+void InitHospital_1() {
 	HIDE_BKG;
 	HIDE_WIN;
 	HIDE_SPRITES;
+	
 	//BKG
-	set_bkg_data(0, 113, Title_1_tiles);
-	set_bkg_tiles(0,0,20,18,Title_1_map);
+	set_bkg_data(0, 116, Hospital_1_tiles);
+	set_bkg_tiles(0,0,20,18,Hospital_1_map);
 	
-	set_sprite_data(0,59,CustomFont_white);
+	//set_sprite_data(0,59,CustomFont_white);
 	SHOW_BKG;
-	
+
+}
+	/*
 	//SPRITES
 	//arrow
 	set_sprite_tile(0, 6);
@@ -69,26 +72,22 @@ void InitTitle_1() {
 	
 	
 	SHOW_SPRITES;
-}
+}*/
 
-uint8_t Title_1_Update() {
-	if (KEY_TICKED(J_UP) || KEY_TICKED(J_DOWN)) {
-		if (newGame) {
-			move_sprite(0, 8, 94);
-			newGame = 0;
-		}
-		else {
-			move_sprite(0, 8, 78);
-			newGame = 1;
-		}
-	}
-	else if (KEY_TICKED(J_A)) {
-		if (newGame == 1) {
-			return HOSPITAL_1_STATE;
-		}
-		else return 5; //TODO:Enum this?
+uint8_t Hospital_1_Update() {
+	switch(pointerH1) {
+		case 0:
+			InitHospital_1();
+			pointerH1 = 1;
+		break;
+		
+		case 1:
+			dialog_print_p("mike", sizeof("mike"), "so how does it look?", sizeof("so how does it look?"));
+			pointerH1 = 2;
+			return 0;
+		break;
 	}
 	
-	return TITLE_SCREEN_STATE;
+	return HOSPITAL_1_STATE;
 
 }
