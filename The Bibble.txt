@@ -49,7 +49,7 @@ Title Screen -> New Game / Continue
 
 <Doctor> I'm afraid it has spread through your bloodstream. We can operate but your insurance is only for basic care.
 
-96<Mike> How much would it cost?
+<Mike> How much would it cost?
 
 <Doctor> For the nanites, surgery, and therapy; $255,000.
 

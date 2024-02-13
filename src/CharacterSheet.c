@@ -1,7 +1,11 @@
 #include <stdint.h>
 #include <gb/gb.h>
+
+#include "../src/inc/main.h"
+
 #include "../res/CharacterSheet_tiles.h"
 #include "../res/CharacterSheet_map.h"
+
 #include "inc/textFunctions.h"
 #include "inc/CharacterSheet.h"
 
@@ -21,8 +25,13 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
-			
+			waitpadup();
+			waitpad(J_A);
+			pointerCS = 2;
 		break;
+		
+		case 2:
+			return HOSPITAL_1_STATE;
 	}
 	
 	return 0;

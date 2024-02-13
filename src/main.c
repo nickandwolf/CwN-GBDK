@@ -142,7 +142,7 @@ void Move_MainCharacter() {
 
 void main(void)
 {	
-	InitSplashScreen(); //KEEP
+	//InitSplashScreen(); //KEEP
 	InitTitle_1();
     
 	//game_state = 1;
@@ -162,6 +162,10 @@ void main(void)
 			
 			case HOSPITAL_1_STATE: //Load Hospital TODO: make hospital handle this
 				game_state = Hospital_1_Update();
+			break;
+			
+			case APARTMENT_1_STATE:
+				
 			break;
 			
 			case 5: //Load game (somehow, wtf)

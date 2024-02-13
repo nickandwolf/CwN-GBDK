@@ -29,7 +29,7 @@ const unsigned char Font_symbols[25] = {
 };
 
 void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text, uint8_t size) {
-	set_win_data(0,59,CustomFont);
+	set_win_data(0x80,59,CustomFont);
 	init_win(0x00);//wipe the screen
 	set_win_tiles(0,0,20,5,dialog_frame);//throw up a fresh border
 	SHOW_WIN;//display to the world
@@ -90,11 +90,11 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
-				set_win_tile_xy(19,3,0x06);
+				set_win_tile_xy(19,3,0x86);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
-				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, 0x00);
+				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, 0x80);
 				xpos=ypos=1;
 				set_win_tile_xy(19,3,0x39);
 			}
@@ -113,7 +113,7 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
 	}
 	
 	//we don't have buttons to accidentially close dialog
-	set_win_tile_xy(19,3,0x0A);
+	set_win_tile_xy(19,3,0x8A);
 	waitpadup();
 	waitpad(J_A);
 	

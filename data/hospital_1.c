@@ -82,9 +82,28 @@ uint8_t Hospital_1_Update() {
 		break;
 		
 		case 1:
-			dialog_print_p("mike", sizeof("mike"), "so how does it look?", sizeof("so how does it look?"));
+			dialog_print_p("mike", sizeof("mike"), "so how does it    look/", sizeof("so how does it    look/"));
 			pointerH1 = 2;
 			return 0;
+		break;
+		
+		case 2:
+			dialog_print_p("doctor", sizeof("doctor"), "i'm afraid it has spread through your bloodstream. we can operate but your insurance is only for basic care.", sizeof("i'm afraid it has spread through your bloodstream. we can operate but your insurance is only for basic care."));
+			
+			dialog_print_p("mike", sizeof("mike"), "how much would it cost/", sizeof("how much would it cost/"));
+			
+			dialog_print_p("doctor", sizeof("doctor"), "for the nanites, surgery, and therapy#$255,000.", sizeof("for the nanites, surgery, and therapy#$255,000."));
+			
+			dialog_print_p("mike", sizeof("mike"), "#how much time do i have/", sizeof("#how much time do i have/"));
+			
+			dialog_print_p("doctor", sizeof("doctor"), "between four days and two weeks.", sizeof("between four days and two weeks."));
+			
+			dialog_print_p("mike", sizeof("mike"), "# #", sizeof("# #"));
+			
+			dialog_print_p("doctor", sizeof("doctor"), "#", sizeof("#"));
+			
+			return APARTMENT_1_STATE;
+			
 		break;
 	}
 	
