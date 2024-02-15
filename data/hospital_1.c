@@ -10,7 +10,7 @@
 
 #include "inc/hospital_1.h"
 
-char pointerH1 = 0;
+uint8_t pointerH1 = 0;
 
 void InitHospital_1() {
 	HIDE_BKG;
@@ -88,6 +88,11 @@ uint8_t Hospital_1_Update() {
 		break;
 		
 		case 2:
+			InitHospital_1();
+			pointerH1 = 3;
+		break;
+		
+		case 3:
 			dialog_print_p("doctor", sizeof("doctor"), "i'm afraid it has spread through your bloodstream. we can operate but your insurance is only for basic care.", sizeof("i'm afraid it has spread through your bloodstream. we can operate but your insurance is only for basic care."));
 			
 			dialog_print_p("mike", sizeof("mike"), "how much would it cost/", sizeof("how much would it cost/"));

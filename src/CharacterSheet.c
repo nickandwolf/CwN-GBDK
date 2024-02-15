@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <stdint.h>
 #include <gb/gb.h>
 
@@ -9,12 +11,19 @@
 #include "inc/textFunctions.h"
 #include "inc/CharacterSheet.h"
 
-char pointerCS = 0;
+uint8_t pointerCS = 0;
 
 void InitCharacterSheet() {
+	HIDE_BKG;
+	HIDE_WIN;
+	HIDE_SPRITES;
+	
 	set_bkg_data(0,105,CharacterSheet_tiles);
 	set_bkg_tiles(0,0,20,18,CharacterSheet_map);
-	SHOW_BKG;	
+	
+	//move_win(0,0);
+	
+	SHOW_BKG;
 }
 
 uint8_t CharacterSheetUpdate(void) {
@@ -25,9 +34,9 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
-			waitpadup();
-			waitpad(J_A);
 			pointerCS = 2;
+			return HOSPITAL_1_STATE;
+			
 		break;
 		
 		case 2:

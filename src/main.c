@@ -144,7 +144,6 @@ void main(void)
 {	
 	//InitSplashScreen(); //KEEP
 	InitTitle_1();
-    
 	//game_state = 1;
 	while(1)
 	{
@@ -165,7 +164,7 @@ void main(void)
 			break;
 			
 			case APARTMENT_1_STATE:
-				
+				game_state = TITLE_SCREEN_STATE;
 			break;
 			
 			case 5: //Load game (somehow, wtf)

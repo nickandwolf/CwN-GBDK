@@ -2,3 +2,7 @@
 *.[ihx]
 *.[cdb]
 *.[map]
+*.cdb
+*.ihx
+*.map
+*.noi
