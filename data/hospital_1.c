@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <gb/gb.h>
 #include "../src/inc/textFunctions.h"
-#include "../src/inc/main.h"
+#include "../src/inc/gameStatesEnum.h"
 #include "../src/inc/Font.h"
 
 #include "../res/hospital_1_tiles.h"

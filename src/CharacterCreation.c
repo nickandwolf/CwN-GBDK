@@ -6,8 +6,6 @@
 #include "inc/MainCharacter.h"
 #include "inc/textFunctions.h"
 
-uint8_t state = 0;
-
 void CharacterCreationInit() {
 	
 }

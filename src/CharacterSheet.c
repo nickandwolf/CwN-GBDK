@@ -1,15 +1,15 @@
-#include <stdio.h>
+#include <gbdk/emu_debug.h>
 
 #include <stdint.h>
 #include <gb/gb.h>
 
-#include "../src/inc/main.h"
+#include "inc/CharacterSheet.h"
+#include "inc/gameStatesEnum.h"
+#include "inc/textFunctions.h"
+
 
 #include "../res/CharacterSheet_tiles.h"
 #include "../res/CharacterSheet_map.h"
-
-#include "inc/textFunctions.h"
-#include "inc/CharacterSheet.h"
 
 uint8_t pointerCS = 0;
 
@@ -30,13 +30,13 @@ uint8_t CharacterSheetUpdate(void) {
 	switch(pointerCS) {
 		case 0:
 			InitCharacterSheet();
+			EMU_printf("pointerCS:%i",pointerCS);
 			pointerCS = 1;
+			EMU_printf("pointerCS:%i",pointerCS);
 		break;
 		
 		case 1:
-			pointerCS = 2;
-			return HOSPITAL_1_STATE;
-			
+			EMU_printf("pointerCS:%i",pointerCS);
 		break;
 		
 		case 2:

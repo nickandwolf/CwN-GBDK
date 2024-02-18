@@ -1,12 +1,11 @@
 #include <stdint.h>
 #include <gb/gb.h>
 #include "../src/inc/textFunctions.h"
+#include "../src/inc/gameStatesEnum.h"
 
 #include "../res/title_1_tiles.h"
 #include "../res/title_1_map.h"
 #include "../res/CustomFont_white.h"
-
-#include "../src/inc/main.h"
 
 #include "inc/title_1.h"
 

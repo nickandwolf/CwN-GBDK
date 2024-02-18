@@ -94,7 +94,7 @@ extern int8_t playerMapX; //gonna sound weird but maps start at 1
 extern int8_t playerMapY;
 extern uint8_t playerState;
 
-enum PLAYER_STATES {OVERWORLD, PLAYER_MOVING};//add more as we go.
+const enum PLAYER_STATES {OVERWORLD, PLAYER_MOVING};//add more as we go.
 
 const enum Main_Char_Tiles {PC_F_IDLE = 33, PC_F_WALK = 37, PC_B_IDLE = 41, PC_B_WALK = 45, PC_S_IDLE = 49, PC_S_WALK = 53};
 

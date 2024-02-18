@@ -1,24 +1,27 @@
+#include <gbdk/emu_debug.h>
+
 #include <gb/gb.h>
 #include <stdint.h>
-#include <stdio.h>
 
 #include "inc/Font.h"
 #include "inc/textFunctions.h"
+#include "inc/gameStatesEnum.h"
 #include "inc/main.h"
 #include "../res/dialog_frame.h"
 
 //Levels and stuff
 #include "inc/splashscreen.h"
 #include "../data/inc/title_1.h"
+#include "inc/CharacterSheet.h"
 #include "../data/inc/hospital_1.h"
 
-//#include "inc/CharacterCreation.h" //none yet, premade for first game
-#include "../data/inc/MikeHall.h"
 #include "inc/MainCharacter.h"
+#include "inc/CharacterCreation.h" //none yet, premade for first game
+#include "../data/inc/MikeHall.h"
 
 //#include "inc/diceRoll.h"
 
-uint8_t game_state = TITLE_SCREEN_STATE; //TODO: ENUM all this shit
+uint8_t game_state = TITLE_SCREEN_STATE;
 
 void (*action_func)(void);
 
@@ -144,7 +147,8 @@ void main(void)
 {	
 	//InitSplashScreen(); //KEEP
 	InitTitle_1();
-	//game_state = 1;
+	
+	
 	while(1)
 	{
 		//update
@@ -160,6 +164,7 @@ void main(void)
 			break;
 			
 			case HOSPITAL_1_STATE: //Load Hospital TODO: make hospital handle this
+				EMU_printf("Hospital");
 				game_state = Hospital_1_Update();
 			break;
 			
