@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #include "inc/CharacterCreation.h"
-#include "inc/MainCharacter.h"
+//#include "inc/MainCharacter.h"
 #include "inc/textFunctions.h"
 
 void CharacterCreationInit() {

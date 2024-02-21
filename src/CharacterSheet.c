@@ -37,11 +37,12 @@ uint8_t CharacterSheetUpdate(void) {
 		
 		case 1:
 			EMU_printf("pointerCS:%i",pointerCS);
+			if (KEY_PRESSED(J_A)) EMU_printf("POOP");
 		break;
 		
 		case 2:
 			return HOSPITAL_1_STATE;
 	}
 	
-	return 0;
+	return CHAR_SHEET_STATE;
 }

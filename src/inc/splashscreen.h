@@ -8,8 +8,8 @@ void InitSplashScreen(void);
 
 
 void FadeDMG(uint8_t fadeout, uint8_t taim);
-void FadeInDMG(uint8_t taim);
 void FadeOutDMG(uint8_t taim);
+void FadeInDMG(uint8_t taim);
 uint8_t FadeInOp(int16_t c, int16_t i);
 int16_t DespRight(int16_t a, int16_t b);
 

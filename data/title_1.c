@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <gb/gb.h>
+#include "inc/title_1.h"
+
 #include "../src/inc/textFunctions.h"
 #include "../src/inc/gameStatesEnum.h"
 
@@ -7,9 +9,8 @@
 #include "../res/title_1_map.h"
 #include "../res/CustomFont_white.h"
 
-#include "inc/title_1.h"
 
-char newGame = 1;
+uint8_t newGame = 1;
 
 void InitTitle_1() {
 	HIDE_BKG;
