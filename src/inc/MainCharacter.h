@@ -1,5 +1,5 @@
-#ifndef MainCharacter_h
-#define MainCharacter_h
+#ifndef MAIN_CHARACTER_H
+#define MAIN_CHARACTER_H
 
 #include <stdint.h>
 

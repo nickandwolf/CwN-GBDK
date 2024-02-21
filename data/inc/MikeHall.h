@@ -1,6 +1,6 @@
 //Mike Hall
-#ifndef MikeHall_h
-#define MikeHall_h
+#ifndef MIKE_HALL_H
+#define MIKE_HALL_H
 
 void MikeHall_Init(void);
 

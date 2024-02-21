@@ -5,6 +5,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
+#include "inc/textFunctions.h"
 #include "inc/Font.h"
 #include "inc/MainCharacter.h"
 

@@ -1,7 +1,7 @@
-#ifndef CharacterCreation_h
-#define CharacterCreation_h
+#ifndef CHARACTER_CREATION_H
+#define CHARACTER_CREATION_H
 
-uint8_t state;
+//uint8_t state;
 
 void CharacterCreationInit(void);
 void CharacterCreationUpdate(void);
