@@ -30,14 +30,14 @@ uint8_t CharacterSheetUpdate(void) {
 	switch(pointerCS) {
 		case 0:
 			InitCharacterSheet();
-			EMU_printf("pointerCS:%i",pointerCS);
+			EMU_printf(pointerCS);
 			pointerCS = 1;
-			EMU_printf("pointerCS:%i",pointerCS);
+			EMU_printf(pointerCS);
 		break;
 		
 		case 1:
-			EMU_printf("pointerCS:%i",pointerCS);
-			if (KEY_PRESSED(J_A)) EMU_printf("POOP");
+			EMU_printf("pointerCS:%c",pointerCS);
+			if (KEY_PRESSED(J_A)) pointerCS = 2;
 		break;
 		
 		case 2:

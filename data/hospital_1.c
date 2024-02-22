@@ -93,11 +93,11 @@ uint8_t Hospital_1_Update() {
 		break;
 		
 		case 3:
-			dialog_print_p("doctor", sizeof("doctor"), "i'm afraid it has spread through your bloodstream. we can operate but your insurance is only for basic care.", sizeof("i'm afraid it has spread through your bloodstream. we can operate but your insurance is only for basic care."));
+			dialog_print_p("doctor", sizeof("doctor"), "i'm afraid it has spread through    your bloodstream. we can operate but your insurance is only for basic    care.", sizeof("i'm afraid it has spread through    your bloodstream. we can operate but your insurance is only for basic    care."));
 			
 			dialog_print_p("mike", sizeof("mike"), "how much would it cost/", sizeof("how much would it cost/"));
 			
-			dialog_print_p("doctor", sizeof("doctor"), "for the nanites, surgery, and therapy#$255,000.", sizeof("for the nanites, surgery, and therapy#$255,000."));
+			dialog_print_p("doctor", sizeof("doctor"), "for the nanites,  surgery, and      therapy#$255,000.", sizeof("for the nanites,  surgery, and      therapy#$255,000."));
 			
 			dialog_print_p("mike", sizeof("mike"), "#how much time do i have/", sizeof("#how much time do i have/"));
 			

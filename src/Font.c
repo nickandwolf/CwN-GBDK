@@ -73,6 +73,9 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
 
 	while (index-0<(size-1))
 	{
+		//fix glitched text
+		set_win_tile_xy(19,3,0xB9);
+		
         // This do a line jump if there's no more space on tile width (can be personalized).
 		if (xpos % DIALOG_WIDTH == 0) {xpos=1; ypos++;}
 		else xpos++;

@@ -3,11 +3,10 @@
 #include <gb/gb.h>
 #include <stdint.h>
 
-#include "inc/Font.h"
-#include "inc/textFunctions.h"
-#include "inc/gameStatesEnum.h"
 #include "inc/main.h"
-#include "../res/dialog_frame.h"
+#include "inc/gameStatesEnum.h"
+#include "inc/textFunctions.h"
+#include "inc/Font.h"
 
 //Levels and stuff
 #include "inc/splashscreen.h"
