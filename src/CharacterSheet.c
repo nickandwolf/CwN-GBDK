@@ -27,9 +27,7 @@ void InitCharacterSheet() {
 	set_bkg_tiles(0,0,20,18,CharacterSheet_map);
 	
 	//Actual Stats
-	set_sprite_data(0,79,CustomFont_white);
-	
-	set_bkg_tile_xy(3,2,70);
+	UpdateCharacterSheetStats();
 	
 	//box sprite
 	//set_sprite_tile(0, 53);
@@ -39,7 +37,11 @@ void InitCharacterSheet() {
 	//move_sprite(1,8,20);
 	
 	SHOW_BKG;
-	//SHOW_SPRITES;
+	SHOW_SPRITES;
+}
+
+void UpdateCharacterSheetStats(void) {
+    set_bkg_tile_xy(3,4,0);
 }
 
 uint8_t CharacterSheetUpdate(void) {
@@ -50,7 +52,8 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
-			if (KEY_PRESSED(J_A)) pointerCS = 2;
+            
+			if (KEY_PRESSED(J_SELECT)) pointerCS = 2;
 		break;
 		
 		case 2:
@@ -60,4 +63,16 @@ uint8_t CharacterSheetUpdate(void) {
 	}
 	
 	return CHAR_SHEET_STATE;
+}
+
+uint8_t CharacterSheetPointerUpdate(void) {
+    
+}
+
+uint8_t CharacterSheetInventoryPointerUpdate(void) {
+    
+}
+
+void DefineSheetStat(void) {
+    
 }

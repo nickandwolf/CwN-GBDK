@@ -1,9 +1,18 @@
+/*
+START STATIC
+Get basic shit to work
+
+then GET DYNAMIC
+and start improving things and calculating HP/SS
+*/
+
 #ifndef MAIN_CHARACTER_H
 #define MAIN_CHARACTER_H
 
 #include <stdint.h>
 
 //CHARACTER SHIT
+/*
 typedef struct Contact {
 	char* name;
 	char* background;
@@ -15,10 +24,11 @@ typedef struct Contact {
 	char* what_can_they_do_for_you;
 	//uint8_t friend;
 } contact;
+*/
 
 typedef struct Character {
     char *name;
-    uint8_t background;
+    //uint8_t background;
 
     uint8_t strength;
     uint8_t dexterity;
@@ -57,33 +67,51 @@ typedef struct Character {
     int8_t HP;
     uint8_t HP_current;
 
+    uint_t SS;
+    uint8_t SS_current;
+
     uint8_t XP;
     uint8_t level;
-    uint8_t edges[4];
-    uint8_t foci[6];
-	char* contacts;
+    //uint8_t edges[4];
+    //uint8_t foci[6];
+	//char* contacts;
 
 } character;
 
+const enum Attributes {ATTRIBUTE_NONE, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA};
+
 const enum Skills {SKILL_NONE, ADMINISTER, CONNECT, DRIVE, EXERT, FIX, HEAL, KNOW, LEAD, NOTICE, PERFORM, PROGRAM, PUNCH, SHOOT, SNEAK, STAB, SURVIVE, TALK, TRADE, WORK};
 
-const enum Backgrounds {BACKGROUND_NONE, BUM, BUREAUCRAT, CLERGY, CODER, CORP_SECURITY, CORPER, CRIMINAL, DOCTOR, DRONE_JOCKEY, GANGER, LABORER, LAW_ENFORCEMENT, MANAGER, OUTLANDER, PERFORMER, SOLDIER, SPY, TRADER, STREETWALKER, TECHNICIAN};
+//const enum Backgrounds {BACKGROUND_NONE, BUM, BUREAUCRAT, CLERGY, CODER, CORP_SECURITY, CORPER, CRIMINAL, DOCTOR, DRONE_JOCKEY, GANGER, LABORER, LAW_ENFORCEMENT, MANAGER, OUTLANDER, PERFORMER, SOLDIER, SPY, TRADER, STREETWALKER, TECHNICIAN};
 
-const enum Edges {EDGE_NONE, EDUCATED, FACE, FOCUSED, GHOST, HACKER, HARD_TO_KILL, MASTERFUL_EXPERTISE, ON_TARGET, PRODIGY_STR, PRODIGY_DEX, PRODIGY_CON, PRODIGY_INT, PRODIGY_WIS, PRODIGY_CHA, OPERATORS_FORTUNE, VETERANS_LUCK, VOICE_OF_THE_PEOPLE, WIRED};
+//const enum Edges {EDGE_NONE, EDUCATED, FACE, FOCUSED, GHOST, HACKER, HARD_TO_KILL, MASTERFUL_EXPERTISE, ON_TARGET, PRODIGY_STR, PRODIGY_DEX, PRODIGY_CON, PRODIGY_INT, PRODIGY_WIS, PRODIGY_CHA, OPERATORS_FORTUNE, VETERANS_LUCK, VOICE_OF_THE_PEOPLE, WIRED};
 
-const enum Foci {FOCI_NONE, ACE_DRIVE1, ACE_DRIVER2, ALERT1, ALERT2, ALL_NATURAL, ARMSMASTER1, ARMSMASTER2, ASSASSIN1, ASSASSIN2, AUTHORITY1, AUTHORITY2, CLOSE_COMBATANT1, CLOSE_COMBATANT2, CYBERDOC1, CYBERDOC2, DEADEYE1, DEADEYE2, DIPLOMAT1, DIPLOMAT2, DRONE_PILOT1, DRONE_PILOT2, EXPERT_PROGRAMMER1, EXPERT_PROGRAMMER2, HEALER1, HEALER2, HENCHKEEPER1, HENCHKEEPER2, MANY_FACES, POP_IDOL1, POP_IDOL2, ROAMER1, ROAMER2, SAFE_HAVEN1, SAFE_HAVEN2, SHOCKING_ASSAULT1, SHOCKING_ASSAULT2, SNIPERS_EYE1, SNIPERS_EYE2, SPECIALIST1, SPECIALIST2, TINKER1, TINKER2};
+//const enum Foci {FOCI_NONE, ACE_DRIVE1, ACE_DRIVER2, ALERT1, ALERT2, ALL_NATURAL, ARMSMASTER1, ARMSMASTER2, ASSASSIN1, ASSASSIN2, AUTHORITY1, AUTHORITY2, CLOSE_COMBATANT1, CLOSE_COMBATANT2, CYBERDOC1, CYBERDOC2, DEADEYE1, DEADEYE2, DIPLOMAT1, DIPLOMAT2, DRONE_PILOT1, DRONE_PILOT2, EXPERT_PROGRAMMER1, EXPERT_PROGRAMMER2, HEALER1, HEALER2, HENCHKEEPER1, HENCHKEEPER2, MANY_FACES, POP_IDOL1, POP_IDOL2, ROAMER1, ROAMER2, SAFE_HAVEN1, SAFE_HAVEN2, SHOCKING_ASSAULT1, SHOCKING_ASSAULT2, SNIPERS_EYE1, SNIPERS_EYE2, SPECIALIST1, SPECIALIST2, TINKER1, TINKER2};
 
 void InitalizeCharacter(uint8_t p);
 void SetPlayerName(uint8_t p, char *name);
-void SetPlayerBackground(uint8_t p, enum Backgrounds background);
-void InitPlayerBackground(uint8_t p);
 void SetPlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value);
 void SetPlayerAttributeBonus(uint8_t p);
-void ImprovePlayerSkill(uint8_t p, uint8_t skill);
-void SetPlayerEdge(uint8_t p, uint8_t edge);
-void ImprovePlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+uint8_t ImprovePlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+uint8_t ImprovePlayerSkill(uint8_t p, uint8_t skill);
+
+//void SetPlayerBackground(uint8_t p, enum Backgrounds background);
+//void InitPlayerBackground(uint8_t p);
+
+//void SetPlayerEdge(uint8_t p, uint8_t edge);
 
 char* GetPlayerName(uint8_t p);
+
+uint8_t GetPlayerAttribute(uint8_t p, uint8_t attribute);
+int8_t GetPlayerAttributeBonus(uint8_t p, uint8_t attribute;
+int8_t GetPlayerSkill(uint8_t p, uint8_t skill);
+
+uint8_t GetPlayerLevel(uint8_t p);
+uint8_t GetPlayerXP(uint8_t p);
+uint8_t GetPlayerHP(uint8_t p);
+uint8_t GetPlayerHP_Current(uint8_t p);
+uint8_t GetPlayerSS(uint8_t p);
+uint8_t GetPlayerSS_Current(uint8_t p);
 
 //PROGRAMMING SHIT
 extern uint8_t facing;

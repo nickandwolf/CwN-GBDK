@@ -19,8 +19,8 @@ uint8_t playerState = 0;
 character PC[1]; //may need to work on optimization later
 
 void InitalizeCharacter(uint8_t p) { //TODO: actually make this work
-    PC[p].level = 1;
-    PC[p].XP = 0;
+    //PC[p].level = 1;
+    //PC[p].XP = 0;
 	
 	PC[p].strength = 10;
 	PC[p].dexterity = 10;
@@ -54,6 +54,7 @@ void SetPlayerName(uint8_t p, char *name) {
     PC[p].name = name;
 }
 
+/*
 void SetPlayerBackground(uint8_t p, uint8_t background) {
     PC[p].background = background;
     switch(background) {
@@ -155,7 +156,9 @@ char* GetPlayerBackground(uint8_t p) {
 		return "nope";
     }
 }
+*/
 
+/*
 void UseDefaultAttributeArray(uint8_t p) {
     //need to make a UI
     //what would you like to assign?
@@ -172,32 +175,31 @@ void UseDiceRollAttribute(uint8_t p) {
         SetPlayerAttribute(p, i, roll);
     }
 }
-
-void ImprovePlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+*/
 
 void SetPlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value) {
     switch (attribute) {
-        case 1:
+        case STRENGTH:
             PC[p].strength = value;
         break;
 
-        case 2:
+        case DEXTERITY:
             PC[p].dexterity = value;
         break;
 
-        case 3:
+        case CONSTITUTION:
             PC[p].constitution = value;
         break;
 
-        case 4:
+        case INTELLIGENCE:
             PC[p].intelligence = value;
         break;
 
-        case 5:
+        case WISDOM:
             PC[p].wisdom = value;
         break;
 
-        case 6:
+        case CHARISMA:
             PC[p].charisma = value;
         break;
     }
@@ -206,9 +208,9 @@ void SetPlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value) {
 void SetPlayerAttributeBonus(uint8_t p) {
     bool edge_prodigy = false;
     
-    for (uint8_t i = 0; i < 4; i++) {
-        if (PC[p].edges[i] == PRODIGY_STR || PC[p].edges[i] == PRODIGY_DEX || PC[p].edges[i] == PRODIGY_CON || PC[p].edges[i] == PRODIGY_INT || PC[p].edges[i] == PRODIGY_WIS || PC[p].edges[i] == PRODIGY_CHA) edge_prodigy = true;
-    }
+    //for (uint8_t i = 0; i < 4; i++) {
+    //    if (PC[p].edges[i] == PRODIGY_STR || PC[p].edges[i] == PRODIGY_DEX || PC[p].edges[i] == PRODIGY_CON || PC[p].edges[i] == PRODIGY_INT || PC[p].edges[i] == PRODIGY_WIS || PC[p].edges[i] == PRODIGY_CHA) edge_prodigy = true;
+    //}
     
     for (uint8_t i = 0; i < 6; i++) {
         switch (i) {
@@ -269,105 +271,294 @@ void SetPlayerAttributeBonus(uint8_t p) {
     }
 }
 
+uint8_t ImprovePlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+
+/*
 void PickSkills(uint8_t p) {
     //need to make a UI
     //show skill text when picking
     //show points
 }
+*/
 
-void ImprovePlayerSkill(uint8_t p, uint8_t skill) {
+uint8_t ImprovePlayerSkill(uint8_t p, uint8_t skill) {
     switch (skill) {
-        case 1:
-            PC[p].administer += 1;
+        case ADMINISTER://TODO: Use the enum
+            if (PC[p].adminster < 3) PC[p].adminster++;
+            else return 0;
         break;
 
-        case 2:
-            PC[p].connect += 1;
+        case CONNECT:
+            if (PC[p].connect < 3) PC[p].connect++;
+            else return 0;
         break;
 
-        case 3:
-            PC[p].drive += 1;
+        case DRIVE:
+            if (PC[p].drive < 3) PC[p].drive++;
+            else return 0;
         break;
 
-        case 4:
-            PC[p].exert += 1;
+        case EXERT:
+            if (PC[p].exert < 3) PC[p].exert++;)
+            else return 0;
         break;
 
-        case 5:
-            PC[p].fix += 1;
+        case FIX:
+            if (PC[p].fix < 3) PC[p].fix++;
+            else return 0;
         break;
 
-        case 6:
-            PC[p].heal += 1;
+        case HEAL:
+            if (PC[p].heal < 3) PC[p].heal++;
+            else return 0;
         break;
 
-        case 7:
-            PC[p].know += 1;
+        case KNOW:
+            if (PC[p].know < 3) PC[p].know++;
+            else return 0;
         break;
 
-        case 8:
-            PC[p].lead += 1;
+        case LEAD:
+            if (PC[p].lead < 3) PC[p].lead++;
+            else return 0;
         break;
 
-        case 9:
-            PC[p].notice += 1;
+        case NOTICE:
+            if (PC[p].notice < 3) PC[p].notice++;
+            else return 0;
         break;
 
-        case 10:
-            PC[p].perform += 1;
+        case PERFORM:
+            if (PC[p].perform < 3) PC[p].perform++;
+            else return 0;
         break;
 
-        case 11:
-            PC[p].program += 1;
+        case PROGRAM:
+            if (PC[p].program < 3) PC[p].program++;
+            else return 0;
         break;
 
-        case 12:
-            PC[p].punch += 1;
+        case PUNCH:
+            if (PC[p].punch < 3) PC[p].punch++;
+            else return 0;
         break;
 
-        case 13:
-            PC[p].shoot += 1;
+        case SHOOT:
+            if (PC[p].shoot < 3) PC[p].shoot++;
+            else return 0;
         break;
 
-        case 14:
-            PC[p].sneak += 1;
+        case SNEAK:
+            if (PC[p].sneak < 3) PC[p].sneak++;
+            else return 0;
         break;
 
-        case 15:
-            PC[p].stab += 1;
+        case STAB:
+            if (PC[p].stab < 3) PC[p].stab++;
+            else return 0;
         break;
 
-        case 16:
-            PC[p].survive += 1;
+        case SURVIVE:
+            if (PC[p].survive < 3) PC[p].survive++;
+            else return 0;
         break;
 
-        case 17:
-            PC[p].talk += 1;
+        case TALK:
+            if (PC[p].talk < 3) PC[p].talk++;
+            else return 0;
         break;
 
-        case 18:
-            PC[p].trade += 1;
+        case TRADE:
+            if (PC[p].trade < 3) PC[p].trade++;
+            else return 0;
         break;
 
-        case 19:
-            PC[p].work += 1;
+        case WORK:
+            if (PC[p].work < 3) PC[p].work++;
+            else return 0;
         break;
     }
+    return 1;
 }
 
+/*
 void SetPlayerEdge(uint8_t p, uint8_t edge) {
     if (PC[p].edges[0] == 0) PC[p].edges[0] = edge;
     else if (PC[p].edges[1] == 0) PC[p].edges[1] = edge;
     else if (PC[p].edges[2] == 0) PC[p].edges[2] = edge;
     else if (PC[p].edges[3] == 0) PC[p].edges[3] = edge;
 }
-
+*/
 /*****************************************************************/
 
 char* GetPlayerName(uint8_t p) {
 	return PC[p].name;
 }
 
+uint8_t GetPlayerAttribute(uint8_t p, uint8_t attribute) {
+    switch (attribute) {
+        case STRENGTH:
+            return PC[p].strength;
+        break;
+
+        case DEXTERITY:
+            return PC[p].dexterity;
+        break;
+
+        case CONSTITUTION:
+            return PC[p].constitution;
+        break;
+
+        case INTELLIGENCE:
+            return PC[p].intelligence;
+        break;
+
+        case WISDOM:
+            return PC[p].wisdom;
+        break;
+
+        case CHARISMA:
+            return PC[p].charisma;
+        break;
+    }
+    return 0;
+}
+
+int8_t GetPlayerAttributeBonus(uint8_t p, uint8_t attribute) {
+    switch (attribute) {
+        case STRENGTH:
+            return PC[p].strength_bonus;
+        break;
+
+        case DEXTERITY:
+            return PC[p].dexterity_bonus;
+        break;
+
+        case CONSTITUTION:
+            return PC[p].constitution_bonus;
+        break;
+
+        case INTELLIGENCE:
+            return PC[p].intelligence_bonus;
+        break;
+
+        case WISDOM:
+            return PC[p].wisdom_bonus;
+        break;
+
+        case CHARISMA:
+            return PC[p].charisma_bonus;
+        break;
+    }
+
+    return -5;
+}
+
+int8_t GetPlayerSkill(uint8_t p, uint8_t skill) {
+    switch (skill) {
+        case ADMINISTER:
+            return PC[p].adminster;
+        break;
+    
+        case CONNECT:
+            return PC[p].connect;
+        break;
+    
+        case DRIVE:
+            return PC[p].drive;
+        break;
+    
+        case EXERT:
+            return PC[p].exert;
+        break;
+    
+        case FIX:
+            return PC[p].fix;
+        break;
+    
+        case HEAL:
+            return PC[p].heal;
+        break;
+    
+        case KNOW:
+            return PC[p].know;
+        break;
+    
+        case LEAD:
+            return PC[p].lead;
+        break;
+    
+        case NOTICE:
+            return PC[p].notice;
+        break;
+    
+        case PERFORM:
+            return PC[p].perform;
+        break;
+    
+        case PROGRAM:
+            return PC[p].program;
+        break;
+    
+        case PUNCH:
+            return PC[p].punch;
+        break;
+    
+        case SHOOT:
+            return PC[p].shoot;
+        break;
+    
+        case SNEAK:
+            return PC[p].sneak;
+        break;
+    
+        case STAB:
+            return PC[p].stab;
+        break;
+    
+        case SURVIVE:
+            return PC[p].survive;
+        break;
+    
+        case TALK:
+            return PC[p].talk;
+        break;
+    
+        case TRADE:
+            return PC[p].trade;
+        break;
+    
+        case WORK:
+            return PC[p].work;
+        break;
+    }
+
+    return -5;
+}
+
+uint8_t GetPlayerLevel(uint8_t p) {
+    return PC[p].level;
+}
+
+uint8_t GetPlayerXP(uint8_t p) {
+    return PC[p].XP;
+}
+
+uint8_t GetPlayerHP(uint8_t p) {
+    return PC[p].HP;
+}
+
+uint8_t GetPlayerHP_Current(uint8_t p) {
+    return PC[p].HP_current;
+}
+
+uint8_t GetPlayerSS(uint8_t p) {
+    return PC[p].SS;
+}
+
+uint8_t GetPlayerSS_Current(uint8_t p) {
+    return PC[p].SS_current;
+}
 /*****************************************************************/
 
 void InitCharacterSprite() {
