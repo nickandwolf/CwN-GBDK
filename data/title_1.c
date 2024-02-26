@@ -20,7 +20,7 @@ void InitTitle_1() {
 	set_bkg_data(0, 113, Title_1_tiles);
 	set_bkg_tiles(0,0,20,18,Title_1_map);
 	
-	set_sprite_data(0,59,CustomFont_white);
+	set_sprite_data(0,51,CustomFont_white);
 	SHOW_BKG;
 	
 	//SPRITES

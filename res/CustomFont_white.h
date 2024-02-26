@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 51
+  Tiles                : 0 to 96
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -25,6 +25,8 @@
 #ifndef __CustomFont_white_h_INCLUDE
 #define __CustomFont_white_h_INCLUDE
 
+/* Bank of tiles. */
+#define CustomFont_whiteBank 0
 /* Start of tile array. */
 extern const unsigned char CustomFont_white[];
 

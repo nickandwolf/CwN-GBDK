@@ -18,9 +18,17 @@ uint8_t playerState = 0;
 //should we allow multiple characters?
 character PC[1]; //may need to work on optimization later
 
-void InitalizeCharacter(uint8_t p) {
+void InitalizeCharacter(uint8_t p) { //TODO: actually make this work
     PC[p].level = 1;
-    
+    PC[p].XP = 0;
+	
+	PC[p].strength = 10;
+	PC[p].dexterity = 10;
+	PC[p].constitution = 10;
+	PC[p].intelligence = 10;
+	PC[p].wisdom = 10;
+	PC[p].charisma = 10;
+	
     PC[p].administer = -1;
     PC[p].connect = -1;
     PC[p].drive = -1;
