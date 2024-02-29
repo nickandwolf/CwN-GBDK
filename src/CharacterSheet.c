@@ -1,5 +1,7 @@
 #include <gbdk/emu_debug.h>
 
+#include <stdio.h>
+
 #include <stdint.h>
 #include <gb/gb.h>
 
@@ -41,9 +43,10 @@ void InitCharacterSheet() {
 }
 
 void UpdateCharacterSheetStats(void) {
-    
+	SetPlayerAttribute(0,DEXTERITY,18);
+	int8_t dex = GetPlayerAttributeBonus(0,DEXTERITY);
     set_bkg_tile_xy(3,2,MINUS_ONE);//str
-    set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,DEXTERITY));//dex
+    set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+dex);//dex
     set_bkg_tile_xy(3,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,CONSTITUTION));//con
     set_bkg_tile_xy(7,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,INTELLIGENCE));//int
     set_bkg_tile_xy(7,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,WISDOM));//wis

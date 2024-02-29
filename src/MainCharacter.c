@@ -21,16 +21,13 @@ character PC[1]; //may need to work on optimization later
 void InitalizeCharacter(uint8_t p) { //TODO: actually make this work
     //PC[p].level = 1;
     //PC[p].XP = 0;
+	SetPlayerAttribute(p,STRENGTH,10);
+	SetPlayerAttribute(p,DEXTERITY,10);
+	SetPlayerAttribute(p,CONSTITUTION,10);
+	SetPlayerAttribute(p,INTELLIGENCE,10);
+	SetPlayerAttribute(p,WISDOM,10);
+	SetPlayerAttribute(p,CHARISMA,10);
 	
-	PC[p].strength = 10;
-	PC[p].dexterity = 10;
-	PC[p].constitution = 10;
-	PC[p].intelligence = 10;
-	PC[p].wisdom = 10;
-	PC[p].charisma = 10;
-
-    SetPlayerAttributeBonus(p);
-    
     PC[p].admin = -1;
     PC[p].connect = -1;
     PC[p].drive = -1;
@@ -205,6 +202,7 @@ void SetPlayerAttribute(uint8_t p, uint8_t attribute, uint8_t value) {
             PC[p].charisma = value;
         break;
     }
+	SetPlayerAttributeBonus(p);
 }
 
 void SetPlayerAttributeBonus(uint8_t p) {
