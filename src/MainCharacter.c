@@ -28,7 +28,9 @@ void InitalizeCharacter(uint8_t p) { //TODO: actually make this work
 	PC[p].intelligence = 10;
 	PC[p].wisdom = 10;
 	PC[p].charisma = 10;
-	
+
+    SetPlayerAttributeBonus(p);
+    
     PC[p].administer = -1;
     PC[p].connect = -1;
     PC[p].drive = -1;
