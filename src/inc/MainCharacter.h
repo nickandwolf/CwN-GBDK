@@ -44,7 +44,7 @@ typedef struct Character {
     int8_t wisdom_bonus;
     int8_t charisma_bonus;
 
-    int8_t administer;
+    int8_t admin;
     int8_t connect;
     int8_t drive;
     int8_t exert;
@@ -67,7 +67,7 @@ typedef struct Character {
     int8_t HP;
     uint8_t HP_current;
 
-    uint_t SS;
+    uint8_t SS;
     uint8_t SS_current;
 
     uint8_t XP;
@@ -80,7 +80,7 @@ typedef struct Character {
 
 const enum Attributes {ATTRIBUTE_NONE, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA};
 
-const enum Skills {SKILL_NONE, ADMINISTER, CONNECT, DRIVE, EXERT, FIX, HEAL, KNOW, LEAD, NOTICE, PERFORM, PROGRAM, PUNCH, SHOOT, SNEAK, STAB, SURVIVE, TALK, TRADE, WORK};
+const enum Skills {SKILL_NONE, ADMIN, CONNECT, DRIVE, EXERT, FIX, HEAL, KNOW, LEAD, NOTICE, PERFORM, PROGRAM, PUNCH, SHOOT, SNEAK, STAB, SURVIVE, TALK, TRADE, WORK};
 
 //const enum Backgrounds {BACKGROUND_NONE, BUM, BUREAUCRAT, CLERGY, CODER, CORP_SECURITY, CORPER, CRIMINAL, DOCTOR, DRONE_JOCKEY, GANGER, LABORER, LAW_ENFORCEMENT, MANAGER, OUTLANDER, PERFORMER, SOLDIER, SPY, TRADER, STREETWALKER, TECHNICIAN};
 
@@ -103,7 +103,7 @@ uint8_t ImprovePlayerSkill(uint8_t p, uint8_t skill);
 char* GetPlayerName(uint8_t p);
 
 uint8_t GetPlayerAttribute(uint8_t p, uint8_t attribute);
-int8_t GetPlayerAttributeBonus(uint8_t p, uint8_t attribute;
+int8_t GetPlayerAttributeBonus(uint8_t p, uint8_t attribute);
 int8_t GetPlayerSkill(uint8_t p, uint8_t skill);
 
 uint8_t GetPlayerLevel(uint8_t p);

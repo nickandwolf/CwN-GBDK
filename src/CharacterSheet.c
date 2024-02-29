@@ -37,17 +37,17 @@ void InitCharacterSheet() {
 	//move_sprite(1,8,20);
 	
 	SHOW_BKG;
-	SHOW_SPRITES;
+	//SHOW_SPRITES;
 }
 
 void UpdateCharacterSheetStats(void) {
     
-    set_bkg_tile_xy(3,2,371+GetPlayerAttributeBonus(0,STRENGTH));//str
-    set_bkg_tile_xy(3,3,371+GetPlayerAttributeBonus(0,DEXTERITY));//dex
-    set_bkg_tile_xy(3,4,371+GetPlayerAttributeBonus(0,CONSTITUTION));//con
-    set_bkg_tile_xy(7,2,371+GetPlayerAttributeBonus(0,INTELLIGENCE));//int
-    set_bkg_tile_xy(7,3,371+GetPlayerAttributeBonus(0,WISDOM));//wis
-    set_bkg_tile_xy(7,4,371+GetPlayerAttributeBonus(0,CHARISMA));//cha
+    set_bkg_tile_xy(3,2,MINUS_ONE);//str
+    set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,DEXTERITY));//dex
+    set_bkg_tile_xy(3,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,CONSTITUTION));//con
+    set_bkg_tile_xy(7,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,INTELLIGENCE));//int
+    set_bkg_tile_xy(7,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,WISDOM));//wis
+    set_bkg_tile_xy(7,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,CHARISMA));//cha
 
     /*
     set_bkg_tile_xy(11,1,PLUS_ONE);//attack

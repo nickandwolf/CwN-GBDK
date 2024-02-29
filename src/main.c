@@ -146,7 +146,7 @@ void main(void)
 {	
 	//InitSplashScreen(); //KEEP
 	InitTitle_1();
-	
+	MikeHall_Init();
 	
 	while(1)
 	{

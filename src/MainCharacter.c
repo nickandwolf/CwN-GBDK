@@ -31,7 +31,7 @@ void InitalizeCharacter(uint8_t p) { //TODO: actually make this work
 
     SetPlayerAttributeBonus(p);
     
-    PC[p].administer = -1;
+    PC[p].admin = -1;
     PC[p].connect = -1;
     PC[p].drive = -1;
     PC[p].exert = -1;
@@ -285,8 +285,8 @@ void PickSkills(uint8_t p) {
 
 uint8_t ImprovePlayerSkill(uint8_t p, uint8_t skill) {
     switch (skill) {
-        case ADMINISTER://TODO: Use the enum
-            if (PC[p].adminster < 3) PC[p].adminster++;
+        case ADMIN://TODO: Use the enum
+            if (PC[p].admin < 3) PC[p].admin++;
             else return 0;
         break;
 
@@ -301,7 +301,7 @@ uint8_t ImprovePlayerSkill(uint8_t p, uint8_t skill) {
         break;
 
         case EXERT:
-            if (PC[p].exert < 3) PC[p].exert++;)
+            if (PC[p].exert < 3) PC[p].exert++;
             else return 0;
         break;
 
@@ -458,8 +458,8 @@ int8_t GetPlayerAttributeBonus(uint8_t p, uint8_t attribute) {
 
 int8_t GetPlayerSkill(uint8_t p, uint8_t skill) {
     switch (skill) {
-        case ADMINISTER:
-            return PC[p].adminster;
+        case ADMIN:
+            return PC[p].admin;
         break;
     
         case CONNECT:
