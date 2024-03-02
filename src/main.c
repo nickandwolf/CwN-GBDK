@@ -1,4 +1,6 @@
 #include <gbdk/emu_debug.h>
+#include <stdio.h>
+
 
 #include <gb/gb.h>
 #include <stdint.h>
@@ -15,10 +17,13 @@
 #include "../data/inc/hospital_1.h"
 
 #include "inc/MainCharacter.h"
-#include "inc/CharacterCreation.h" //none yet, premade for first game
+//#include "inc/CharacterCreation.h" //none yet, premade for first game
 #include "../data/inc/MikeHall.h"
 
 //#include "inc/diceRoll.h"
+
+uint8_t previous_keys;
+uint8_t keys;
 
 uint8_t game_state = TITLE_SCREEN_STATE;
 
@@ -148,6 +153,7 @@ void main(void)
 	InitTitle_1();
 	MikeHall_Init();
 	
+	
 	while(1)
 	{
 		//update
@@ -173,7 +179,7 @@ void main(void)
 			
 			case 5: //Load game (somehow, wtf)
 			break;
-		}
+		} 
 		
 		
 		

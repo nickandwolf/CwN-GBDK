@@ -1,5 +1,7 @@
 #include <gbdk/emu_debug.h>
 
+//MAY HAVE TO REDO SOME CHARACTER SHEET STUFF! HOW THE FUCK ARE WE GOING TO DO TEXT?!
+
 #include <stdio.h>
 
 #include <stdint.h>
@@ -43,37 +45,62 @@ void InitCharacterSheet() {
 }
 
 void UpdateCharacterSheetStats(void) {
-	SetPlayerAttribute(0,DEXTERITY,18);
-	int8_t dex = GetPlayerAttributeBonus(0,DEXTERITY);
-    set_bkg_tile_xy(3,2,MINUS_ONE);//str
-    set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+dex);//dex
-    set_bkg_tile_xy(3,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,CONSTITUTION));//con
-    set_bkg_tile_xy(7,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,INTELLIGENCE));//int
-    set_bkg_tile_xy(7,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,WISDOM));//wis
-    set_bkg_tile_xy(7,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(0,CHARISMA));//cha
+    set_bkg_tile_xy(3,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(STRENGTH));
+    set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(DEXTERITY));
+    set_bkg_tile_xy(3,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(CONSTITUTION));
+	
+    set_bkg_tile_xy(7,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(INTELLIGENCE));
+    set_bkg_tile_xy(7,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(WISDOM));
+    set_bkg_tile_xy(7,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(CHARISMA));
 
-    /*
-    set_bkg_tile_xy(11,1,PLUS_ONE);//attack
-    set_bkg_tile_xy(11,2,PLUS_ONE);//ranged def
-    set_bkg_tile_xy(11,3,PLUS_ONE);//melee def
-    set_bkg_tile_xy(11,4,PLUS_ONE);//trauma
-    set_bkg_tile_xy(15,1,PLUS_ONE);//fort
-    set_bkg_tile_xy(15,2,PLUS_ONE);//ref
-    set_bkg_tile_xy(15,3,PLUS_ONE);//will
-    set_bkg_tile_xy(15,4,PLUS_ONE);//luck
+    //TODO: Make Zero Sprite!!!
+    set_bkg_tile_xy(11,1,ZERO + GetPlayerAttack());//attack
+    set_bkg_tile_xy(11,2,ZERO + GetPlayerRangedDefense());//ranged def
+    set_bkg_tile_xy(11,3,ZERO + GetPlayerMeleeDefense());//melee def
+    set_bkg_tile_xy(11,4,ZERO + GetPlayerTraumaTarget());//trauma
+	
+    set_bkg_tile_xy(15,1,ZERO + GetPlayerFort());//fort
+    set_bkg_tile_xy(15,2,ZERO + GetPlayerReflex());//ref
+    set_bkg_tile_xy(15,3,ZERO + GetPlayerWill());//will
+    set_bkg_tile_xy(15,4,ZERO + GetPlayerLuck());//luck
 
-    set_bkg_tile_xy(3,4,PLUS_ONE);//hp1
-    set_bkg_tile_xy(3,4,PLUS_ONE);//hp2
-    set_bkg_tile_xy(3,4,PLUS_ONE);//totalhp1
-    set_bkg_tile_xy(3,4,PLUS_ONE);//totalhp2
-    set_bkg_tile_xy(3,4,PLUS_ONE);//ss1
-    set_bkg_tile_xy(3,4,PLUS_ONE);//ss2
-    set_bkg_tile_xy(3,4,PLUS_ONE);//totalss1
-    set_bkg_tile_xy(3,4,PLUS_ONE);//totalss2
-    set_bkg_tile_xy(3,4,PLUS_ONE);//euro1
-    set_bkg_tile_xy(3,4,PLUS_ONE);//euro2
-    set_bkg_tile_xy(3,4,PLUS_ONE);//euro3
-    */
+    set_bkg_tile_xy(2,5,ZERO + 0);//hp1
+    set_bkg_tile_xy(3,5,ZERO + 0);//hp2
+    set_bkg_tile_xy(5,5,ZERO + 0);//totalhp1
+    set_bkg_tile_xy(6,5,ZERO + 0);//totalhp2
+	
+    set_bkg_tile_xy(9,5,ZERO);//ss1
+    set_bkg_tile_xy(10,5,ZERO);//ss2
+    set_bkg_tile_xy(12,5,ZERO);//totalss1
+    set_bkg_tile_xy(13,5,ZERO);//totalss2
+	
+    set_bkg_tile_xy(16,5,ZERO);//euro1
+    set_bkg_tile_xy(17,5,ZERO);//euro2
+    set_bkg_tile_xy(18,5,ZERO);//euro3
+	
+	set_bkg_tile_xy(3,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(ADMIN));//adm
+	set_bkg_tile_xy(3,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(CONNECT));//con
+	set_bkg_tile_xy(3,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(DRIVE));//drv
+	
+	set_bkg_tile_xy(6,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(EXERT));//exr
+	set_bkg_tile_xy(6,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(FIX));//fix
+	set_bkg_tile_xy(6,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(HEAL));//hea
+	
+	set_bkg_tile_xy(9,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(KNOW));//kno
+	set_bkg_tile_xy(9,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(LEAD));//lea
+	set_bkg_tile_xy(9,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(NOTICE));//ntc
+	
+	set_bkg_tile_xy(12,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PERFORM));//prf
+	set_bkg_tile_xy(12,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PROGRAM));//prg
+	set_bkg_tile_xy(12,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PUNCH));//pnc
+	
+	set_bkg_tile_xy(15,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SHOOT));//sht
+	set_bkg_tile_xy(15,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SNEAK));//snk
+	set_bkg_tile_xy(15,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(STAB));//stb
+	
+	set_bkg_tile_xy(18,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SURVIVE));//srv
+	set_bkg_tile_xy(18,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TALK));//tlk
+	set_bkg_tile_xy(18,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
     
 }
 

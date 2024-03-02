@@ -21,12 +21,12 @@ character PC; //may need to work on optimization later
 void InitalizeCharacter() { //TODO: actually make this work
     //PC.level = 1;
     //PC.XP = 0;
-	SetPlayerAttribute(p,STRENGTH,10);
-	SetPlayerAttribute(p,DEXTERITY,10);
-	SetPlayerAttribute(p,CONSTITUTION,10);
-	SetPlayerAttribute(p,INTELLIGENCE,10);
-	SetPlayerAttribute(p,WISDOM,10);
-	SetPlayerAttribute(p,CHARISMA,10);
+	SetPlayerAttribute(STRENGTH,10);
+	SetPlayerAttribute(DEXTERITY,10);
+	SetPlayerAttribute(CONSTITUTION,10);
+	SetPlayerAttribute(INTELLIGENCE,10);
+	SetPlayerAttribute(WISDOM,10);
+	SetPlayerAttribute(CHARISMA,10);
 	
     PC.admin = -1;
     PC.connect = -1;
@@ -212,74 +212,62 @@ void SetPlayerAttributeBonus() {
     //    if (PC.edges[i] == PRODIGY_STR || PC.edges[i] == PRODIGY_DEX || PC.edges[i] == PRODIGY_CON || PC.edges[i] == PRODIGY_INT || PC.edges[i] == PRODIGY_WIS || PC.edges[i] == PRODIGY_CHA) edge_prodigy = true;
     //}
     
-    for (uint8_t i = 0; i < 6; i++) {
-        switch (i) {
-            case 0:
-                if (PC.strength < 4) PC.strength_bonus = -2;
-                else if (PC.strength < 8) PC.strength_bonus = -1;
-                else if (PC.strength < 14) PC.strength_bonus = 0;
-                else if (PC.strength < 18) PC.strength_bonus = 1;
-                else if (PC.strength == 18 && edge_prodigy) PC.strength_bonus = 3;
-                else PC.strength_bonus = 2;
-            break;
 
-            case 1:
-                if (PC.dexterity < 4) PC.dexterity_bonus = -2;
-                else if (PC.dexterity< 8) PC.dexterity_bonus = -1;
-                else if (PC.dexterity < 14) PC.dexterity_bonus = 0;
-                else if (PC.dexterity < 18) PC.dexterity_bonus = 1;
-                else if (PC.dexterity == 18 && edge_prodigy) PC.dexterity_bonus = 3;
-                else PC.dexterity_bonus = 2;
-            break;
+	if (PC.strength < 4) PC.strength_bonus = -2;
+	else if (PC.strength < 8) PC.strength_bonus = -1;
+	else if (PC.strength < 14) PC.strength_bonus = 0;
+	else if (PC.strength < 18) PC.strength_bonus = 1;
+	else if (PC.strength == 18 && edge_prodigy) PC.strength_bonus = 3;
+	else PC.strength_bonus = 2;
 
-            case 2:
-                if (PC.constitution < 4) PC.constitution_bonus = -2;
-                else if (PC.constitution < 8) PC.constitution_bonus = -1;
-                else if (PC.constitution < 14) PC.constitution_bonus = 0;
-                else if (PC.constitution < 18) PC.constitution_bonus = 1;
-                else if (PC.constitution == 18 && edge_prodigy) PC.constitution_bonus = 3;
-                else PC.constitution_bonus = 2;
-            break;
+	if (PC.dexterity < 4) PC.dexterity_bonus = -2;
+	else if (PC.dexterity< 8) PC.dexterity_bonus = -1;
+	else if (PC.dexterity < 14) PC.dexterity_bonus = 0;
+	else if (PC.dexterity < 18) PC.dexterity_bonus = 1;
+	else if (PC.dexterity == 18 && edge_prodigy) PC.dexterity_bonus = 3;
+	else PC.dexterity_bonus = 2;
 
-            case 3:
-                if (PC.intelligence < 4) PC.intelligence_bonus = -2;
-                else if (PC.intelligence < 8) PC.intelligence_bonus = -1;
-                else if (PC.intelligence < 14) PC.intelligence_bonus = 0;
-                else if (PC.intelligence < 18) PC.intelligence_bonus = 1;
-                else if (PC.intelligence == 18 && edge_prodigy) PC.intelligence_bonus = 3;
-                else PC.intelligence_bonus = 2;
-            break;
+	if (PC.constitution < 4) PC.constitution_bonus = -2;
+	else if (PC.constitution < 8) PC.constitution_bonus = -1;
+	else if (PC.constitution < 14) PC.constitution_bonus = 0;
+	else if (PC.constitution < 18) PC.constitution_bonus = 1;
+	else if (PC.constitution == 18 && edge_prodigy) PC.constitution_bonus = 3;
+	else PC.constitution_bonus = 2;
 
-            case 4:
-                if (PC.wisdom < 4) PC.wisdom_bonus = -2;
-                else if (PC.wisdom < 8) PC.wisdom_bonus = -1;
-                else if (PC.wisdom < 14) PC.wisdom_bonus = 0;
-                else if (PC.wisdom < 18) PC.wisdom_bonus = 1;
-                else if (PC.wisdom == 18 && edge_prodigy) PC.wisdom_bonus = 3;
-                else PC.wisdom_bonus = 2;
-            break;
+	if (PC.intelligence < 4) PC.intelligence_bonus = -2;
+	else if (PC.intelligence < 8) PC.intelligence_bonus = -1;
+	else if (PC.intelligence < 14) PC.intelligence_bonus = 0;
+	else if (PC.intelligence < 18) PC.intelligence_bonus = 1;
+	else if (PC.intelligence == 18 && edge_prodigy) PC.intelligence_bonus = 3;
+	else PC.intelligence_bonus = 2;
 
-            case 5:
-                if (PC.charisma < 4) PC.charisma_bonus = -2;
-                else if (PC.charisma < 8) PC.charisma_bonus = -1;
-                else if (PC.charisma < 14) PC.charisma_bonus = 0;
-                else if (PC.charisma < 18) PC.charisma_bonus = 1;
-                else if (PC.charisma == 18 && edge_prodigy) PC.charisma_bonus = 3;
-                else PC.charisma_bonus = 2;
-            break;
-        }
-    }
+	if (PC.wisdom < 4) PC.wisdom_bonus = -2;
+	else if (PC.wisdom < 8) PC.wisdom_bonus = -1;
+	else if (PC.wisdom < 14) PC.wisdom_bonus = 0;
+	else if (PC.wisdom < 18) PC.wisdom_bonus = 1;
+	else if (PC.wisdom == 18 && edge_prodigy) PC.wisdom_bonus = 3;
+	else PC.wisdom_bonus = 2;
+
+	if (PC.charisma < 4) PC.charisma_bonus = -2;
+	else if (PC.charisma < 8) PC.charisma_bonus = -1;
+	else if (PC.charisma < 14) PC.charisma_bonus = 0;
+	else if (PC.charisma < 18) PC.charisma_bonus = 1;
+	else if (PC.charisma == 18 && edge_prodigy) PC.charisma_bonus = 3;
+	else PC.charisma_bonus = 2;
 }
-
-uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
 
 /*
-void PickSkills(uint8_t p) {
-    //need to make a UI
-    //show skill text when picking
-    //show points
+void SetPlayerEdge(uint8_t p, uint8_t edge) {
+    if (PC.edges[0] == 0) PC.edges[0] = edge;
+    else if (PC.edges[1] == 0) PC.edges[1] = edge;
+    else if (PC.edges[2] == 0) PC.edges[2] = edge;
+    else if (PC.edges[3] == 0) PC.edges[3] = edge;
 }
 */
+
+/*****************************************************************/
+
+uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
 
 uint8_t ImprovePlayerSkill(uint8_t skill) {
     switch (skill) {
@@ -381,14 +369,8 @@ uint8_t ImprovePlayerSkill(uint8_t skill) {
     return 1;
 }
 
-/*
-void SetPlayerEdge(uint8_t p, uint8_t edge) {
-    if (PC.edges[0] == 0) PC.edges[0] = edge;
-    else if (PC.edges[1] == 0) PC.edges[1] = edge;
-    else if (PC.edges[2] == 0) PC.edges[2] = edge;
-    else if (PC.edges[3] == 0) PC.edges[3] = edge;
-}
-*/
+uint8_t ImprovePlayerXP(int8_t value);
+
 /*****************************************************************/
 
 char* GetPlayerName() {
@@ -559,6 +541,59 @@ uint8_t GetPlayerSS() {
 uint8_t GetPlayerSS_Current() {
     return PC.SS_current;
 }
+
+uint8_t GetPlayerAttack() {
+	//check inv, edges, foci
+	uint8_t attack = PC.level/2;
+	return attack;
+}
+
+uint8_t GetPlayerRangedDefense() {
+	//check whatever
+	uint8_t ranged = 10 + PC.dexterity_bonus;
+	return ranged;
+}
+
+uint8_t GetPlayerMeleeDefense() {
+	uint8_t melee = 10 + PC.dexterity_bonus;
+	return melee;
+}
+
+uint8_t GetPlayerTraumaTarget() {
+	//check inventory and edges and whatever
+	uint8_t trauma = 6;
+	return trauma;
+}
+
+uint8_t GetPlayerFort() {//can make this simpler with just returning the right value
+	uint8_t fort = 16 - PC.level;
+	if (PC.strength_bonus > PC.constitution_bonus) fort -= PC.strength_bonus;
+	else fort -= PC.constitution_bonus;
+	
+	return fort;
+}
+
+uint8_t GetPlayerReflex() {
+	uint8_t reflex = 16 - PC.level;
+	if (PC.dexterity_bonus > PC.intelligence_bonus) reflex -= PC.dexterity_bonus;
+	else reflex -= PC.intelligence_bonus;
+	
+	return reflex;
+}
+
+uint8_t GetPlayerWill() {
+	uint8_t will = 16 - PC.level;
+	if (PC.wisdom_bonus > PC.charisma_bonus) will -= PC.wisdom_bonus;
+	else will -= PC.charisma_bonus;
+	
+	return will;
+}
+
+uint8_t GetPlayerLuck() {
+	//does anything modify luck?
+	return 16 - PC.level;
+}
+
 /*****************************************************************/
 
 void InitCharacterSprite() {

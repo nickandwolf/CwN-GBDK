@@ -88,18 +88,25 @@ const enum Skills {SKILL_NONE, ADMIN, CONNECT, DRIVE, EXERT, FIX, HEAL, KNOW, LE
 
 //const enum Foci {FOCI_NONE, ACE_DRIVE1, ACE_DRIVER2, ALERT1, ALERT2, ALL_NATURAL, ARMSMASTER1, ARMSMASTER2, ASSASSIN1, ASSASSIN2, AUTHORITY1, AUTHORITY2, CLOSE_COMBATANT1, CLOSE_COMBATANT2, CYBERDOC1, CYBERDOC2, DEADEYE1, DEADEYE2, DIPLOMAT1, DIPLOMAT2, DRONE_PILOT1, DRONE_PILOT2, EXPERT_PROGRAMMER1, EXPERT_PROGRAMMER2, HEALER1, HEALER2, HENCHKEEPER1, HENCHKEEPER2, MANY_FACES, POP_IDOL1, POP_IDOL2, ROAMER1, ROAMER2, SAFE_HAVEN1, SAFE_HAVEN2, SHOCKING_ASSAULT1, SHOCKING_ASSAULT2, SNIPERS_EYE1, SNIPERS_EYE2, SPECIALIST1, SPECIALIST2, TINKER1, TINKER2};
 
+//set functions
 void InitalizeCharacter(void);
 void SetPlayerName(char *name);
 void SetPlayerAttribute(uint8_t attribute, uint8_t value);
 void SetPlayerAttributeBonus(void);
+
+void SetPlayerLevel(uint8_t value);
+
+//improve functions
 uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
 uint8_t ImprovePlayerSkill(uint8_t skill);
+uint8_t ImprovePlayerXP(int8_t value);
 
 //void SetPlayerBackground(uint8_t p, enum Backgrounds background);
 //void InitPlayerBackground(uint8_t p);
 
 //void SetPlayerEdge(uint8_t p, uint8_t edge);
 
+//get functions
 char* GetPlayerName(void);
 
 uint8_t GetPlayerAttribute(uint8_t attribute);
@@ -112,6 +119,18 @@ uint8_t GetPlayerHP(void);
 uint8_t GetPlayerHP_Current(void);
 uint8_t GetPlayerSS(void);
 uint8_t GetPlayerSS_Current(void);
+
+uint8_t GetPlayerAttack(void);
+uint8_t GetPlayerRangedDefense(void);
+uint8_t GetPlayerMeleeDefense(void);
+uint8_t GetPlayerTraumaTarget(void);
+
+uint8_t GetPlayerFort(void);
+uint8_t GetPlayerReflex(void);
+uint8_t GetPlayerWill(void);
+uint8_t GetPlayerLuck(void);
+
+
 
 //PROGRAMMING SHIT
 extern uint8_t facing;
