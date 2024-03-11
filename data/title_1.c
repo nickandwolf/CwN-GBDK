@@ -83,6 +83,25 @@ uint8_t Title_1_Update() {
 		}
 	}
 	else if (KEY_TICKED(J_A)) {
+		//get rid of sprites
+		move_sprite(0, -16, -16);
+		move_sprite(1, -16, -16);
+		move_sprite(2, -16, -16);
+		move_sprite(3, -16, -16);
+		move_sprite(4, -16, -16);
+		move_sprite(5, -16, -16);
+		move_sprite(6, -16, -16);
+		move_sprite(7, -16, -16);
+		move_sprite(8, -16, -16);
+		move_sprite(9, -16, -16);
+		move_sprite(10, -16, -16);
+		move_sprite(11, -16, -16);
+		move_sprite(12, -16, -16);
+		move_sprite(13, -16, -16);
+		move_sprite(14, -16, -16);
+		move_sprite(15, -16, -16);
+		move_sprite(16, -16, -16);
+		
 		if (newGame == 1) {
 			return HOSPITAL_1_STATE;
 		}

@@ -33,15 +33,20 @@ void InitCharacterSheet() {
 	//Actual Stats
 	UpdateCharacterSheetStats();
 	
+	set_sprite_data(0,59,CustomFont_white);
 	//box sprite
-	//set_sprite_tile(0, 53);
-	//set_sprite_tile(1, 54);
+	set_sprite_tile(0, 0x36);
+	set_sprite_tile(1, 0x35);
+	set_sprite_tile(2, 0x34);
+	set_sprite_tile(3, 0x33);
 	
-	//move_sprite(0,8,12);
-	//move_sprite(1,8,20);
+	//move_sprite(0,15,32);
+	//move_sprite(1,15,31);
+	//move_sprite(2,37,32);
+	//move_sprite(3,37,31);
 	
 	SHOW_BKG;
-	//SHOW_SPRITES;
+	SHOW_SPRITES;
 }
 
 void UpdateCharacterSheetStats(void) {
@@ -112,7 +117,15 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
-            
+            switch (charSheetPointerCS) {
+				case STRENGTH_CS:
+					move_sprite(0,15,32);
+					move_sprite(1,15,31);
+					move_sprite(2,37,32);
+					move_sprite(3,37,31);
+				break;
+			}
+			
 			if (KEY_PRESSED(J_SELECT)) pointerCS = 2;
 		break;
 		

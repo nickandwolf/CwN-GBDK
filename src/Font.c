@@ -38,9 +38,6 @@ const unsigned char Right_bar = 0xFE;
 const unsigned char Blank_symbol = 0xC5;
 
 void dialog_init() {
-	//debug font
-	set_win_data(0x80,59,CustomFont_white);
-	
 	set_win_data(0xC5,59,CustomFont);
 	init_win(Blank_symbol);//wipe the screen
 	set_win_tiles(0,0,20,5,dialog_frame);//throw up a fresh border
@@ -174,6 +171,7 @@ void dialog_print(unsigned char *text, uint8_t size) {
         move_sprite(2, playerX+16, tempPlayerY+16);
 	}
 	
+	
     // This is an imaginary cursor.
 	uint8_t xpos=0, ypos=0;
     // This is the string index.
@@ -181,6 +179,9 @@ void dialog_print(unsigned char *text, uint8_t size) {
 
 	while (index-0<(size-1))
 	{
+		//fix glitched text by putting correct right border.
+		set_win_tile_xy(19,3,Right_bar);
+		
         // This do a line jump if there's no more space on tile width (can be personalized).
 		if (xpos % DIALOG_WIDTH == 0) {xpos=1; ypos++;}
 		else xpos++;
@@ -201,13 +202,13 @@ void dialog_print(unsigned char *text, uint8_t size) {
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
-				set_win_tile_xy(19,3,0x06);
+				set_win_tile_xy(19,3,Next_symbol);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
-				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, 0x00);
+				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, Blank_symbol);
 				xpos=ypos=1;
-				set_win_tile_xy(19,3,0x39);
+				set_win_tile_xy(19,3,Right_bar);
 			}
 
         // This print the letters.
@@ -224,7 +225,7 @@ void dialog_print(unsigned char *text, uint8_t size) {
 	}
 	
 	//we don't have buttons to accidentially close dialog
-	set_win_tile_xy(19,3,0x0A);
+	set_win_tile_xy(19,3,Stop_symbol);
 	waitpadup();
 	waitpad(J_A);
 	
