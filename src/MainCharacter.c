@@ -353,8 +353,8 @@ void SetPlayerHP() {
 
 uint8_t SetPlayerHP_Current(int8_t value) {
     //temp HP needs to happen too
-    PC.HP_Current += value;
-    if (PC.HP_Current < 1) return 0;
+    PC.HP_current += value;
+    if (PC.HP_current < 1) return 0;
     return 1;
 }
 
@@ -633,7 +633,7 @@ uint8_t GetPlayerHP() {
 }
 
 uint8_t GetPlayerHP_Current() {
-    if (PC.HP_Current < 1) return 0;
+    if (PC.HP_current < 1) return 0;
     return PC.HP_current;
 }
 
@@ -642,7 +642,7 @@ uint8_t GetPlayerSS() {
 }
 
 uint8_t GetPlayerSS_Current() {
-    if (PC.SS_Current > PC.SS) return 30;//TODO:what's the max SS can be?
+    if (PC.SS_current > PC.SS) return 30;//TODO:what's the max SS can be?
     return PC.SS_current;
 }
 

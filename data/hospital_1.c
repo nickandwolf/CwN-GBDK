@@ -83,6 +83,9 @@ uint8_t Hospital_1_Update() {
 		
 		case 1:
 			dialog_print_p("mike", sizeof("mike"), "so how does it    look/", sizeof("so how does it    look/"));
+			
+			dialog_print_p("doctor", sizeof("doctor"), "i'm afraid it has spread through    your bloodstream. we can operate but your insurance is only for basic    care.", sizeof("i'm afraid it has spread through    your bloodstream. we can operate but your insurance is only for basic    care."));
+			
 			pointerH1 = 2;
 			return 0;
 		break;

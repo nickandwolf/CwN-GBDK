@@ -20,9 +20,8 @@
 #ifndef __dialog_frame_h_INCLUDE
 #define __dialog_frame_h_INCLUDE
 
-#define dialog_frameWidth 18
+#define dialog_frameWidth 20
 #define dialog_frameHeight 5
-#define dialog_frameBank 0
 
 extern const unsigned char dialog_frame[];
 

@@ -8,7 +8,7 @@
 #define Font_WIDTH 416
 #define Font_HEIGHT 8
 #define Font_sprite_size 59
-#define Font_sprite_start 128
+#define Font_sprite_start 197
 #define DIALOG_WIDTH 18
 #define DIALOG_HEIGHT 3
 #define DIALOG_INIT_X 1
@@ -20,6 +20,8 @@
 
 extern uint8_t DIALOG_DELAY;
 extern const unsigned char Font_symbols[25];
+
+void dialog_init(void);
 
 void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text, uint8_t size);
 
