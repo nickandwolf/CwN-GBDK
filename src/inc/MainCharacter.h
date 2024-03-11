@@ -4,6 +4,8 @@ Get basic shit to work
 
 then GET DYNAMIC
 and start improving things and calculating HP/SS
+
+SHIT GOTTA DO LEVEL UPS
 */
 
 #ifndef MAIN_CHARACTER_H
@@ -65,7 +67,7 @@ typedef struct Character {
     int8_t work;
 
     int8_t HP;
-    uint8_t HP_current;
+    int8_t HP_current;
 
     uint8_t SS;
     uint8_t SS_current;
@@ -93,8 +95,10 @@ void InitalizeCharacter(void);
 void SetPlayerName(char *name);
 void SetPlayerAttribute(uint8_t attribute, uint8_t value);
 void SetPlayerAttributeBonus(void);
+void SetPlayerSkill(uint8_t skill, int8_t value);
 
-void SetPlayerLevel(uint8_t value);
+void SetPlayerHP(void);
+uint8_t SetPlayerHP_Current(int8_t value);
 
 //improve functions
 uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental

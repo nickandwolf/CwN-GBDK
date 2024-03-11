@@ -27,26 +27,26 @@ void InitalizeCharacter() { //TODO: actually make this work
 	SetPlayerAttribute(INTELLIGENCE,10);
 	SetPlayerAttribute(WISDOM,10);
 	SetPlayerAttribute(CHARISMA,10);
-	
-    PC.admin = -1;
-    PC.connect = -1;
-    PC.drive = -1;
-    PC.exert = -1;
-    PC.fix = -1;
-    PC.heal = -1;
-    PC.know = -1;
-    PC.lead = -1;
-    PC.notice = -1;
-    PC.perform = -1;
-    PC.program = -1;
-    PC.punch = -1;
-    PC.shoot = -1;
-    PC.sneak = -1;
-    PC.stab = -1;
-    PC.survive = -1;
-    PC.talk = -1;
-    PC.trade = -1;
-    PC.work = -1;
+
+    SetPlayerSkill(ADMIN, -1);
+    SetPlayerSkill(CONNECT, -1);
+    SetPlayerSkill(DRIVE, -1);
+    SetPlayerSkill(EXERT, -1);
+    SetPlayerSkill(FIX, -1);
+    SetPlayerSkill(HEAL, -1);
+    SetPlayerSkill(KNOW, -1);
+    SetPlayerSkill(LEAD, -1);
+    SetPlayerSkill(NOTICE, -1);
+    SetPlayerSkill(PERFORM, -1);
+    SetPlayerSkill(PROGRAM, -1);
+    SetPlayerSkill(PUNCH, -1);
+    SetPlayerSkill(SHOOT, -1);
+    SetPlayerSkill(SNEAK, -1);
+    SetPlayerSkill(STAB, -1);
+    SetPlayerSkill(SURVIVE, -1);
+    SetPlayerSkill(TALK, -1);
+    SetPlayerSkill(TRADE, -1);
+    SetPlayerSkill(WORK, -1);
 }
 
 void SetPlayerName(char *name) {
@@ -265,6 +265,99 @@ void SetPlayerEdge(uint8_t p, uint8_t edge) {
 }
 */
 
+void SetPlayerSkill(uint8_t skill, int8_t value) {
+    if (value < -1 || value > 4) return;
+    switch (skill) {
+        case ADMIN://TODO: Use the enum
+            PC.admin = value;
+        break;
+
+        case CONNECT:
+            PC.connect = value;
+        break;
+
+        case DRIVE:
+            PC.drive = value;
+        break;
+
+        case EXERT:
+            PC.exert = value;
+        break;
+
+        case FIX:
+            PC.fix = value;
+        break;
+
+        case HEAL:
+            PC.heal = value;
+        break;
+
+        case KNOW:
+            PC.know = value;
+        break;
+
+        case LEAD:
+            PC.lead = value;
+        break;
+
+        case NOTICE:
+            PC.notice = value;
+        break;
+
+        case PERFORM:
+            PC.perform = value;
+        break;
+
+        case PROGRAM:
+            PC.program = value;
+        break;
+
+        case PUNCH:
+            PC.punch = value;
+        break;
+
+        case SHOOT:
+            PC.shoot = value;
+        break;
+
+        case SNEAK:
+            PC.sneak = value;
+        break;
+
+        case STAB:
+            PC.stab = value;
+        break;
+
+        case SURVIVE:
+            PC.survive = value;
+        break;
+
+        case TALK:
+            PC.talk = value;
+        break;
+
+        case TRADE:
+            PC.trade = value;
+        break;
+
+        case WORK:
+            PC.work = value;
+        break;
+    }
+}
+
+void SetPlayerHP() {
+    //add edge shit
+    PC.HP = (PC.constitution_bonus + 4) * PC.level * 4;
+}
+
+uint8_t SetPlayerHP_Current(int8_t value) {
+    //temp HP needs to happen too
+    PC.HP_Current += value;
+    if (PC.HP_Current < 1) return 0;
+    return 1;
+}
+
 /*****************************************************************/
 
 uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
@@ -272,97 +365,97 @@ uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);/
 uint8_t ImprovePlayerSkill(uint8_t skill) {
     switch (skill) {
         case ADMIN://TODO: Use the enum
-            if (PC.admin < 3) PC.admin++;
+            if (PC.admin < 4) PC.admin++;
             else return 0;
         break;
 
         case CONNECT:
-            if (PC.connect < 3) PC.connect++;
+            if (PC.connect < 4) PC.connect++;
             else return 0;
         break;
 
         case DRIVE:
-            if (PC.drive < 3) PC.drive++;
+            if (PC.drive < 4) PC.drive++;
             else return 0;
         break;
 
         case EXERT:
-            if (PC.exert < 3) PC.exert++;
+            if (PC.exert < 4) PC.exert++;
             else return 0;
         break;
 
         case FIX:
-            if (PC.fix < 3) PC.fix++;
+            if (PC.fix < 4) PC.fix++;
             else return 0;
         break;
 
         case HEAL:
-            if (PC.heal < 3) PC.heal++;
+            if (PC.heal < 4) PC.heal++;
             else return 0;
         break;
 
         case KNOW:
-            if (PC.know < 3) PC.know++;
+            if (PC.know < 4) PC.know++;
             else return 0;
         break;
 
         case LEAD:
-            if (PC.lead < 3) PC.lead++;
+            if (PC.lead < 4) PC.lead++;
             else return 0;
         break;
 
         case NOTICE:
-            if (PC.notice < 3) PC.notice++;
+            if (PC.notice < 4) PC.notice++;
             else return 0;
         break;
 
         case PERFORM:
-            if (PC.perform < 3) PC.perform++;
+            if (PC.perform < 4) PC.perform++;
             else return 0;
         break;
 
         case PROGRAM:
-            if (PC.program < 3) PC.program++;
+            if (PC.program < 4) PC.program++;
             else return 0;
         break;
 
         case PUNCH:
-            if (PC.punch < 3) PC.punch++;
+            if (PC.punch < 4) PC.punch++;
             else return 0;
         break;
 
         case SHOOT:
-            if (PC.shoot < 3) PC.shoot++;
+            if (PC.shoot < 4) PC.shoot++;
             else return 0;
         break;
 
         case SNEAK:
-            if (PC.sneak < 3) PC.sneak++;
+            if (PC.sneak < 4) PC.sneak++;
             else return 0;
         break;
 
         case STAB:
-            if (PC.stab < 3) PC.stab++;
+            if (PC.stab < 4) PC.stab++;
             else return 0;
         break;
 
         case SURVIVE:
-            if (PC.survive < 3) PC.survive++;
+            if (PC.survive < 4) PC.survive++;
             else return 0;
         break;
 
         case TALK:
-            if (PC.talk < 3) PC.talk++;
+            if (PC.talk < 4) PC.talk++;
             else return 0;
         break;
 
         case TRADE:
-            if (PC.trade < 3) PC.trade++;
+            if (PC.trade < 4) PC.trade++;
             else return 0;
         break;
 
         case WORK:
-            if (PC.work < 3) PC.work++;
+            if (PC.work < 4) PC.work++;
             else return 0;
         break;
     }
@@ -519,7 +612,16 @@ int8_t GetPlayerSkill(uint8_t skill) {
 }
 
 uint8_t GetPlayerLevel() {
-    return PC.level;
+    if (PC.XP < 2) return 1;
+    else if (PC.XP < 5) return 2;
+    else if (PC.XP < 11) return 3;
+    else if (PC.XP < 17) return 4;
+    else if (PC.XP < 26) return 5;
+    else if (PC.XP < 38) return 6;
+    else if (PC.XP < 53) return 7;
+    else if (PC.XP < 71) return 8;
+    else if (PC.XP < 93) return 9;
+    else 10;
 }
 
 uint8_t GetPlayerXP() {
@@ -531,6 +633,7 @@ uint8_t GetPlayerHP() {
 }
 
 uint8_t GetPlayerHP_Current() {
+    if (PC.HP_Current < 1) return 0;
     return PC.HP_current;
 }
 
@@ -539,6 +642,7 @@ uint8_t GetPlayerSS() {
 }
 
 uint8_t GetPlayerSS_Current() {
+    if (PC.SS_Current > PC.SS) return 30;//TODO:what's the max SS can be?
     return PC.SS_current;
 }
 

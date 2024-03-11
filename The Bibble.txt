@@ -7,6 +7,11 @@ He needs new lungs and that's gonna cost him
 Heat
 Cash
 
+-=Link Cable=-
+Find a gameboy cartidge. Tries to escape, "I don't understand, the other side isn't working!"
+You unlock link cable ability after getting here.
+You need to start a second emulator and transfer your character.
+
 -=GAMEPLAY=-
 Need a way to detect if a square is occupied (using map).
 Assign each thing an ID. Then apply the quick action.
