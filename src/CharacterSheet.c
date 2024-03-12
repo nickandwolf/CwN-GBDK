@@ -19,10 +19,13 @@
 #include "../res/CustomFont_white.h"
 
 uint8_t pointerCS = 0;
-uint8_t charSheetPointerCS = 0;
+int8_t charSheetPointerCS = 0;
+extern uint8_t charSheetIntro = 1;
 
 void InitCharacterSheet() {
-	HIDE_BKG;
+	charSheetPointerCS = 0;
+    
+    HIDE_BKG;
 	HIDE_WIN;
 	HIDE_SPRITES;
 	
@@ -113,26 +116,286 @@ uint8_t CharacterSheetUpdate(void) {
 	switch(pointerCS) {
 		case 0:
 			InitCharacterSheet();
-			pointerCS = 1;
+            pointerCS = 1;
 		break;
 		
 		case 1:
+            if (KEY_PRESSED(J_UP)) {
+                if (charSheetPointerCS < 20) {
+                    charSheetPointerCS -= 4;
+                    if (charSheetPointerCS < 0) charSheetPointer = DRIVE_CS;//move to inventory
+                    else if (charSheetPointerCS == -3) charSheetPointer = HEAL_CS;
+                    else if (charSheetPointerCS == -2) charSheetPointer = PUNCH_CS;
+                    else charSheetPointer = STAB_CS;
+                }
+                else {
+                    charSheetPointerCS -= 6;
+                    if (charSheetPointerCS == 14) charSheetPointer = HP_CS;//move to inventory
+                    else if (charSheetPointerCS == 15) charSheetPointer = SS_CS;
+                    else if (charSheetPointerCS == 16) charSheetPointer = SS_CS;
+                    else if (charSheetPointerCS == 17) charSheetPointer = EURODOLLARS_CS;
+                    //else if (charSheetPointerCS == 18) charSheetPointer = EURODOLLARS_CS;
+                    //else if (charSheetPointerCS == 19) charSheetPointer = HEAT_CS;
+                }
+            }
+            else if (KEY_PRESSED(J_DOWN)) {
+                if (charSheetPointerCS < 20) {
+                    charSheetPointerCS += 4;
+                    if (charSheetPointerCS == 20) charSheetPointer = ADMIN_CS;//move to inventory
+                    else if (charSheetPointerCS == 21) charSheetPointer = EXERT_CS;
+                    else if (charSheetPointerCS == 22) charSheetPointer = PERFORM_CS;
+                    else if (charSheetPointerCS == 23) charSheetPointer = SHOOT_CS;
+                }
+                else {
+                    charSheetPointerCS += 6;
+                    if (charSheetPointerCS == 38) charSheetPointer = LEVEL_CS;//move to inventory
+                    else if (charSheetPointerCS == 39) charSheetPointer = SP_CS;
+                    else if (charSheetPointerCS == 40) charSheetPointer = SP_CS;
+                    else if (charSheetPointerCS == 41) charSheetPointer = ATTACK_BONUS_CS;
+                    else if (charSheetPointerCS == 42) charSheetPointer = FORT_CS;
+                    else if (charSheetPointerCS == 43) charSheetPointer = FORT_CS;
+                }
+            }
+            else if (KEY_PRESSED(J_LEFT)) {
+                charSheetPointerCS -= 1;
+                if (charSheetPointerCS < 20) {//Shit forgot how to do this
+                    if (charSheetPointerCS % 4 == 3) charSheetPointer += 4;
+                }
+                else {
+                    if (charSheetPointerCS % 6 == 1) charSheetPointer += 6;
+                }
+            }
+            else if (KEY_PRESSED(J_RIGHT)) {
+                charSheetPointerCS += 1;
+                if (charSheetPointerCS < 20) {
+                    if (charSheetPointerCS % 4 == 0) charSheetPointer -= 4;
+                }
+                else {
+                    if (charSheetPointerCS % 6 == 2) charSheetPointer -= 6;
+                }
+            }
+            else if (KEY_PRESSED(J_A)) NULL;//try to level
+            else if (KEY_PRESSED(J_SELECT)) NULL;//display explanation
+            else if (KEY_PRESSED(J_B || J_START)) {
+                pointerCS = 0;
+                if (charSheetIntro == 0) return GAME_STATE_OVERWORLD;//TODO: GAMESTATESENUM
+                else {
+                    charSheetIntro = 0;
+                    return HOSPITAL;
+                }
+            }
+            
+            //move sprites
             switch (charSheetPointerCS) {
+                //Attributes
 				case STRENGTH_CS:
-					move_sprite(0,15,32);
-					move_sprite(1,15,31);
-					move_sprite(2,37,32);
-					move_sprite(3,37,31);
+					move_sprite(0,15,16);
+					move_sprite(1,15,15);
+					move_sprite(2,37,16);
+					move_sprite(3,37,15);
 				break;
+
+                case DEXTERITY_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case CONSTITUTION_CS:
+                    move_sprite(0,15,48);
+                    move_sprite(1,15,47);
+                    move_sprite(2,37,48);
+                    move_sprite(3,37,47);
+                break;
+
+                case INTELLIGENCE_CS:
+                    move_sprite(0,31,16);
+                    move_sprite(1,31,15);
+                    move_sprite(2,53,16);
+                    move_sprite(3,53,15);
+                break;
+
+                case WISDOM_CS:
+                    move_sprite(0,31,32);
+                    move_sprite(1,31,31);
+                    move_sprite(2,53,32);
+                    move_sprite(3,53,31);
+                break;
+
+                case CHARISMA_CS:
+                    move_sprite(0,31,48);
+                    move_sprite(1,31,47);
+                    move_sprite(2,53,48);
+                    move_sprite(3,53,47);
+                break;
+
+                //Combat
+                case ATTACK_BONUS_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case RANGED_DEFENSE_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case MELEE_DEFENSE_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case TRAUMA_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                //Saves
+                case FORT_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case REFLEX_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case WILLPOWER_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case LUCK_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                //HP/SS/Euro/Heat
+                case HP_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case SS_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case EURODOLLARS_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+
+                case HEAT_CS:
+                    move_sprite(0,15,32);
+                    move_sprite(1,15,31);
+                    move_sprite(2,37,32);
+                    move_sprite(3,37,31);
+                break;
+                
+                //Skills
+                case ADMIN_CS:
+                
+                break;
+
+                case CONNECT_CS:
+
+                break;
+
+                case DRIVE_CS:
+
+                break;
+
+                case EXERT_CS:
+
+                break;
+
+                case FIX_CS:
+
+                break;
+
+                case HEAL_CS:
+
+                break;
+
+                case KNOW_CS:
+
+                break;
+
+                case LEAD_CS:
+
+                break;
+
+                case NOTICE_CS:
+
+                break;
+
+                case PERFORM_CS:
+
+                break;
+
+                case PROGRAM_CS:
+
+                break;
+
+                case PUNCH_CS:
+
+                break;
+
+                case SHOOT_CS:
+
+                break;
+                
+                case SNEAK_CS:
+
+                break;
+
+                case STAB_CS:
+
+                break;
+
+                case SURVIVE_CS:
+
+                break;
+
+                case TALK_CS:
+
+                break;
+
+                case TRADE_CS:
+
+                break;
+
+                //Inventory
+                case INVENTORY_CS:
+
+                break;
 			}
-			
-			if (KEY_PRESSED(J_SELECT)) pointerCS = 2;
 		break;
-		
-		case 2:
-			pointerCS = 0;
-			return HOSPITAL_1_STATE;
-			
 	}
 	
 	return CHAR_SHEET_STATE;
