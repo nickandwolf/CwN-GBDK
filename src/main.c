@@ -150,10 +150,11 @@ void Move_MainCharacter() {
 void main(void)
 {	
 	//InitSplashScreen(); //KEEP
-	InitTitle_1();
+	//InitTitle_1();
 	MikeHall_Init();
 	
-	
+	//DEBUG
+	game_state = 0;
 	while(1)
 	{
 		//update
