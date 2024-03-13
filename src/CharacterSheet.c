@@ -11,6 +11,7 @@
 #include "inc/gameStatesEnum.h"
 #include "inc/textFunctions.h"
 #include "inc/MainCharacter.h"
+#include "inc/Font.h"
 
 //include player data here
 
@@ -129,10 +130,10 @@ uint8_t CharacterSheetUpdate(void) {
             if (KEY_TICKED(J_UP)) {
                 if (charSheetPointerCS < 20) {
                     charSheetPointerCS -= 4;
-                    if (charSheetPointerCS < 0) charSheetPointerCS = DRIVE_CS;//move to inventory
+                    if (charSheetPointerCS == -4) charSheetPointerCS = DRIVE_CS;//move to inventory
                     else if (charSheetPointerCS == -3) charSheetPointerCS = HEAL_CS;
                     else if (charSheetPointerCS == -2) charSheetPointerCS = PUNCH_CS;
-                    else charSheetPointerCS = STAB_CS;
+                    else if (charSheetPointerCS == -1) charSheetPointerCS = STAB_CS;
                 }
                 else {
                     charSheetPointerCS -= 6;
@@ -145,9 +146,10 @@ uint8_t CharacterSheetUpdate(void) {
                 }
             }
             else if (KEY_TICKED(J_DOWN)) {
-                if (charSheetPointerCS < 20) {
+                if (charSheetPointerCS < 19) {
                     charSheetPointerCS += 4;
-                    if (charSheetPointerCS == 20) charSheetPointerCS = ADMIN_CS;//move to inventory
+					if (charSheetPointerCS == 19) charSheetPointerCS = EURODOLLARS_CS;
+                    else if (charSheetPointerCS == 20) charSheetPointerCS = ADMIN_CS;//move to inventory
                     else if (charSheetPointerCS == 21) charSheetPointerCS = EXERT_CS;
                     else if (charSheetPointerCS == 22) charSheetPointerCS = PERFORM_CS;
                     else if (charSheetPointerCS == 23) charSheetPointerCS = SHOOT_CS;
@@ -180,7 +182,7 @@ uint8_t CharacterSheetUpdate(void) {
                     if (charSheetPointerCS % 6 == 2) charSheetPointerCS -= 6;
                 }
             }
-            else if (KEY_TICKED(J_A)) NULL;//try to level
+            else if (KEY_TICKED(J_A)) dialog_print("test", sizeof("test"));//try to level
             else if (KEY_TICKED(J_SELECT)) NULL;//display explanation
             else if (KEY_TICKED(J_B || J_START)) {
                 pointerCS = 0;
@@ -346,71 +348,122 @@ uint8_t CharacterSheetUpdate(void) {
                 break;
 
                 case CONNECT_CS:
-
+					move_sprite(0,16,73);
+                    move_sprite(1,16,71);
+                    move_sprite(2,35,73);
+                    move_sprite(3,35,71);
                 break;
 
                 case DRIVE_CS:
-
+					move_sprite(0,16,81);
+                    move_sprite(1,16,79);
+                    move_sprite(2,35,81);
+                    move_sprite(3,35,79);
                 break;
 
                 case EXERT_CS:
-
+					move_sprite(0,40,65);
+                    move_sprite(1,40,63);
+                    move_sprite(2,59,65);
+                    move_sprite(3,59,63);
                 break;
 
                 case FIX_CS:
-
+					move_sprite(0,40,73);
+                    move_sprite(1,40,71);
+                    move_sprite(2,59,73);
+                    move_sprite(3,59,71);
                 break;
 
                 case HEAL_CS:
-
+					move_sprite(0,40,81);
+                    move_sprite(1,40,79);
+                    move_sprite(2,59,81);
+                    move_sprite(3,59,79);
                 break;
 
                 case KNOW_CS:
-
+					move_sprite(0,64,65);
+                    move_sprite(1,64,63);
+                    move_sprite(2,83,65);
+                    move_sprite(3,83,63);
                 break;
 
                 case LEAD_CS:
-
+					move_sprite(0,64,73);
+                    move_sprite(1,64,71);
+                    move_sprite(2,83,73);
+                    move_sprite(3,83,71);
                 break;
 
                 case NOTICE_CS:
-
+					move_sprite(0,64,81);
+                    move_sprite(1,64,79);
+                    move_sprite(2,83,81);
+                    move_sprite(3,83,79);
                 break;
 
                 case PERFORM_CS:
-
+					move_sprite(0,88,65);
+                    move_sprite(1,88,63);
+                    move_sprite(2,107,65);
+                    move_sprite(3,107,63);
                 break;
 
                 case PROGRAM_CS:
-
+					move_sprite(0,88,73);
+                    move_sprite(1,88,71);
+                    move_sprite(2,107,73);
+                    move_sprite(3,107,71);
                 break;
 
                 case PUNCH_CS:
-
+					move_sprite(0,88,81);
+                    move_sprite(1,88,79);
+                    move_sprite(2,107,81);
+                    move_sprite(3,107,79);
                 break;
 
                 case SHOOT_CS:
-
+					move_sprite(0,112,65);
+                    move_sprite(1,112,63);
+                    move_sprite(2,131,65);
+                    move_sprite(3,131,63);
                 break;
                 
                 case SNEAK_CS:
-
+					move_sprite(0,112,73);
+                    move_sprite(1,112,71);
+                    move_sprite(2,131,73);
+                    move_sprite(3,131,71);
                 break;
 
                 case STAB_CS:
-
+					move_sprite(0,112,81);
+                    move_sprite(1,112,79);
+                    move_sprite(2,131,81);
+                    move_sprite(3,131,79);
                 break;
 
                 case SURVIVE_CS:
-
+					move_sprite(0,136,65);
+                    move_sprite(1,136,63);
+                    move_sprite(2,155,65);
+                    move_sprite(3,155,63);
                 break;
 
                 case TALK_CS:
-
+					move_sprite(0,136,73);
+                    move_sprite(1,136,71);
+                    move_sprite(2,155,73);
+                    move_sprite(3,155,71);
                 break;
 
                 case TRADE_CS:
-
+					move_sprite(0,136,81);
+                    move_sprite(1,136,79);
+                    move_sprite(2,155,81);
+                    move_sprite(3,155,79);
                 break;
 
                 //Inventory

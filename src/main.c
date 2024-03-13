@@ -170,7 +170,6 @@ void main(void)
 			break;
 			
 			case HOSPITAL_1_STATE: //Load Hospital TODO: make hospital handle this
-				EMU_printf("Hospital");
 				game_state = Hospital_1_Update();
 			break;
 			
