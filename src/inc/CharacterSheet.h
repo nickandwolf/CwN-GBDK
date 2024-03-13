@@ -12,6 +12,7 @@ void UpdateCharacterSheetStats(void);
 uint8_t CharacterSheetUpdate(void);
 uint8_t CharacterSheetPointerUpdate(void);
 uint8_t CharacterSheetInventoryPointerUpdate(void);
+void CharacterSheetGetInfo(void);
 void DefineSheetStat(void);
 
 

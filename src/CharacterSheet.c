@@ -19,6 +19,9 @@
 #include "../res/CharacterSheet_map.h"
 #include "../res/CustomFont_white.h"
 
+//TODO: Add shadow box that shows full values for
+//XP, HP, SS, actual stat values
+
 uint8_t pointerCS = 0;
 int8_t charSheetPointerCS = 0;
 extern uint8_t charSheetIntro = 1;
@@ -54,6 +57,9 @@ void InitCharacterSheet() {
 }
 
 void UpdateCharacterSheetStats(void) {
+	set_bkg_tile_xy(3,1,ZERO+GetPlayerLevel());
+	set_bkg_tile_xy(7,1,ZERO+GetPlayerLevel());//get player SP (TODO LEVEL UP)
+	
     set_bkg_tile_xy(3,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(STRENGTH));
     set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(DEXTERITY));
     set_bkg_tile_xy(3,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(CONSTITUTION));
@@ -62,7 +68,6 @@ void UpdateCharacterSheetStats(void) {
     set_bkg_tile_xy(7,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(WISDOM));
     set_bkg_tile_xy(7,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(CHARISMA));
 
-    //TODO: Make Zero Sprite!!!
     set_bkg_tile_xy(11,1,ZERO + GetPlayerAttack());//attack
     set_bkg_tile_xy(11,2,ZERO + GetPlayerRangedDefense());//ranged def
     set_bkg_tile_xy(11,3,ZERO + GetPlayerMeleeDefense());//melee def
@@ -72,7 +77,8 @@ void UpdateCharacterSheetStats(void) {
     set_bkg_tile_xy(15,2,ZERO + GetPlayerReflex());//ref
     set_bkg_tile_xy(15,3,ZERO + GetPlayerWill());//will
     set_bkg_tile_xy(15,4,ZERO + GetPlayerLuck());//luck
-
+	
+	//This stuff needs 2 digit places
     set_bkg_tile_xy(2,5,ZERO + 0);//hp1
     set_bkg_tile_xy(3,5,ZERO + 0);//hp2
 	
@@ -112,7 +118,8 @@ void UpdateCharacterSheetStats(void) {
 	set_bkg_tile_xy(18,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TALK));//tlk
 	set_bkg_tile_xy(18,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
 	
-	set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
+	//debug for pointer
+	//set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
     
 }
 
@@ -124,9 +131,6 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
-			//DEBUG
-			UpdateCharacterSheetStats();
-			
             if (KEY_TICKED(J_UP)) {
                 if (charSheetPointerCS < 20) {
                     charSheetPointerCS -= 4;
@@ -183,7 +187,7 @@ uint8_t CharacterSheetUpdate(void) {
                 }
             }
             else if (KEY_TICKED(J_A)) dialog_print("test", sizeof("test"));//try to level
-            else if (KEY_TICKED(J_SELECT)) NULL;//display explanation
+            else if (KEY_TICKED(J_SELECT)) CharacterSheetGetInfo();//display explanation
             else if (KEY_TICKED(J_B || J_START)) {
                 pointerCS = 0;
                 if (charSheetIntro == 0) return PLAYING_STATE;//TODO: GAMESTATESENUM
@@ -487,4 +491,170 @@ uint8_t CharacterSheetInventoryPointerUpdate(void) {
 
 void DefineSheetStat(void) {
     
+}
+
+void CharacterSheetGetInfo() {
+	switch (charSheetPointerCS) {
+                //Attributes
+				case LEVEL_CS:
+					dialog_print("a representation of one's power level. one advances a level by completing missions.", sizeof("a representation of one's power level. one advances a level by completing missions."));
+				break;
+				
+				case STRENGTH_CS:
+					dialog_print("physical prowess, melee combat, carrying gear, brute force.", sizeof("physical prowess, melee combat, carrying gear, brute force."));
+				break;
+
+                case DEXTERITY_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case CONSTITUTION_CS:
+                    dialog_print("hardiness, enduring injury, tolerating large amounts of cyberware", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+				
+				case SP_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+				break;
+				
+                case INTELLIGENCE_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case WISDOM_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case CHARISMA_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                //Combat
+                case ATTACK_BONUS_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case RANGED_DEFENSE_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case MELEE_DEFENSE_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case TRAUMA_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                //Saves
+                case FORT_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case REFLEX_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case WILLPOWER_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case LUCK_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                //HP/SS/Euro/Heat
+                case HP_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case SS_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case EURODOLLARS_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case HEAT_CS:
+                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+                
+                //Skills
+                case ADMIN_CS:
+					dialog_print("manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis. roll it for bureaucratic expertise, organizational management, legal knowledge, dealing with government agencies, and understanding how corps really work.", sizeof("manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis. roll it for bureaucratic expertise, organizational management, legal knowledge, dealing with government agencies, and understanding how corps really work."));
+                break;
+
+                case CONNECT_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case DRIVE_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case EXERT_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case FIX_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case HEAL_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case KNOW_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case LEAD_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case NOTICE_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case PERFORM_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case PROGRAM_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case PUNCH_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case SHOOT_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+                
+                case SNEAK_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case STAB_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case SURVIVE_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case TALK_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                case TRADE_CS:
+					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
+                break;
+
+                //Inventory
+                case INVENTORY_CS:
+
+                break;
+			}
 }

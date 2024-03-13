@@ -119,6 +119,8 @@ int8_t GetPlayerSkill(uint8_t skill);
 
 uint8_t GetPlayerLevel(void);
 uint8_t GetPlayerXP(void);
+uint8_t GetPlayerSP(void);
+
 uint8_t GetPlayerHP(void);
 uint8_t GetPlayerHP_Current(void);
 uint8_t GetPlayerSS(void);
