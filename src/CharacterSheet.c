@@ -58,7 +58,7 @@ void InitCharacterSheet() {
 
 void UpdateCharacterSheetStats(void) {
 	set_bkg_tile_xy(3,1,ZERO+GetPlayerLevel());
-	set_bkg_tile_xy(7,1,ZERO+GetPlayerLevel());//get player SP (TODO LEVEL UP)
+	set_bkg_tile_xy(7,1,ZERO+GetPlayerSP());//get player SP (TODO LEVEL UP)
 	
     set_bkg_tile_xy(3,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(STRENGTH));
     set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(DEXTERITY));
@@ -118,12 +118,15 @@ void UpdateCharacterSheetStats(void) {
 	set_bkg_tile_xy(18,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TALK));//tlk
 	set_bkg_tile_xy(18,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
 	
-	//debug for pointer
-	//set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
+	//debug for pointer 1/2
+	set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
     
 }
 
 uint8_t CharacterSheetUpdate(void) {
+	//debug for pointer 2/2
+	UpdateCharacterSheetStats();
+	
 	switch(pointerCS) {
 		case 0:
 			InitCharacterSheet();
@@ -170,8 +173,9 @@ uint8_t CharacterSheetUpdate(void) {
             }
             else if (KEY_TICKED(J_LEFT)) {
                 charSheetPointerCS -= 1;
-                if (charSheetPointerCS < 20) {//Shit forgot how to do this
+                if (charSheetPointerCS < 19) {//Shit forgot how to do this
                     if (charSheetPointerCS % 4 == 3) charSheetPointerCS += 4;
+					if (charSheetPointerCS == -1) charSheetPointerCS = FORT_CS;
                 }
                 else {
                     if (charSheetPointerCS % 6 == 1) charSheetPointerCS += 6;
@@ -179,7 +183,8 @@ uint8_t CharacterSheetUpdate(void) {
             }
             else if (KEY_TICKED(J_RIGHT)) {
                 charSheetPointerCS += 1;
-                if (charSheetPointerCS < 20) {
+				if (charSheetPointerCS == ADMIN_CS) charSheetPointerCS = HP_CS;
+                else if (charSheetPointerCS < 19) {
                     if (charSheetPointerCS % 4 == 0) charSheetPointerCS -= 4;
                 }
                 else {
@@ -495,166 +500,166 @@ void DefineSheetStat(void) {
 
 void CharacterSheetGetInfo() {
 	switch (charSheetPointerCS) {
-                //Attributes
-				case LEVEL_CS:
-					dialog_print("a representation of one's power level. one advances a level by completing missions.", sizeof("a representation of one's power level. one advances a level by completing missions."));
-				break;
-				
-				case STRENGTH_CS:
-					dialog_print("physical prowess, melee combat, carrying gear, brute force.", sizeof("physical prowess, melee combat, carrying gear, brute force."));
-				break;
+		//Attributes
+		case LEVEL_CS:
+			dialog_print("level(lvl) is a   representation of your power level. you can advance a level by finishing missions.", sizeof("level(lvl) is a   representation of your power level. you can advance a level by finishing missions."));
+		break;
+		
+		case STRENGTH_CS:
+			dialog_print("strength(st) is   muscle and physical prowess.", sizeof("strength(st) is   muscle and physical prowess."));
+		break;
 
-                case DEXTERITY_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case DEXTERITY_CS:
+			dialog_print("dexterity(dx) is  hand-eye coordination, reflexes,   and balance.", sizeof("dexterity(dx) is  hand-eye coordination, reflexes,   and balance."));
+		break;
 
-                case CONSTITUTION_CS:
-                    dialog_print("hardiness, enduring injury, tolerating large amounts of cyberware", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
-				
-				case SP_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-				break;
-				
-                case INTELLIGENCE_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case CONSTITUTION_CS:
+			dialog_print("constitution(co)  is health and stamina.", sizeof("constitution(co)  is health and stamina."));
+		break;
+		
+		case SP_CS:
+			dialog_print("skill points(sp)  can be spent to   increase skills or attributes.", sizeof("skill points(sp)  can be spent to   increase skills or attributes."));
+		break;
+		
+		case INTELLIGENCE_CS:
+			dialog_print("intelligence(in)  is how well you   learn and reason.", sizeof("intelligence(in)  is how well you   learn and reason."));
+		break;
 
-                case WISDOM_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case WISDOM_CS:
+			dialog_print("wisdom(wi) is your gut,perception,and common-sense.", sizeof("wisdom(wi) is your gut,perception,and common-sense."));
+		break;
 
-                case CHARISMA_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case CHARISMA_CS:
+			dialog_print("charisma(ch) is   influence,personal magnetism, and    ability to lead.", sizeof("charisma(ch) is   influence,personal magnetism, and    ability to lead."));
+		break;
 
-                //Combat
-                case ATTACK_BONUS_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		//Combat
+		case ATTACK_BONUS_CS:
+			dialog_print("attack bonus(att+) is how easy it is for you to hit an opponent.", sizeof("attack bonus(att+) is how easy it is for you to hit an opponent."));
+		break;
 
-                case RANGED_DEFENSE_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case RANGED_DEFENSE_CS:
+			dialog_print("ranged defense(rd) is how difficult  it is to hit you   with a ranged weapon.", sizeof("ranged defense(rd) is how difficult  it is to hit you   with a ranged weapon."));
+		break;
 
-                case MELEE_DEFENSE_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case MELEE_DEFENSE_CS:
+			dialog_print("melee defense(md)  is how difficult  is to hit you in  melee combat.", sizeof("melee defense(md)  is how difficult  is to hit you in  melee combat."));
+		break;
 
-                case TRAUMA_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case TRAUMA_CS:
+			dialog_print("trauma target(tt) is how easy it is to score a critical hit on you.", sizeof("trauma target(tt) is how easy it is to score a critical hit on you."));
+		break;
 
-                //Saves
-                case FORT_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		//Saves
+		case FORT_CS:
+			dialog_print("fortitude(ft) resists exhaustion,  poison, disease,  or other bodily   afflictions.", sizeof("fortitude(ft) resists exhaustion,  poison, disease,  or other bodily   afflictions."));
+		break;
 
-                case REFLEX_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case REFLEX_CS:
+			dialog_print("reflex(re) resists traps or occasions of sudden peril.", sizeof("reflex(re) resists traps or occasions of sudden peril."));
+		break;
 
-                case WILLPOWER_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case WILLPOWER_CS:
+			dialog_print("will(wl) resists  mental influences, trauma, and other mental threats.", sizeof("will(wl) resists  mental influences, trauma, and other mental threats."));	 
+		break;
 
-                case LUCK_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case LUCK_CS:
+			dialog_print("luck(lk) is used  when blind chance is required.", sizeof("luck (lk) is used when blind chance is required."));
+		break;
 
-                //HP/SS/Euro/Heat
-                case HP_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		//HP/SS/Euro/Heat
+		case HP_CS:
+			dialog_print("hit points(hp) are how close you are to a fatal blow.", sizeof("hit points(hp) are how close you are to a fatal blow."));
+		break;
 
-                case SS_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case SS_CS:
+			dialog_print("system strain(ss)  is how much your  body can take     before being rendered unconcious.", sizeof("system strain(ss)  is how much your  body can take     before being rendered unconcious."));
+		break;
 
-                case EURODOLLARS_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case EURODOLLARS_CS:
+			dialog_print("eurodollars($) are the strongest and  most prevelant    currency used     today.", sizeof("eurodollars($) are the strongest and  most prevelant    currency used     today."));
+		break;
 
-                case HEAT_CS:
-                    dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
-                
-                //Skills
-                case ADMIN_CS:
-					dialog_print("manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis. roll it for bureaucratic expertise, organizational management, legal knowledge, dealing with government agencies, and understanding how corps really work.", sizeof("manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis. roll it for bureaucratic expertise, organizational management, legal knowledge, dealing with government agencies, and understanding how corps really work."));
-                break;
+		case HEAT_CS:
+			dialog_print("heat(!/) is how   reckless, destructive, or obvious  you are.", sizeof("heat(!/) is how   reckless, destructive, or obvious  you are."));
+		break;
+		
+		//Skills
+		case ADMIN_CS:
+			dialog_print("admin(adm) is how to do paperwork or sort records.", sizeof("admin(adm) is how to do paperwork or sort records."));
+		break;
 
-                case CONNECT_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case CONNECT_CS:
+			dialog_print("connect(con) is   used to find helpful people who can get things you    can't.", sizeof("connect(con) is   used to find helpful people who can get things you    can't."));
+		break;
 
-                case DRIVE_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case DRIVE_CS:
+			dialog_print("drive(drv) is for driving vehicles.", sizeof("drive(drv) is for driving vehicles."));
+		break;
 
-                case EXERT_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case EXERT_CS:
+			dialog_print("exert(exr) is used for physical feats or exertions.", sizeof("exert(exr) is used for physical feats or exertions."));
+		break;
 
-                case FIX_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case FIX_CS:
+			dialog_print("fix(fix) is used  to create or repair devices.", sizeof("fix(fix) is used  to create or repair devices."));
+		break;
 
-                case HEAL_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case HEAL_CS:
+			dialog_print("heal(hea) is used for medical treatment.", sizeof("heal(hea) is used for medical treatment."));
+		break;
 
-                case KNOW_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case KNOW_CS:
+			dialog_print("know(kno) is used for knowing academic or scientific facts.", sizeof("know(kno) is used for knowing academic or scientific facts."));
+		break;
 
-                case LEAD_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case LEAD_CS:
+			dialog_print("lead(lea) is used to convince others to do whatever    you're doing or go along with your   plan.", sizeof("lead(lea) is used to convince others to do whatever    you're doing or go along with your   plan."));
+		break;
 
-                case NOTICE_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case NOTICE_CS:
+			dialog_print("notice(ntc) is for spotting anomalies or interesting    features around   your environment.", sizeof("notice(ntc) is for spotting anomalies or interesting    features around   your environment."));
+		break;
 
-                case PERFORM_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case PERFORM_CS:
+			dialog_print("perform(prf) is   used to exhibit   some sort of performance.", sizeof("perform(prf) is   used to exhibit   some sort of performance."));
+		break;
 
-                case PROGRAM_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case PROGRAM_CS:
+			dialog_print("program(prg) is   used for operating or hacking computers or hardware.", sizeof("program(prg) is   used for operating or hacking computers or hardware."));
+		break;
 
-                case PUNCH_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case PUNCH_CS:
+			dialog_print("punch(pnc) is used for fighting unarmed.", sizeof("punch(pnc) is used for fighting unarmed."));
+		break;
 
-                case SHOOT_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
-                
-                case SNEAK_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case SHOOT_CS:
+			dialog_print("shoot(sht) is used for attacks with  ranged weapons.", sizeof("shoot(sht) is used for attacks with  ranged weapons."));
+		break;
+		
+		case SNEAK_CS:
+			dialog_print("sneak(snk) is used to move without   drawing notice.", sizeof("sneak(snk) is used to move without   drawing notice."));
+		break;
 
-                case STAB_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case STAB_CS:
+			dialog_print("stab(stb) is used for attacks with  melee weapons.", sizeof("stab(stb) is used for attacks with  melee weapons."));
+		break;
 
-                case SURVIVE_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case SURVIVE_CS://
+			dialog_print("survive(srv) is   for living without modern amenities.", sizeof("survive(srv) is   for living without modern amenities."));
+		break;
 
-                case TALK_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case TALK_CS:
+			dialog_print("talk(tlk) is used to persuade others to your point of  view.", sizeof("talk(tlk) is used to persuade others to your point of  view."));
+		break;
 
-                case TRADE_CS:
-					dialog_print("speed, evasion, manual dexterity, reaction time, combat initiative", sizeof("speed, evasion, manual dexterity, reaction time, combat initiative"));
-                break;
+		case TRADE_CS:
+			dialog_print("trade(trd) is used to haggle prices  or get access to  rare or less-thanlegal items.", sizeof("trade(trd) is used to haggle prices  or get access to  rare or less-thanlegal items."));
+		break;
 
-                //Inventory
-                case INVENTORY_CS:
+		//Inventory
+		case INVENTORY_CS:
 
-                break;
-			}
+		break;
+	}
 }

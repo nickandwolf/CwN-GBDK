@@ -19,8 +19,9 @@ uint8_t playerState = 0;
 character PC; //may need to work on optimization later
 
 void InitalizeCharacter() { //TODO: actually make this work
-    //PC.level = 1;
-    //PC.XP = 0;
+    PC.level = 1;
+    PC.SP = 3;
+	
 	SetPlayerAttribute(STRENGTH,10);
 	SetPlayerAttribute(DEXTERITY,10);
 	SetPlayerAttribute(CONSTITUTION,10);
@@ -462,7 +463,8 @@ uint8_t ImprovePlayerSkill(uint8_t skill) {
     return 1;
 }
 
-uint8_t ImprovePlayerXP(int8_t value);
+void LevelPlayerUp(void);
+void SpendPlayerSP(void);
 
 /*****************************************************************/
 
@@ -612,20 +614,11 @@ int8_t GetPlayerSkill(uint8_t skill) {
 }
 
 uint8_t GetPlayerLevel() {
-    if (PC.XP < 2) return 1;
-    else if (PC.XP < 5) return 2;
-    else if (PC.XP < 11) return 3;
-    else if (PC.XP < 17) return 4;
-    else if (PC.XP < 26) return 5;
-    else if (PC.XP < 38) return 6;
-    else if (PC.XP < 53) return 7;
-    else if (PC.XP < 71) return 8;
-    else if (PC.XP < 93) return 9;
-    else 10;
+    return PC.level;
 }
 
-uint8_t GetPlayerXP() {
-    return PC.XP;
+uint8_t GetPlayerSP() {
+    return PC.SP;
 }
 
 uint8_t GetPlayerHP() {
