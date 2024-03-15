@@ -94,12 +94,13 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
 		(xpos == 1 && text[index] == ' ')?index++:index;
 
         // This put a - sign if there's no width space and a word isn't finished.
-		//fuck this includes periods
+		//fuck this includes periods. TODO:Decide whether to keep this or not (I'll have to redo all dialog)
 		if (xpos == DIALOG_WIDTH && text[index] != ' ' && text[index+1] != ' ') {
 			set_win_tile_xy(xpos, ypos, ('-'-0x20+Font_sprite_start)); xpos=1; ypos++;
 		}
 		
-		(xpos == 1 && text[index] == ' ')?index++:index;
+		//no idea why this was duplicated
+		//(xpos == 1 && text[index] == ' ')?index++:index;
         
 		// This variable sets the current character of the string based on its index.
 		const unsigned char *current = &text[index];

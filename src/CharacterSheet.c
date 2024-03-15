@@ -18,6 +18,7 @@
 #include "../res/CharacterSheet_tiles.h"
 #include "../res/CharacterSheet_map.h"
 #include "../res/CustomFont_white.h"
+#include "../res/CustomFont_grey.h"
 
 //TODO: Add shadow box that shows full values for
 //XP, HP, SS, actual stat values
@@ -41,6 +42,7 @@ void InitCharacterSheet() {
 	UpdateCharacterSheetStats();
 	
 	set_sprite_data(0,59,CustomFont_white);
+	set_sprite_data(59,10,CustomFont_grey);
 	//box sprite
 	set_sprite_tile(0, 0x36);
 	set_sprite_tile(1, 0x35);
@@ -119,14 +121,15 @@ void UpdateCharacterSheetStats(void) {
 	set_bkg_tile_xy(18,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
 	
 	//debug for pointer 1/2
-	set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
-    
+	//set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
 }
 
 uint8_t CharacterSheetUpdate(void) {
 	//debug for pointer 2/2
-	UpdateCharacterSheetStats();
-	
+	//UpdateCharacterSheetStats();
+	uint8_t stat = 0;
+	uint8_t tens = 0;
+	uint8_t ones = 0;
 	switch(pointerCS) {
 		case 0:
 			InitCharacterSheet();
@@ -202,6 +205,9 @@ uint8_t CharacterSheetUpdate(void) {
                 }
             }
             
+			move_sprite(4,-16,-16);
+			move_sprite(5,-16,-16);
+			
             //move sprites
             switch (charSheetPointerCS) {
                 //Attributes
@@ -217,6 +223,17 @@ uint8_t CharacterSheetUpdate(void) {
 					move_sprite(1,14,32);
 					move_sprite(2,37,33);
 					move_sprite(3,37,32);
+					
+					stat = GetPlayerAttribute(1);
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 24,40);
+					move_sprite(5, 32,40);
+					
 				break;
 
                 case DEXTERITY_CS:
@@ -224,6 +241,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,14,40);
                     move_sprite(2,37,41);
                     move_sprite(3,37,40);
+					
+					stat = GetPlayerAttribute(2);
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 24,48);
+					move_sprite(5, 32,48);
                 break;
 
                 case CONSTITUTION_CS:
@@ -231,6 +258,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,14,48);
                     move_sprite(2,37,49);
                     move_sprite(3,37,48);
+					
+					stat = GetPlayerAttribute(3);
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 24,56);
+					move_sprite(5, 32,56);
                 break;
 				
 				case SP_CS:
@@ -245,6 +282,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,46,32);
                     move_sprite(2,69,33);
                     move_sprite(3,69,32);
+					
+					stat = GetPlayerAttribute(4);
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 56,40);
+					move_sprite(5, 64,40);
                 break;
 
                 case WISDOM_CS:
@@ -252,6 +299,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,46,40);
                     move_sprite(2,69,41);
                     move_sprite(3,69,40);
+					
+					stat = GetPlayerAttribute(5);
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 56,48);
+					move_sprite(5, 64,48);
                 break;
 
                 case CHARISMA_CS:
@@ -259,6 +316,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,46,48);
                     move_sprite(2,69,49);
                     move_sprite(3,69,48);
+					
+					stat = GetPlayerAttribute(6);
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 56,56);
+					move_sprite(5, 64,56);
                 break;
 
                 //Combat
@@ -325,6 +392,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,14,56);
                     move_sprite(2,37,57);
                     move_sprite(3,37,56);
+					
+					stat = GetPlayerHP();
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 24,64);
+					move_sprite(5, 32,64);
                 break;
 
                 case SS_CS:
@@ -332,6 +409,16 @@ uint8_t CharacterSheetUpdate(void) {
                     move_sprite(1,46,56);
                     move_sprite(2,69,57);
                     move_sprite(3,69,56);
+					
+					stat = GetPlayerSS();
+					tens = 59+(stat/10);
+					ones = 59+(stat%10);
+					
+					set_sprite_tile(4, tens);
+					set_sprite_tile(5, ones);
+					
+					move_sprite(4, 56,64);
+					move_sprite(5, 64,64);
                 break;
 
                 case EURODOLLARS_CS:
