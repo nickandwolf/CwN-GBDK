@@ -44,10 +44,10 @@ void InitCharacterSheet() {
 	set_sprite_data(0,59,CustomFont_white);
 	set_sprite_data(59,10,CustomFont_grey);
 	//box sprite
-	set_sprite_tile(0, 0x36);
-	set_sprite_tile(1, 0x35);
-	set_sprite_tile(2, 0x34);
-	set_sprite_tile(3, 0x33);
+	set_sprite_tile(0, 0x37);
+	set_sprite_tile(1, 0x36);
+	set_sprite_tile(2, 0x35);
+	set_sprite_tile(3, 0x34);
 	
 	//move_sprite(0,15,32);
 	//move_sprite(1,15,31);
@@ -194,7 +194,136 @@ uint8_t CharacterSheetUpdate(void) {
                     if (charSheetPointerCS % 6 == 2) charSheetPointerCS -= 6;
                 }
             }
-            else if (KEY_TICKED(J_A)) dialog_print("test", sizeof("test"));//try to level
+            else if (KEY_TICKED(J_A)) {
+				uint8_t stat_CS = 0;
+				int8_t value_CS = 0;
+				uint8_t cost_CS = 0;
+				
+				switch (charSheetPointerCS) {
+					//Attributes
+					case STRENGTH_CS:
+						stat_CS = 1;
+						value_CS = GetPlayerAttribute(STRENGTH);
+					break;
+
+					case DEXTERITY_CS:
+						stat_CS = 2;
+						value_CS = GetPlayerAttribute(DEXTERITY);
+					break;
+
+					case CONSTITUTION_CS:
+						stat_CS = 3;
+						value_CS = GetPlayerAttribute(CONSTITUTION);
+					break;
+					
+					case INTELLIGENCE_CS:
+						stat_CS = 4;
+						value_CS = GetPlayerAttribute(INTELLIGENCE);
+					break;
+
+					case WISDOM_CS:
+						stat_CS = 5;
+						value_CS = GetPlayerAttribute(WISDOM);
+					break;
+
+					case CHARISMA_CS:
+						stat_CS = 6;
+						value_CS = GetPlayerAttribute(CHARISMA);
+					break;
+					
+					//Skills
+					case ADMIN_CS:
+						stat_CS = 7;
+						value_CS = GetPlayerSkill(ADMIN);
+					break;
+
+					case CONNECT_CS:
+						stat_CS = 8;
+						value_CS = GetPlayerSkill(CONNECT);
+					break;
+
+					case DRIVE_CS:
+						stat_CS = 9;
+						value_CS = GetPlayerSkill(DRIVE);
+					break;
+
+					case EXERT_CS:
+						stat_CS = 10;
+						value_CS = GetPlayerSkill(EXERT);
+					break;
+
+					case FIX_CS:
+						stat_CS = 11;
+						value_CS = GetPlayerSkill(FIX);
+					break;
+
+					case HEAL_CS:
+						stat_CS = 12;
+						value_CS = GetPlayerSkill(HEAL);
+					break;
+
+					case KNOW_CS:
+						stat_CS = 13;
+						value_CS = GetPlayerSkill(KNOW);
+					break;
+
+					case LEAD_CS:
+						stat_CS = 14;
+						value_CS = GetPlayerSkill(LEAD);
+					break;
+
+					case NOTICE_CS:
+						stat_CS = 15;
+						value_CS = GetPlayerSkill(NOTICE);
+					break;
+
+					case PERFORM_CS:
+						stat_CS = 16;
+						value_CS = GetPlayerSkill(PERFORM);
+					break;
+
+					case PROGRAM_CS:
+						stat_CS = 17;
+						value_CS = GetPlayerSkill(PROGRAM);
+					break;
+
+					case PUNCH_CS:
+						stat_CS = 18;
+						value_CS = GetPlayerSkill(PUNCH);
+					break;
+
+					case SHOOT_CS:
+						stat_CS = 19;
+						value_CS = GetPlayerSkill(SHOOT);
+					break;
+					
+					case SNEAK_CS:
+						stat_CS = 20;
+						value_CS = GetPlayerSkill(SNEAK);
+					break;
+
+					case STAB_CS:
+						stat_CS = 21;
+						value_CS = GetPlayerSkill(STAB);
+					break;
+
+					case SURVIVE_CS:
+						stat_CS = 22;
+						value_CS = GetPlayerSkill(SURVIVE);
+					break;
+
+					case TALK_CS:
+						stat_CS = 23;
+						value_CS = GetPlayerSkill(TALK);
+					break;
+
+					case TRADE_CS:
+						stat_CS = 24;
+						value_CS = GetPlayerSkill(TRADE);
+					break;
+				}
+				uint8_t didWeLevel = dialog_level_up_print(stat_CS, value_CS, cost_CS);
+			}
             else if (KEY_TICKED(J_SELECT)) CharacterSheetGetInfo();//display explanation
             else if (KEY_TICKED(J_B || J_START)) {
                 pointerCS = 0;
