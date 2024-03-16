@@ -21,6 +21,7 @@ character PC; //may need to work on optimization later
 void InitalizeCharacter() { //TODO: actually make this work
     PC.level = 1;
     PC.SP = 3;
+	PC.Attribute_boosts = 1;
 	
 	SetPlayerAttribute(STRENGTH,10);
 	SetPlayerAttribute(DEXTERITY,10);
@@ -361,7 +362,9 @@ uint8_t SetPlayerHP_Current(int8_t value) {
 
 /*****************************************************************/
 
-uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t type) {//type is 0 = any, 1 = phys, 2 = mental
+	//this'll do something during a character creator or something...
+}
 
 uint8_t ImprovePlayerSkill(uint8_t skill) {
     switch (skill) {
@@ -464,7 +467,120 @@ uint8_t ImprovePlayerSkill(uint8_t skill) {
 }
 
 void LevelPlayerUp(void);
-void SpendPlayerSP(void);
+void SpendPlayerSP(uint8_t stat_type, uint8_t stat) {
+	if (stat_type == 0 && GetPlayerAttributeBoosts() < 5) {//attribute
+		switch (stat) {
+			case STRENGTH:
+				PC.strength++;
+			break;
+			
+			case DEXTERITY:
+				PC.dexterity++;
+			break;
+			
+			case CONSTITUTION:
+				PC.constitution++;
+			break;
+			
+			case INTELLIGENCE:
+				PC.intelligence++;
+			break;
+			
+			case WISDOM:
+				PC.wisdom++;
+			break;
+			
+			case CHARISMA:
+				PC.charisma++;
+			break;
+		}
+		
+		SetPlayerAttributeBonus();
+		PC.SP-= GetPlayerAttributeBoosts();
+		PC.Attribute_boosts++;
+	}
+	else {
+		switch (stat) {
+			case ADMIN:
+				PC.admin++;
+			break;
+		
+			case CONNECT:
+				PC.connect++;
+			break;
+		
+			case DRIVE:
+				PC.drive++;
+			break;
+		
+			case EXERT:
+				PC.exert++;
+			break;
+		
+			case FIX:
+				PC.fix++;
+			break;
+		
+			case HEAL:
+				PC.heal++;
+			break;
+		
+			case KNOW:
+				PC.know++;
+			break;
+		
+			case LEAD:
+				PC.lead++;
+			break;
+		
+			case NOTICE:
+				PC.notice++;
+			break;
+		
+			case PERFORM:
+				PC.perform++;
+			break;
+		
+			case PROGRAM:
+				PC.program++;
+			break;
+		
+			case PUNCH:
+				PC.punch++;
+			break;
+		
+			case SHOOT:
+				PC.shoot++;
+			break;
+		
+			case SNEAK:
+				PC.sneak++;
+			break;
+		
+			case STAB:
+				PC.stab++;
+			break;
+		
+			case SURVIVE:
+				PC.survive++;
+			break;
+		
+			case TALK:
+				PC.talk++;
+			break;
+		
+			case TRADE:
+				PC.trade++;
+			break;
+		
+			case WORK:
+				PC.work++;
+			break;
+		}
+		
+		PC.SP -= GetPlayerSkill(stat)+1;
+	}
+}
 
 /*****************************************************************/
 
@@ -619,6 +735,16 @@ uint8_t GetPlayerLevel() {
 
 uint8_t GetPlayerSP() {
     return PC.SP;
+}
+
+uint8_t GetPlayerAttributeBoosts() {
+	return PC.Attribute_boosts;
+}
+
+uint8_t GetPlayerSP_Cost(uint8_t stat_type, uint8_t stat) {
+	if (stat_type) return GetPlayerAttributeBoosts();
+	
+	return GetPlayerSkill(stat) + 2;
 }
 
 uint8_t GetPlayerHP() {

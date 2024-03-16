@@ -198,131 +198,193 @@ uint8_t CharacterSheetUpdate(void) {
 				uint8_t stat_CS = 0;
 				int8_t value_CS = 0;
 				uint8_t cost_CS = 0;
+				uint8_t didWeLevel = 0;
+				uint8_t stat_type_CS = 10;
+				uint8_t stat__CS = 0;
 				
 				switch (charSheetPointerCS) {
 					//Attributes
 					case STRENGTH_CS:
 						stat_CS = 1;
 						value_CS = GetPlayerAttribute(STRENGTH);
+						cost_CS = GetPlayerSP_Cost(1,0);
+						stat__CS = STRENGTH;
 					break;
 
 					case DEXTERITY_CS:
 						stat_CS = 2;
 						value_CS = GetPlayerAttribute(DEXTERITY);
+						cost_CS = GetPlayerSP_Cost(1,0);
+						stat__CS = DEXTERITY;
 					break;
 
 					case CONSTITUTION_CS:
 						stat_CS = 3;
 						value_CS = GetPlayerAttribute(CONSTITUTION);
+						cost_CS = GetPlayerSP_Cost(1,0);
+						stat__CS = CONSTITUTION;
 					break;
 					
 					case INTELLIGENCE_CS:
 						stat_CS = 4;
 						value_CS = GetPlayerAttribute(INTELLIGENCE);
+						cost_CS = GetPlayerSP_Cost(1,0);
+						stat__CS = INTELLIGENCE;
 					break;
 
 					case WISDOM_CS:
 						stat_CS = 5;
 						value_CS = GetPlayerAttribute(WISDOM);
+						cost_CS = GetPlayerSP_Cost(1,0);
+						stat__CS = WISDOM;
 					break;
 
 					case CHARISMA_CS:
 						stat_CS = 6;
 						value_CS = GetPlayerAttribute(CHARISMA);
+						cost_CS = GetPlayerSP_Cost(1,0);
+						stat__CS = CHARISMA;
 					break;
 					
 					//Skills
 					case ADMIN_CS:
 						stat_CS = 7;
 						value_CS = GetPlayerSkill(ADMIN);
+						cost_CS = GetPlayerSP_Cost(0,ADMIN);
+						stat__CS = ADMIN;
 					break;
 
 					case CONNECT_CS:
 						stat_CS = 8;
 						value_CS = GetPlayerSkill(CONNECT);
+						cost_CS = GetPlayerSP_Cost(0,CONNECT);
+						stat__CS = CONNECT;
 					break;
 
 					case DRIVE_CS:
 						stat_CS = 9;
 						value_CS = GetPlayerSkill(DRIVE);
+						cost_CS = GetPlayerSP_Cost(0,DRIVE);
+						stat__CS = DRIVE;
 					break;
 
 					case EXERT_CS:
 						stat_CS = 10;
 						value_CS = GetPlayerSkill(EXERT);
+						cost_CS = GetPlayerSP_Cost(0,EXERT);
+						stat__CS = EXERT;
 					break;
 
 					case FIX_CS:
 						stat_CS = 11;
 						value_CS = GetPlayerSkill(FIX);
+						cost_CS = GetPlayerSP_Cost(0,FIX);
+						stat__CS = FIX;
 					break;
 
 					case HEAL_CS:
 						stat_CS = 12;
 						value_CS = GetPlayerSkill(HEAL);
+						cost_CS = GetPlayerSP_Cost(0,HEAL);
+						stat__CS = HEAL;
 					break;
 
 					case KNOW_CS:
 						stat_CS = 13;
 						value_CS = GetPlayerSkill(KNOW);
+						cost_CS = GetPlayerSP_Cost(0,KNOW);
+						stat__CS = KNOW;
 					break;
 
 					case LEAD_CS:
 						stat_CS = 14;
 						value_CS = GetPlayerSkill(LEAD);
+						cost_CS = GetPlayerSP_Cost(0,LEAD);
+						stat__CS = LEAD;
 					break;
 
 					case NOTICE_CS:
 						stat_CS = 15;
 						value_CS = GetPlayerSkill(NOTICE);
+						cost_CS = GetPlayerSP_Cost(0,NOTICE);
+						stat__CS = NOTICE;
 					break;
 
 					case PERFORM_CS:
 						stat_CS = 16;
 						value_CS = GetPlayerSkill(PERFORM);
+						cost_CS = GetPlayerSP_Cost(0,PERFORM);
+						stat__CS = PERFORM;
 					break;
 
 					case PROGRAM_CS:
 						stat_CS = 17;
 						value_CS = GetPlayerSkill(PROGRAM);
+						cost_CS = GetPlayerSP_Cost(0,PROGRAM);
+						stat__CS = PROGRAM;
 					break;
 
 					case PUNCH_CS:
 						stat_CS = 18;
 						value_CS = GetPlayerSkill(PUNCH);
+						cost_CS = GetPlayerSP_Cost(0,PUNCH);
+						stat__CS = PUNCH;
 					break;
 
 					case SHOOT_CS:
 						stat_CS = 19;
 						value_CS = GetPlayerSkill(SHOOT);
+						cost_CS = GetPlayerSP_Cost(0,SHOOT);
+						stat__CS = SHOOT;
 					break;
 					
 					case SNEAK_CS:
 						stat_CS = 20;
 						value_CS = GetPlayerSkill(SNEAK);
+						cost_CS = GetPlayerSP_Cost(0,SNEAK);
+						stat__CS = SNEAK;
 					break;
 
 					case STAB_CS:
 						stat_CS = 21;
 						value_CS = GetPlayerSkill(STAB);
+						cost_CS = GetPlayerSP_Cost(0,STAB);
+						stat__CS = STAB;
 					break;
 
 					case SURVIVE_CS:
 						stat_CS = 22;
 						value_CS = GetPlayerSkill(SURVIVE);
+						cost_CS = GetPlayerSP_Cost(0,SURVIVE);
+						stat__CS = SURVIVE;
 					break;
 
 					case TALK_CS:
 						stat_CS = 23;
 						value_CS = GetPlayerSkill(TALK);
+						cost_CS = GetPlayerSP_Cost(0,TALK);
+						stat__CS = TALK;
 					break;
 
 					case TRADE_CS:
 						stat_CS = 24;
 						value_CS = GetPlayerSkill(TRADE);
+						cost_CS = GetPlayerSP_Cost(0,TRADE);
+						stat__CS = TRADE;
 					break;
 				}
-				uint8_t didWeLevel = dialog_level_up_print(stat_CS, value_CS, cost_CS);
+				
+				if (stat_CS < 7) stat_type_CS = 0;
+				else stat_type_CS = 1;
+				
+				if (stat_CS < 7 && GetPlayerAttributeBoosts() > 5) dialog_print("there are no more attribute boosts left.", sizeof("there are no more attribute boosts left."));
+				else if (cost_CS > GetPlayerSP()) dialog_print("not enough sp#",sizeof("not enough sp#"));
+				else  didWeLevel = dialog_level_up_print(stat_CS, value_CS, cost_CS);
+				
+				if (didWeLevel) {//TODO: THIS IS WHERE SHIT IS BROKEN
+					SpendPlayerSP(stat_type_CS, stat__CS);
+					UpdateCharacterSheetStats();
+				}
 			}
             else if (KEY_TICKED(J_SELECT)) CharacterSheetGetInfo();//display explanation
             else if (KEY_TICKED(J_B || J_START)) {

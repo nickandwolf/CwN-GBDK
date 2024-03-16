@@ -117,13 +117,7 @@ uint8_t dialog_level_up_print(uint8_t stat, int8_t value, uint8_t cost) {
 	}
 	
 	//cost
-	const int8_t tens3 = 212+(cost/10);
-	const int8_t ones3 = 212+(cost%10);
-	if (tens3 != 212) {
-		set_win_tile_xy(17,3,tens3);
-		set_win_tile_xy(18,3,ones3);
-	}
-	else set_win_tile_xy(17,3,ones3);
+	set_win_tile_xy(17,3,cost+212);
 	
 	switch (stat) {
 		case 0:

@@ -74,6 +74,7 @@ typedef struct Character {
 
     uint8_t SP;
     uint8_t level;
+	uint8_t Attribute_boosts;
     //uint8_t edges[4];
     //uint8_t foci[6];
 	//char* contacts;
@@ -101,10 +102,10 @@ void SetPlayerHP(void);
 uint8_t SetPlayerHP_Current(int8_t value);
 
 //improve functions
-uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t value, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
+uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
 uint8_t ImprovePlayerSkill(uint8_t skill);
 void LevelPlayerUp(void);
-void SpendPlayerSP(void);
+void SpendPlayerSP(uint8_t stat_type, uint8_t stat);
 
 //void SetPlayerBackground(uint8_t p, enum Backgrounds background);
 //void InitPlayerBackground(uint8_t p);
@@ -120,6 +121,8 @@ int8_t GetPlayerSkill(uint8_t skill);
 
 uint8_t GetPlayerLevel(void);
 uint8_t GetPlayerSP(void);
+uint8_t GetPlayerAttributeBoosts(void);
+uint8_t GetPlayerSP_Cost(uint8_t stat_type, uint8_t stat);
 
 uint8_t GetPlayerHP(void);
 uint8_t GetPlayerHP_Current(void);
