@@ -27,7 +27,7 @@ void InitTitle_1() {
 	//arrow
 	set_sprite_tile(0, 6);
 	
-	move_sprite(0, 8, 78);
+	move_sprite(0, 8, 80);
 	
 	//new game
 	set_sprite_tile(1, 39);
@@ -74,11 +74,11 @@ void InitTitle_1() {
 uint8_t Title_1_Update() {
 	if (KEY_TICKED(J_UP) || KEY_TICKED(J_DOWN)) {
 		if (newGame) {
-			move_sprite(0, 8, 94);
+			move_sprite(0, 8, 96);
 			newGame = 0;
 		}
 		else {
-			move_sprite(0, 8, 78);
+			move_sprite(0, 8, 80);
 			newGame = 1;
 		}
 	}

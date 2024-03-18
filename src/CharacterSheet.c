@@ -43,6 +43,11 @@ void InitCharacterSheet() {
 	
 	set_sprite_data(0,59,CustomFont_white);
 	set_sprite_data(59,10,CustomFont_grey);
+	
+	//skill 0 = 353
+	//blank = 358; plus, minus, plus minus
+	//left 1 = 362
+	//right 0 = 371
 	//box sprite
 	set_sprite_tile(0, 0x37);
 	set_sprite_tile(1, 0x36);
