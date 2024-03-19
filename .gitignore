@@ -7,3 +7,5 @@
 *.map
 *.noi
 .vscode/c_cpp_properties.json
+desktop.ini
+.local/

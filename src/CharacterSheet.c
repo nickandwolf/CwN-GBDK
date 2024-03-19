@@ -63,9 +63,9 @@ void InitCharacterSheet() {
 	SHOW_SPRITES;
 }
 
-void UpdateCharacterSheetStats(void) {
-	set_bkg_tile_xy(3,1,ZERO+GetPlayerLevel());
-	set_bkg_tile_xy(7,1,ZERO+GetPlayerSP());//get player SP (TODO LEVEL UP)
+void UpdateCharacterSheetStats(void) {//TODO:Redo all of this
+	set_bkg_tile_xy(2,1,ZERO+GetPlayerLevel());
+	set_bkg_tile_xy(2,2,ZERO+GetPlayerSP());//get player SP (TODO LEVEL UP)
 	
     set_bkg_tile_xy(3,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(STRENGTH));
     set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(DEXTERITY));
