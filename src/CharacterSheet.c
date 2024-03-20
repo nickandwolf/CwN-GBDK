@@ -64,9 +64,20 @@ void InitCharacterSheet() {
 }
 
 void UpdateCharacterSheetStats(void) {//TODO:Redo all of this
-	set_bkg_tile_xy(2,1,ZERO+GetPlayerLevel());
+	
+	//LEVEL
+	if (GetPlayerLevel()/10 == 1) set_bkg_tile_xy(2,1,LEFT_ONE);
+	else set_bkg_tile_xy(2,1,LEFT_BLANK);
+	set_bkg_tile_xy(3,1,GetPlayerLevel()%10+RIGHT_ZERO);
+	
+	//SP
+	if (GetPlayerLevel()/10 == 1) set_bkg_tile_xy(2,1,LEFT_ONE);
+	else set_bkg_tile_xy(2,1,LEFT_BLANK);
+	set_bkg_tile_xy(3,1,GetPlayerLevel()%10+RIGHT_ZERO);
+	
 	set_bkg_tile_xy(2,2,ZERO+GetPlayerSP());//get player SP (TODO LEVEL UP)
 	
+	/*
     set_bkg_tile_xy(3,2,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(STRENGTH));
     set_bkg_tile_xy(3,3,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(DEXTERITY));
     set_bkg_tile_xy(3,4,PLUS_MINUS_ZERO+GetPlayerAttributeBonus(CONSTITUTION));
@@ -125,6 +136,8 @@ void UpdateCharacterSheetStats(void) {//TODO:Redo all of this
 	set_bkg_tile_xy(18,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TALK));//tlk
 	set_bkg_tile_xy(18,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
 	
+	*/
+	
 	//debug for pointer 1/2
 	//set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
 }
@@ -142,6 +155,7 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
+			/*
             if (KEY_TICKED(J_UP)) {
                 if (charSheetPointerCS < 20) {
                     charSheetPointerCS -= 4;
@@ -762,7 +776,7 @@ uint8_t CharacterSheetUpdate(void) {
                 case INVENTORY_CS:
 
                 break;
-			}
+			}*/
 		break;
 	}
 	
@@ -781,7 +795,8 @@ void DefineSheetStat(void) {
     
 }
 
-void CharacterSheetGetInfo() {
+
+/* void CharacterSheetGetInfo() {
 	switch (charSheetPointerCS) {
 		//Attributes
 		case LEVEL_CS:
@@ -945,4 +960,4 @@ void CharacterSheetGetInfo() {
 
 		break;
 	}
-}
+} */

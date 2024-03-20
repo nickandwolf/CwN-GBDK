@@ -153,7 +153,7 @@ void main(void)
 	MikeHall_Init();
 	
 	//DEBUG
-	game_state = HOSPITAL_1_STATE;
+	game_state = CHAR_SHEET_STATE;
 	while(1)
 	{
 		//update
