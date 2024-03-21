@@ -27,16 +27,9 @@ const unsigned char Font_symbols[25] = {
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
 };
 
-//redundant
-const unsigned char Next_symbol = 0xCA;
-const unsigned char Stop_symbol = 0xCE;
-const unsigned char Right_bar = 0xFE;
-const unsigned char Top_bar = 0xFD;
-const unsigned char Blank_symbol = 0xC4;
-
 void dialog_init() {
-	set_win_data(0xC4,60,CustomFont);
-	init_win(Blank_symbol);//wipe the screen
+	set_win_data(0xBF,60,CustomFont);
+	init_win(_BLANK_);//wipe the screen
 	set_win_tiles(0,0,20,5,dialog_frame);//throw up a fresh border
 	SHOW_WIN;//display to the world
 }
@@ -284,7 +277,7 @@ uint8_t dialog_level_up_print(uint8_t stat, int8_t value, uint8_t cost) {
 	}
 	
 	//we don't have buttons to accidentially close dialog
-	//set_win_tile_xy(19,3,Stop_symbol);
+	//set_win_tile_xy(19,3,_END_);
 	waitpadup();
 	UPDATE_KEYS();
 	
@@ -309,12 +302,12 @@ uint8_t dialog_level_up_print(uint8_t stat, int8_t value, uint8_t cost) {
 		if (KEY_TICKED(J_A)) actual_choice = 0;
 		
 		if (choice_pointer) {
-			set_win_tile_xy(12,0,Next_symbol);
-			set_win_tile_xy(16,0,Right_bar+1);
+			set_win_tile_xy(12,0,_ARROW_);
+			set_win_tile_xy(16,0,_RIGHT_BAR_+1);
 		}
 		else {
-			set_win_tile_xy(12,0,Top_bar);
-			set_win_tile_xy(16,0,Next_symbol);
+			set_win_tile_xy(12,0,_TOP_BAR_);
+			set_win_tile_xy(16,0,_ARROW_);
 		}
 		UPDATE_KEYS();
 	}
@@ -368,7 +361,7 @@ uint8_t dialog_yes_no_print(unsigned char *text, uint8_t size, unsigned char *ch
 	while (index-0<(size-1))
 	{
 		//fix glitched text by putting correct right border.
-		set_win_tile_xy(19,3,Right_bar);
+		set_win_tile_xy(19,3,_RIGHT_BAR_);
 		
         // This do a line jump if there's no more space on tile width (can be personalized).
 		if (xpos % DIALOG_WIDTH == 0) {xpos=1; ypos++;}
@@ -390,13 +383,13 @@ uint8_t dialog_yes_no_print(unsigned char *text, uint8_t size, unsigned char *ch
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
-				set_win_tile_xy(19,3,Next_symbol);
+				set_win_tile_xy(19,3,_ARROW_);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
-				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, Blank_symbol);
+				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, _BLANK_);
 				xpos=ypos=1;
-				set_win_tile_xy(19,3,Right_bar);
+				set_win_tile_xy(19,3,_RIGHT_BAR_);
 			}
 
         // This print the letters.
@@ -413,7 +406,7 @@ uint8_t dialog_yes_no_print(unsigned char *text, uint8_t size, unsigned char *ch
 	}
 	
 	//we don't have buttons to accidentially close dialog
-	set_win_tile_xy(19,3,Stop_symbol);
+	set_win_tile_xy(19,3,_END_);
 	waitpadup();
 	UPDATE_KEYS();
 	
@@ -450,12 +443,12 @@ uint8_t dialog_yes_no_print(unsigned char *text, uint8_t size, unsigned char *ch
 		if (KEY_TICKED(J_A)) actual_choice = 0;
 		
 		if (choice_pointer) {
-			set_win_tile_xy(19-choice1_size-choice2_size,0,Next_symbol);
-			set_win_tile_xy(19-choice2_size,0,Right_bar+1);
+			set_win_tile_xy(19-choice1_size-choice2_size,0,_ARROW_);
+			set_win_tile_xy(19-choice2_size,0,_RIGHT_BAR_+1);
 		}
 		else {
-			set_win_tile_xy(19-choice1_size-choice2_size,0,Top_bar);
-			set_win_tile_xy(19-choice2_size,0,Next_symbol);
+			set_win_tile_xy(19-choice1_size-choice2_size,0,_TOP_BAR_);
+			set_win_tile_xy(19-choice2_size,0,_ARROW_);
 		}
 		UPDATE_KEYS();
 	}
@@ -520,7 +513,7 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
 	while (index-0<(size-1))
 	{
 		//fix glitched text by putting correct right border.
-		set_win_tile_xy(19,3,Right_bar);
+		set_win_tile_xy(19,3,_RIGHT_BAR_);
 		
         // This do a line jump if there's no more space on tile width (can be personalized).
 		if (xpos % DIALOG_WIDTH == 0) {xpos=1; ypos++;}
@@ -544,13 +537,13 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
-				set_win_tile_xy(19,3,Next_symbol);
+				set_win_tile_xy(19,3,_ARROW_);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
-				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, Blank_symbol);
+				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, _BLANK_);
 				xpos=ypos=1;
-				set_win_tile_xy(19,3,Right_bar);
+				set_win_tile_xy(19,3,_RIGHT_BAR_);
 			}
 
         // This print the letters.
@@ -567,7 +560,7 @@ void dialog_print_p(unsigned char *name, uint8_t name_size, unsigned char *text,
 	}
 	
 	//we don't have buttons to accidentially close dialog
-	set_win_tile_xy(19,3,Stop_symbol);
+	set_win_tile_xy(19,3,_END_);
 	waitpadup();
 	waitpad(J_A);
 	
@@ -618,7 +611,7 @@ void dialog_print(unsigned char *text, uint8_t size) {
 	while (index-0<(size-1))
 	{
 		//fix glitched text by putting correct right border.
-		set_win_tile_xy(19,3,Right_bar);
+		set_win_tile_xy(19,3,_RIGHT_BAR_);
 		
         // This do a line jump if there's no more space on tile width (can be personalized).
 		if (xpos % DIALOG_WIDTH == 0) {xpos=1; ypos++;}
@@ -640,13 +633,13 @@ void dialog_print(unsigned char *text, uint8_t size) {
         // This fills the canvas with an empty tile if there's no more space.
         // Note that it uses the 0x00 tile.
 		if (ypos > DIALOG_HEIGHT) {
-				set_win_tile_xy(19,3,Next_symbol);
+				set_win_tile_xy(19,3,_ARROW_);
 				waitpadup();
 				waitpad(J_A);
 				//init_win(0xCC);
-				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, Blank_symbol);
+				fill_win_rect(DIALOG_INIT_X, DIALOG_INIT_Y, DIALOG_WIDTH, DIALOG_HEIGHT, _BLANK_);
 				xpos=ypos=1;
-				set_win_tile_xy(19,3,Right_bar);
+				set_win_tile_xy(19,3,_RIGHT_BAR_);
 			}
 
         // This print the letters.
@@ -663,7 +656,7 @@ void dialog_print(unsigned char *text, uint8_t size) {
 	}
 	
 	//we don't have buttons to accidentially close dialog
-	set_win_tile_xy(19,3,Stop_symbol);
+	set_win_tile_xy(19,3,_END_);
 	waitpadup();
 	waitpad(J_A);
 	

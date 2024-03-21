@@ -17,11 +17,10 @@
 
 #include "../res/CharacterSheet_tiles.h"
 #include "../res/CharacterSheet_map.h"
-#include "../res/CustomFont_white.h"
 #include "../res/CustomFont_grey.h"
 
-//TODO: Add shadow box that shows full values for
-//XP, HP, SS, actual stat values
+//DEBUG
+#include "../res/CustomFont.h"
 
 uint8_t pointerCS = 0;
 int8_t charSheetPointerCS = 0;
@@ -35,29 +34,19 @@ void InitCharacterSheet() {
 	HIDE_SPRITES;
 	
 	//Character Sheet BKG
-	set_bkg_data(0,170,CharacterSheet_tiles);
+	set_bkg_data(0,186,CharacterSheet_tiles);
 	set_bkg_tiles(0,0,20,18,CharacterSheet_map);
 	
 	//Actual Stats
 	UpdateCharacterSheetStats();
 	
-	set_sprite_data(0,59,CustomFont_white);
-	set_sprite_data(59,10,CustomFont_grey);
+	//DEBUG
+	set_sprite_data(0xBF,65,CustomFont);
 	
-	//skill 0 = 353
-	//blank = 358; plus, minus, plus minus
-	//left 1 = 362
-	//right 0 = 371
-	//box sprite
-	set_sprite_tile(0, 0x37);
-	set_sprite_tile(1, 0x36);
-	set_sprite_tile(2, 0x35);
-	set_sprite_tile(3, 0x34);
+	set_sprite_data(0,10,CustomFont_grey);
 	
-	//move_sprite(0,15,32);
-	//move_sprite(1,15,31);
-	//move_sprite(2,37,32);
-	//move_sprite(3,37,31);
+	set_sprite_tile(0, _POINTER_);
+	move_sprite(0,15,32);
 	
 	SHOW_BKG;
 	SHOW_SPRITES;
@@ -198,124 +187,125 @@ void UpdateCharacterSheetStats(void) {//TODO:Redo all of this
 
     //saves
     if (GetPlayerFort() > 10) {
-        set_bkg_tile_xy(13,1,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,1,ALT_RIGHT_ONE + ((GetPlayerFort()%10)-1));
+        set_bkg_tile_xy(12,1,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,1,ALT_RIGHT_ONE + ((GetPlayerFort()%10)-1));
     }
     else if (GetPlayerFort() < 10) {
-        set_bkg_tile_xy(13,1,ALT_LEFT_BLANK);
-        set_bkg_tile_xy(14,1,ALT_RIGHT_ONE + ((GetPlayerFort()%10)-1));
+        set_bkg_tile_xy(12,1,ALT_LEFT_BLANK);
+        set_bkg_tile_xy(13,1,ALT_RIGHT_ONE + ((GetPlayerFort()%10)-1));
     }
     else {
-        set_bkg_tile_xy(13,1,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,1,ALT_RIGHT_ZERO);
+        set_bkg_tile_xy(12,1,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,1,ALT_RIGHT_ZERO);
     }
 
     if (GetPlayerReflex() > 10) {
-        set_bkg_tile_xy(13,2,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,2,ALT_RIGHT_ONE + ((GetPlayerReflex()%10)-1));
+        set_bkg_tile_xy(12,2,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,2,ALT_RIGHT_ONE + ((GetPlayerReflex()%10)-1));
     }
     else if (GetPlayerReflex() < 10) {
-        set_bkg_tile_xy(13,2,ALT_LEFT_BLANK);
-        set_bkg_tile_xy(14,2,ALT_RIGHT_ONE + ((GetPlayerReflex()%10)-1));
+        set_bkg_tile_xy(12,2,ALT_LEFT_BLANK);
+        set_bkg_tile_xy(13,2,ALT_RIGHT_ONE + ((GetPlayerReflex()%10)-1));
     }
     else {
-        set_bkg_tile_xy(13,2,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,2,ALT_RIGHT_ZERO);
+        set_bkg_tile_xy(12,2,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,2,ALT_RIGHT_ZERO);
     }
     
     if (GetPlayerWill() > 10) {
-        set_bkg_tile_xy(13,3,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,3,ALT_RIGHT_ONE + ((GetPlayerWill()%10)-1));
+        set_bkg_tile_xy(12,3,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,3,ALT_RIGHT_ONE + ((GetPlayerWill()%10)-1));
     }
     else if (GetPlayerWill() < 10) {
-        set_bkg_tile_xy(13,3,ALT_LEFT_BLANK);
-        set_bkg_tile_xy(14,3,ALT_RIGHT_ONE + ((GetPlayerWill()%10)-1));
+        set_bkg_tile_xy(12,3,ALT_LEFT_BLANK);
+        set_bkg_tile_xy(13,3,ALT_RIGHT_ONE + ((GetPlayerWill()%10)-1));
     }
     else {
-        set_bkg_tile_xy(13,3,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,3,ALT_RIGHT_ZERO);
+        set_bkg_tile_xy(12,3,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,3,ALT_RIGHT_ZERO);
     }
 
     if (GetPlayerLuck() > 10) {
-        set_bkg_tile_xy(13,4,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,4,ALT_RIGHT_ONE + ((GetPlayerLuck()%10)-1));
+        set_bkg_tile_xy(12,4,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,4,ALT_RIGHT_ONE + ((GetPlayerLuck()%10)-1));
     }
     else if (GetPlayerLuck() < 10) {
-        set_bkg_tile_xy(13,4,ALT_LEFT_BLANK);
-        set_bkg_tile_xy(14,4,ALT_RIGHT_ONE + ((GetPlayerLuck()%10)-1));
+        set_bkg_tile_xy(12,4,ALT_LEFT_BLANK);
+        set_bkg_tile_xy(13,4,ALT_RIGHT_ONE + ((GetPlayerLuck()%10)-1));
     }
     else {
-        set_bkg_tile_xy(13,4,ALT_LEFT_ONE);
-        set_bkg_tile_xy(14,4,ALT_RIGHT_ZERO);
+        set_bkg_tile_xy(12,4,ALT_LEFT_ONE);
+        set_bkg_tile_xy(13,4,ALT_RIGHT_ZERO);
     }
 
     //combat stuff
-    if (GetPlayerAttack()/10 > 0) set_bkg_tile_xy(2,1,LEFT_PLUS_MINUS+(GetPlayerAttack()/10));
-    else set_bkg_tile_xy(2,1,LEFT_BLANK);
-    set_bkg_tile_xy(3,1,GetPlayerAttack()%10+RIGHT_ZERO);
+    if (GetPlayerAttack()/10 > 0) set_bkg_tile_xy(17,1,LEFT_PLUS_MINUS+(GetPlayerAttack()/10));
+    else set_bkg_tile_xy(17,1,LEFT_BLANK);
+    set_bkg_tile_xy(18,1,GetPlayerAttack()%10+RIGHT_ZERO);
 
-    if (GetPlayerRangedDefense()/10 > 0) set_bkg_tile_xy(2,1,LEFT_PLUS_MINUS+(GetPlayerRangedDefense()/10));
-    else set_bkg_tile_xy(2,1,LEFT_BLANK);
-    set_bkg_tile_xy(3,1,GetPlayerRangedDefense()%10+RIGHT_ZERO);
+    if (GetPlayerRangedDefense()/10 > 0) set_bkg_tile_xy(17,2,LEFT_PLUS_MINUS+(GetPlayerRangedDefense()/10));
+    else set_bkg_tile_xy(17,2,LEFT_BLANK);
+    set_bkg_tile_xy(18,2,GetPlayerRangedDefense()%10+RIGHT_ZERO);
 
-    if (GetPlayerMeleeDefense()/10 > 0) set_bkg_tile_xy(2,1,LEFT_PLUS_MINUS+(GetPlayerMeleeDefense()/10));
-    else set_bkg_tile_xy(2,1,LEFT_BLANK);
-    set_bkg_tile_xy(3,1,GetPlayerMeleeDefense()%10+RIGHT_ZERO);
+    if (GetPlayerMeleeDefense()/10 > 0) set_bkg_tile_xy(17,3,LEFT_PLUS_MINUS+(GetPlayerMeleeDefense()/10));
+    else set_bkg_tile_xy(17,3,LEFT_BLANK);
+    set_bkg_tile_xy(18,3,GetPlayerMeleeDefense()%10+RIGHT_ZERO);
 
-    if (GetPlayerTraumaTarget()/10 > 0) set_bkg_tile_xy(2,1,LEFT_PLUS_MINUS+(GetPlayerTraumaTarget()/10));
-    else set_bkg_tile_xy(2,1,LEFT_BLANK);
-    set_bkg_tile_xy(3,1,GetPlayerTraumaTarget()%10+RIGHT_ZERO);
+    if (GetPlayerTraumaTarget()/10 > 0) set_bkg_tile_xy(17,4,LEFT_PLUS_MINUS+(GetPlayerTraumaTarget()/10));
+    else set_bkg_tile_xy(17,4,LEFT_BLANK);
+    set_bkg_tile_xy(18,4,GetPlayerTraumaTarget()%10+RIGHT_ZERO);
 
-    
-    
-	/*
-    set_bkg_tile_xy(11,1,ZERO + GetPlayerAttack());//attack
-    set_bkg_tile_xy(11,2,ZERO + GetPlayerRangedDefense());//ranged def
-    set_bkg_tile_xy(11,3,ZERO + GetPlayerMeleeDefense());//melee def
-    set_bkg_tile_xy(11,4,ZERO + GetPlayerTraumaTarget());//trauma
+    //eurodollars TODO:Maybe make eurodollars use custom size?--nope, gotta do custom math operators
+	uint32_t tempBucks = GetPlayerEuroDollars();
+	uint8_t ones = tempBucks%10;
+	uint8_t tens = tempBucks/10%10;
+	uint8_t hundreds = tempBucks/100%10;
+	uint8_t thousands = tempBucks/1000%10;
+	uint8_t ten_thousands = tempBucks/10000;
 	
-	set_bkg_tile_xy(10,5,ZERO);//euro1
-    set_bkg_tile_xy(11,5,ZERO);//euro2
-    set_bkg_tile_xy(12,5,ZERO);//euro3
-	set_bkg_tile_xy(13,5,ZERO);//euro4
-	set_bkg_tile_xy(14,5,ZERO);//euro5
-	set_bkg_tile_xy(15,5,ZERO);//euro6
+	set_bkg_tile_xy(6,5, ones + RIGHT_ZERO);//ones
 	
-	set_bkg_tile_xy(18,5,ZERO);//heat
+	if ((tens == 0) && (hundreds == 0) && (thousands == 0) && (ten_thousands == 0)) set_bkg_tile_xy(5,5, EURODOLLAR_BLANK);
+	else set_bkg_tile_xy(5,5, tens + EURODOLLAR_ZERO);//tens
+	
+	if ((hundreds == 0) && (thousands == 0) && (ten_thousands == 0)) set_bkg_tile_xy(4,5, EURODOLLAR_BLANK);
+	else set_bkg_tile_xy(4,5, hundreds + EURODOLLAR_ZERO);//hundreds
+	
+	if ((thousands == 0) && (ten_thousands == 0)) set_bkg_tile_xy(3,5, EURODOLLAR_BLANK);
+	else set_bkg_tile_xy(3,5, thousands + EURODOLLAR_ZERO);//thousands
+	
+	if (ten_thousands == 0) set_bkg_tile_xy(2,5, EURODOLLAR_BLANK);
+    else set_bkg_tile_xy(2,5, ten_thousands + EURODOLLAR_ZERO);//ten-thousands
+	
+	set_bkg_tile_xy(4,16,GetPlayerHeat() + RIGHT_ZERO);//heat
 	
 	set_bkg_tile_xy(3,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(ADMIN));//adm
 	set_bkg_tile_xy(3,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(CONNECT));//con
 	set_bkg_tile_xy(3,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(DRIVE));//drv
+	set_bkg_tile_xy(3,9,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(EXERT));//exr
+	set_bkg_tile_xy(3,10,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(FIX));//fix
+	set_bkg_tile_xy(3,11,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(HEAL));//hea
+	set_bkg_tile_xy(3,12,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(KNOW));//kno
+	set_bkg_tile_xy(3,13,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(LEAD));//lea
+	set_bkg_tile_xy(3,14,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(NOTICE));//ntc
 	
-	set_bkg_tile_xy(6,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(EXERT));//exr
-	set_bkg_tile_xy(6,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(FIX));//fix
-	set_bkg_tile_xy(6,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(HEAL));//hea
-	
-	set_bkg_tile_xy(9,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(KNOW));//kno
-	set_bkg_tile_xy(9,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(LEAD));//lea
-	set_bkg_tile_xy(9,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(NOTICE));//ntc
-	
-	set_bkg_tile_xy(12,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PERFORM));//prf
-	set_bkg_tile_xy(12,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PROGRAM));//prg
-	set_bkg_tile_xy(12,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PUNCH));//pnc
-	
-	set_bkg_tile_xy(15,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SHOOT));//sht
-	set_bkg_tile_xy(15,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SNEAK));//snk
-	set_bkg_tile_xy(15,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(STAB));//stb
-	
-	set_bkg_tile_xy(18,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SURVIVE));//srv
-	set_bkg_tile_xy(18,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TALK));//tlk
-	set_bkg_tile_xy(18,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
-	
-	*/
+	set_bkg_tile_xy(6,6,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PERFORM));//prf
+	set_bkg_tile_xy(6,7,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PROGRAM));//prg
+	set_bkg_tile_xy(6,8,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(PUNCH));//pnc
+	set_bkg_tile_xy(6,9,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SHOOT));//sht
+	set_bkg_tile_xy(6,10,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SNEAK));//snk
+	set_bkg_tile_xy(6,11,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(STAB));//stb
+	set_bkg_tile_xy(6,12,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(SURVIVE));//srv
+	set_bkg_tile_xy(6,13,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TALK));//tlk
+	set_bkg_tile_xy(6,14,SKILL_PLUS_MINUS_ZERO+GetPlayerSkill(TRADE));//trd
 	
 	//debug for pointer 1/2
 	//set_bkg_tile_xy(2,12,ZERO + charSheetPointerCS);
+	
+	//TODO:INSERT INVENTORY STUFF HERE
 }
 
 uint8_t CharacterSheetUpdate(void) {
-	//debug for pointer 2/2
-	//UpdateCharacterSheetStats();
 	uint8_t stat = 0;
 	uint8_t tens = 0;
 	uint8_t ones = 0;
@@ -326,7 +316,6 @@ uint8_t CharacterSheetUpdate(void) {
 		break;
 		
 		case 1:
-			/*
             if (KEY_TICKED(J_UP)) {
                 if (charSheetPointerCS < 20) {
                     charSheetPointerCS -= 4;
@@ -367,8 +356,9 @@ uint8_t CharacterSheetUpdate(void) {
             else if (KEY_TICKED(J_LEFT)) {
                 charSheetPointerCS -= 1;
                 if (charSheetPointerCS < 19) {//Shit forgot how to do this
-                    if (charSheetPointerCS % 4 == 3) charSheetPointerCS += 4;
-					if (charSheetPointerCS == -1) charSheetPointerCS = FORT_CS;
+                    if (charSheetPointerCS % 5 == 4) charSheetPointerCS += 5;
+					else if (charSheetPointerCS == -1) charSheetPointerCS = ATTACK_BONUS_CS;
+					else if (charSheetPointerCS == ATTRIBUTE_again_CS) charSheetPointerCS = LEVEL_CS;
                 }
                 else {
                     if (charSheetPointerCS % 6 == 1) charSheetPointerCS += 6;
@@ -947,7 +937,7 @@ uint8_t CharacterSheetUpdate(void) {
                 case INVENTORY_CS:
 
                 break;
-			}*/
+			}
 		break;
 	}
 	
@@ -967,7 +957,8 @@ void DefineSheetStat(void) {
 }
 
 
-/* void CharacterSheetGetInfo() {
+void CharacterSheetGetInfo() {
+	/*
 	switch (charSheetPointerCS) {
 		//Attributes
 		case LEVEL_CS:
@@ -1131,4 +1122,5 @@ void DefineSheetStat(void) {
 
 		break;
 	}
-} */
+	*/
+} 

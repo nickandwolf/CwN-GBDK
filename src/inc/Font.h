@@ -18,7 +18,7 @@
 
 //BANKREF_EXTERN(Font)
 
-const enum _font_values_enum {_BLANK_=196, _EXCLAIM_, _QUOTES_, _ELIPSES_, _EURODOLLAR_, _PERCENTAGE_, _ARROW_, _APOSTE_, _OPEN_PARAN_, _CLOSE_PARAN_, _END_, _PLUS_, _COMMA_, _DASH_, _PERIOD_, _QUESTION_, _ZERO_, _ONE_, _TWO_, _THREE_, _FOUR_, _FIVE_, _SIX_, _SEVEN_, _EIGHT_, _NINE_, _A_, _B_, _C_, _D_, _E_, _F_, _G_, _H_, _I_, _J_, _K_, _L_, _M_, _N_, _O_, _P_, _Q_, _R_, _S_, _T_, _U_, _V_, _W_, _X_, _Y_, _Z_, _TOP_LEFT_BAR_, _BOTTOM_LEFT_BAR_, _TOP_RIGHT_BAR_, _BOTTOM_RIGHT_BAR_, _BOTTOM_BAR_, _TOP_BAR_, _RIGHT_BAR_, _LEFT_BAR_};
+const enum _font_values_enum {_BLANK_=191, _EXCLAIM_, _QUOTES_, _ELIPSES_, _EURODOLLAR_, _PERCENTAGE_, _ARROW_, _APOSTE_, _OPEN_PARAN_, _CLOSE_PARAN_, _END_, _PLUS_, _COMMA_, _DASH_, _PERIOD_, _QUESTION_, _ZERO_, _ONE_, _TWO_, _THREE_, _FOUR_, _FIVE_, _SIX_, _SEVEN_, _EIGHT_, _NINE_, _A_, _B_, _C_, _D_, _E_, _F_, _G_, _H_, _I_, _J_, _K_, _L_, _M_, _N_, _O_, _P_, _Q_, _R_, _S_, _T_, _U_, _V_, _W_, _X_, _Y_, _Z_, _TOP_LEFT_BAR_, _BOTTOM_LEFT_BAR_, _TOP_RIGHT_BAR_, _BOTTOM_RIGHT_BAR_, _BOTTOM_BAR_, _TOP_BAR_, _RIGHT_BAR_, _LEFT_BAR_, _POINTER_, _TOP_SCROLL_BAR_, _MID_SCROLL_BAR_, _BOTTOM_SCROLL_BAR_,_SCROLL_BAR_PIP_};
 
 extern uint8_t DIALOG_DELAY;
 extern const unsigned char Font_symbols[25];

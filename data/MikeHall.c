@@ -10,4 +10,6 @@ void MikeHall_Init() {
 	SetPlayerAttribute(INTELLIGENCE, 10);
 	SetPlayerAttribute(WISDOM, 16);
 	SetPlayerAttribute(CHARISMA, 7);
+	
+	SetPlayerEuroDollars(400);
 }

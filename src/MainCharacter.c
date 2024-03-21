@@ -49,6 +49,9 @@ void InitalizeCharacter() { //TODO: actually make this work
     SetPlayerSkill(TALK, -1);
     SetPlayerSkill(TRADE, -1);
     SetPlayerSkill(WORK, -1);
+	
+	SetPlayerEuroDollars(0);
+	SetPlayerHeat(0);
 }
 
 void SetPlayerName(char *name) {
@@ -358,6 +361,19 @@ uint8_t SetPlayerHP_Current(int8_t value) {
     PC.HP_current += value;
     if (PC.HP_current < 1) return 0;
     return 1;
+}
+
+uint8_t SetPlayerEuroDollars(int32_t value) {
+	if (PC.EuroDollars - value < 0) return 0;
+	else if (PC.EuroDollars + value > 99999) PC.EuroDollars = 99999;
+	else PC.EuroDollars += value;
+	return 1;
+}
+
+void SetPlayerHeat(int8_t value) {
+	if (PC.Heat - value < 0) PC.Heat = 0;
+	else if (PC.Heat + value > 9) PC.Heat = 9;
+	else PC.Heat += value;
 }
 
 /*****************************************************************/
@@ -816,6 +832,14 @@ uint8_t GetPlayerWill() {
 uint8_t GetPlayerLuck() {
 	//does anything modify luck?
 	return 16 - PC.level;
+}
+
+uint32_t GetPlayerEuroDollars() {
+	return PC.EuroDollars;
+}
+
+uint8_t GetPlayerHeat() {
+	return PC.Heat;
 }
 
 /*****************************************************************/

@@ -78,6 +78,9 @@ typedef struct Character {
     //uint8_t edges[4];
     //uint8_t foci[6];
 	//char* contacts;
+	
+	uint32_t EuroDollars;
+	uint8_t Heat;
 
 } character;
 
@@ -100,6 +103,9 @@ void SetPlayerSkill(uint8_t skill, int8_t value);
 
 void SetPlayerHP(void);
 uint8_t SetPlayerHP_Current(int8_t value);
+
+uint8_t SetPlayerEuroDollars(int32_t value);
+void SetPlayerHeat(int8_t value);
 
 //improve functions
 uint8_t ImprovePlayerAttribute(uint8_t attribute, uint8_t type);//type is 0 = any, 1 = phys, 2 = mental
@@ -139,7 +145,8 @@ uint8_t GetPlayerReflex(void);
 uint8_t GetPlayerWill(void);
 uint8_t GetPlayerLuck(void);
 
-
+uint32_t GetPlayerEuroDollars(void);
+uint8_t GetPlayerHeat(void);
 
 //PROGRAMMING SHIT
 extern uint8_t facing;
