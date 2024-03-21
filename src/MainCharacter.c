@@ -467,6 +467,7 @@ uint8_t ImprovePlayerSkill(uint8_t skill) {
 }
 
 void LevelPlayerUp(void);
+
 void SpendPlayerSP(uint8_t stat_type, uint8_t stat) {
 	if (stat_type == 0 && GetPlayerAttributeBoosts() < 5) {//attribute
 		switch (stat) {
