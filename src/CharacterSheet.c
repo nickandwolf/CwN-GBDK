@@ -46,7 +46,6 @@ void InitCharacterSheet() {
 	set_sprite_data(0,10,CustomFont_grey);
 	
 	set_sprite_tile(0, _POINTER_);
-	move_sprite(0,15,32);
 	
 	SHOW_BKG;
 	SHOW_SPRITES;
@@ -583,21 +582,23 @@ uint8_t CharacterSheetUpdate(void) {
             switch (charSheetPointerCS) {
                 //Attributes
 				case LEVEL_CS:
-					move_sprite(0,14,25);
-					move_sprite(1,14,24);
-					move_sprite(2,37,25);
-					move_sprite(3,37,24);
+					move_sprite(0,7,12);
+				break;
+				
+				case ATTRIBUTE_again_CS:
+					move_sprite(0,43,14);
+				break;
+				
+				case ATTRIBUTES_CS:
+					move_sprite(0,43,14);
 				break;
 				
 				case STRENGTH_CS:
 					move_sprite(0,14,33);
-					move_sprite(1,14,32);
-					move_sprite(2,37,33);
-					move_sprite(3,37,32);
 					
 					stat = GetPlayerAttribute(1);
-					tens = 59+(stat/10);
-					ones = 59+(stat%10);
+					tens = 0+(stat/10);
+					ones = 0+(stat%10);
 					
 					set_sprite_tile(4, tens);
 					set_sprite_tile(5, ones);
