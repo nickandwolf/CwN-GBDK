@@ -7,8 +7,7 @@
 #define Font_TILE_H 8
 #define Font_WIDTH 416
 #define Font_HEIGHT 8
-#define Font_sprite_size 60
-#define Font_sprite_start 196
+#define Font_sprite_start 191
 #define DIALOG_WIDTH 18
 #define DIALOG_HEIGHT 3
 #define DIALOG_INIT_X 1

@@ -35,20 +35,20 @@ void dialog_init() {
 }
 
 void dialog_level_up_print_helper(void) {
-	set_win_tile_xy(1,1,0xF2);
-	set_win_tile_xy(2,1,0xED);
-	set_win_tile_xy(3,1,0xE4);
-	set_win_tile_xy(4,1,0xEF);
-	set_win_tile_xy(5,1,0xDE);
-	set_win_tile_xy(6,1,0xE1);
-	set_win_tile_xy(7,1,0xE2);
+	set_win_tile_xy(1,1,_U_);//5 character displacement (move it to the left)
+	set_win_tile_xy(2,1,_P_);
+	set_win_tile_xy(3,1,_G_);
+	set_win_tile_xy(4,1,_R_);
+	set_win_tile_xy(5,1,_A_);
+	set_win_tile_xy(6,1,_D_);
+	set_win_tile_xy(7,1,_E_);
 	//newline
-	set_win_tile_xy(6,2,0xCA);
+	set_win_tile_xy(6,2,_ARROW_);
 	//new line
-	set_win_tile_xy(12,3,0xE0);
-	set_win_tile_xy(13,3,0xEC);
-	set_win_tile_xy(14,3,0xF0);
-	set_win_tile_xy(15,3,0xF1);
+	set_win_tile_xy(12,3,_C_);
+	set_win_tile_xy(13,3,_O_);
+	set_win_tile_xy(14,3,_S_);
+	set_win_tile_xy(15,3,_T_);
 }
 
 //TODO:clean this up with the ENUM
@@ -82,31 +82,31 @@ uint8_t dialog_level_up_print(uint8_t stat, int8_t value, uint8_t cost) {
 	//display current value and future value
 	if (stat < 7) {
 		//initial value tens then ones
-		set_win_tile_xy(3,2,212+(value/10));
-		set_win_tile_xy(4,2,212+(value%10));
+		set_win_tile_xy(3,2,_ZERO_+(value/10));
+		set_win_tile_xy(4,2,_ZERO_+(value%10));
 		
 		value++;
 		
 		//upgraded value tens then ones
-		set_win_tile_xy(8,2,212+(value/10));
-		set_win_tile_xy(9,2,212+(value%10));
+		set_win_tile_xy(8,2,_ZERO_+(value/10));
+		set_win_tile_xy(9,2,_ZERO_+(value%10));
 	}
 	else {//gotta detect negative numbers and put the correct value here
 		if (value < 0) {
-			set_win_tile_xy(3,2,0xD1);//negative sign
-			set_win_tile_xy(4,2,value*-1+212);//inverse value
+			set_win_tile_xy(3,2,_DASH_);//negative sign
+			set_win_tile_xy(4,2,value*-1+_ZERO_);//inverse value
 		}
 		else {
-			set_win_tile_xy(3,2,0xCF);
-			set_win_tile_xy(4,2,value+212);
+			set_win_tile_xy(3,2,_PLUS_);
+			set_win_tile_xy(4,2,value+_ZERO_);
 		}
 		value++;
-		set_win_tile_xy(8,2,0xCF);
-		set_win_tile_xy(9,2,value+212);
+		set_win_tile_xy(8,2,_PLUS_);
+		set_win_tile_xy(9,2,value+_ZERO_);
 	}
 	
 	//cost
-	set_win_tile_xy(17,3,cost+212);
+	set_win_tile_xy(17,3,cost+_ZERO_);
 	
 	switch (stat) {
 		case 0:
@@ -114,165 +114,165 @@ uint8_t dialog_level_up_print(uint8_t stat, int8_t value, uint8_t cost) {
 		break;
 		
 		case 1://ST
-			set_win_tile_xy(9,1,0xF0);
-			set_win_tile_xy(10,1,0xF1);
-			set_win_tile_xy(11,1,0xD3);
+			set_win_tile_xy(9,1,_S_);
+			set_win_tile_xy(10,1,_T_);
+			set_win_tile_xy(11,1,_QUESTION_);
 		break;
 		
 		case 2://DX
-			set_win_tile_xy(9,1,0xE1);
-			set_win_tile_xy(10,1,0xF5);
-			set_win_tile_xy(11,1,0xD3);
+			set_win_tile_xy(9,1,_D_);
+			set_win_tile_xy(10,1,_X_);
+			set_win_tile_xy(11,1,_QUESTION_);
 		break;
 		
 		case 3://CO
-			set_win_tile_xy(9,1,0xE0);
-			set_win_tile_xy(10,1,0xEC);
-			set_win_tile_xy(11,1,0xD3);
+			set_win_tile_xy(9,1,_C_);
+			set_win_tile_xy(10,1,_O_);
+			set_win_tile_xy(11,1,_QUESTION_);
 		break;
 		
 		case 4://IN
-			set_win_tile_xy(9,1,0xE6);
-			set_win_tile_xy(10,1,0xEB);
-			set_win_tile_xy(11,1,0xD3);
+			set_win_tile_xy(9,1,_I_);
+			set_win_tile_xy(10,1,_N_);
+			set_win_tile_xy(11,1,_QUESTION_);
 		break;
 		
 		case 5://WI
-			set_win_tile_xy(9,1,0xF4);
-			set_win_tile_xy(10,1,0xE6);
-			set_win_tile_xy(11,1,0xD3);
+			set_win_tile_xy(9,1,_W_);
+			set_win_tile_xy(10,1,_I_);
+			set_win_tile_xy(11,1,_QUESTION_);
 		break;
 		
 		case 6://CH
-			set_win_tile_xy(9,1,0xE0);
-			set_win_tile_xy(10,1,0xE5);
-			set_win_tile_xy(11,1,0xD3);
+			set_win_tile_xy(9,1,_C_);
+			set_win_tile_xy(10,1,_H_);
+			set_win_tile_xy(11,1,_QUESTION_);
 		break;
 		
 		case 7://ADM
-			set_win_tile_xy(9,1,0xDE);
-			set_win_tile_xy(10,1,0xE1);
-			set_win_tile_xy(11,1,0xEA);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(9,1,_A_);
+			set_win_tile_xy(10,1,_D_);
+			set_win_tile_xy(11,1,_M_);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 8://CON
 			set_win_tile_xy(9,1,_C_);
 			set_win_tile_xy(10,1,_O_);
 			set_win_tile_xy(11,1,_N_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 9://DRV
 			set_win_tile_xy(9,1,_D_);
 			set_win_tile_xy(10,1,_R_);
 			set_win_tile_xy(11,1,_V_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 10://EXR
 			set_win_tile_xy(9,1,_E_);
 			set_win_tile_xy(10,1,_X_);
 			set_win_tile_xy(11,1,_R_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 11://FIX
 			set_win_tile_xy(9,1,_F_);
 			set_win_tile_xy(10,1,_I_);
 			set_win_tile_xy(11,1,_X_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 12://HEA
 			set_win_tile_xy(9,1,_H_);
 			set_win_tile_xy(10,1,_E_);
 			set_win_tile_xy(11,1,_A_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 13://KNO
 			set_win_tile_xy(9,1,_K_);
 			set_win_tile_xy(10,1,_N_);
 			set_win_tile_xy(11,1,_O_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 14://LEA
 			set_win_tile_xy(9,1,_L_);
 			set_win_tile_xy(10,1,_E_);
 			set_win_tile_xy(11,1,_A_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 15://NTC
 			set_win_tile_xy(9,1,_N_);
 			set_win_tile_xy(10,1,_T_);
 			set_win_tile_xy(11,1,_C_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 16://PRF
 			set_win_tile_xy(9,1,_P_);
 			set_win_tile_xy(10,1,_R_);
 			set_win_tile_xy(11,1,_F_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 17://PRG
 			set_win_tile_xy(9,1,_P_);
 			set_win_tile_xy(10,1,_R_);
 			set_win_tile_xy(11,1,_G_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 18://PNC
 			set_win_tile_xy(9,1,_P_);
 			set_win_tile_xy(10,1,_N_);
 			set_win_tile_xy(11,1,_C_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 19://SHT
 			set_win_tile_xy(9,1,_S_);
 			set_win_tile_xy(10,1,_H_);
 			set_win_tile_xy(11,1,_T_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 20://SNK
 			set_win_tile_xy(9,1,_S_);
 			set_win_tile_xy(10,1,_N_);
 			set_win_tile_xy(11,1,_K_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 21://STb
 			set_win_tile_xy(9,1,_S_);
 			set_win_tile_xy(10,1,_T_);
 			set_win_tile_xy(11,1,_B_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 22://SRV
 			set_win_tile_xy(9,1,_S_);
 			set_win_tile_xy(10,1,_R_);
 			set_win_tile_xy(11,1,_V_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 23://TLK
 			set_win_tile_xy(9,1,_T_);
 			set_win_tile_xy(10,1,_L_);
 			set_win_tile_xy(11,1,_K_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 		
 		case 24://TRD
 			set_win_tile_xy(9,1,_T_);
 			set_win_tile_xy(10,1,_R_);
 			set_win_tile_xy(11,1,_D_);
-			set_win_tile_xy(12,1,0xD3);
+			set_win_tile_xy(12,1,_QUESTION_);
 		break;
 	}
 	
@@ -283,13 +283,13 @@ uint8_t dialog_level_up_print(uint8_t stat, int8_t value, uint8_t cost) {
 	
 	//insert control here
 	//YES
-	set_win_tile_xy(13, 0, 0xF6);
-	set_win_tile_xy(14, 0, 0xE2);
-	set_win_tile_xy(15, 0, 0xF0);
+	set_win_tile_xy(13, 0, _Y_);
+	set_win_tile_xy(14, 0, _E_);
+	set_win_tile_xy(15, 0, _S_);
 	
 	//NO
-	set_win_tile_xy(17, 0, 0xEB);
-	set_win_tile_xy(18, 0, 0xEC);
+	set_win_tile_xy(17, 0, _N_);
+	set_win_tile_xy(18, 0, _O_);
 	
 	uint8_t choice_pointer = 1;//option 1 = 1; option 2 = 0;
 	uint8_t actual_choice = 1;

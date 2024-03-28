@@ -320,61 +320,64 @@ uint8_t CharacterSheetUpdate(void) {
             if (KEY_TICKED(J_UP)) {
                 if (charSheetPointerCS < 25) {
                     charSheetPointerCS -= 5;
-                    if (charSheetPointerCS == -5) charSheetPointerCS = HEAT_CS;
+                    if (charSheetPointerCS < -3) charSheetPointerCS = HEAT_CS;
                     else if (charSheetPointerCS < 0) charSheetPointerCS = INVENTORY_CS;
                 }
                 else {
                     charSheetPointerCS -= 2;
                     if (charSheetPointerCS == EURODOLLARS_again_CS) charSheetPointerCS = EURODOLLARS_CS;
+					else if (charSheetPointerCS < 25) charSheetPointerCS = SS_CS;
+					else if (charSheetPointerCS == TRADE_CS) charSheetPointerCS = CHARISMA_CS;
                 }
             }
 
             else if (KEY_TICKED(J_DOWN)) {
                 if (charSheetPointerCS < 25) {
                     charSheetPointerCS += 5;
-                    if (charSheetPointerCS == 50) charSheetPointerCS = CHARACTER_CS;
-                    else if (charSheetPointerCS > 47) charSheetPointerCS = NOTES_CS;
-					else if (charSheetPointerCS == INTELLIGENCE_CS) charSheetPointerCS = STRENGTH_CS;
+                    if (charSheetPointerCS > 26) charSheetPointerCS = 46;
+                    else if (charSheetPointerCS == 26) charSheetPointerCS = 25;
                 }
                 else {
                     charSheetPointerCS += 2;
                     if (charSheetPointerCS == EURODOLLARS_again_CS) charSheetPointerCS = EURODOLLARS_CS;
+					else if (charSheetPointerCS == 46) charSheetPointerCS = HEAT_CS;
+					else if (charSheetPointerCS == 47) charSheetPointerCS = CHARACTER_CS;
+					else if (charSheetPointerCS == 48) charSheetPointerCS = BRIEFING_CS;
                 }
             }
 			
 			else if (KEY_TICKED(J_LEFT)) {
                 charSheetPointerCS -= 1;
                 if (charSheetPointerCS < 25) {
-                    if (charSheetPointerCS == -1) charSheetPointerCS = HELP_CS;
-					else if (charSheetPointerCS == BRIEFING_CS) charSheetPointerCS = CHARACTER_CS;
-					else if (charSheetPointerCS == ATTRIBUTES_CS) charSheetPointerCS = LEVEL_CS;
+					if (charSheetPointerCS == -1) charSheetPointerCS = HELP_CS;
+					else if (charSheetPointerCS == BRIEFING_again_CS) charSheetPointerCS = BRIEFING_CS;
+					else if (charSheetPointerCS == ATTRIBUTES_again_CS) charSheetPointerCS = ATTRIBUTES_CS;
+					else if (charSheetPointerCS == 24) charSheetPointerCS = INVENTORY_CS;
 					else if (charSheetPointerCS % 5 == 4) charSheetPointerCS += 5;
                 }
-                else if (charSheetPointerCS == EURODOLLARS_CS || charSheetPointerCS == EURODOLLARS_again_CS) {
-					charSheetPointerCS = INVENTORY_CS;
-				} 
 				else {
-                    if (charSheetPointerCS % 6 == 1) charSheetPointerCS += 6;
+                    if (charSheetPointerCS % 2 == 0) charSheetPointerCS += 2;
+					else if (charSheetPointerCS == 45) charSheetPointerCS = EURODOLLARS_CS;
                 }
             }
 			
 			else if (KEY_TICKED(J_RIGHT)) {
                 charSheetPointerCS += 1;
                 if (charSheetPointerCS < 25) {
-					if (charSheetPointerCS == ATTRIBUTES_again_CS) charSheetPointerCS = FORT_CS;
+					if (charSheetPointerCS % 5 == 0) charSheetPointerCS -= 5;
+					else if (charSheetPointerCS == ATTRIBUTES_again_CS) charSheetPointerCS = FORT_CS;
 					else if (charSheetPointerCS == BRIEFING_again_CS) charSheetPointerCS = NOTES_CS;
-                    else if (charSheetPointerCS % 5 == 0) charSheetPointerCS -= 5;
                 }
-				else if (charSheetPointerCS == EURODOLLARS_CS || charSheetPointerCS == EURODOLLARS_again_CS) {
-					charSheetPointerCS = INVENTORY_CS;
-				}
                 else {
-                    if (charSheetPointerCS % 6 == 2) charSheetPointerCS -= 6;
+                    if (charSheetPointerCS == 25) charSheetPointerCS = SS_CS;
+					else if (charSheetPointerCS == EURODOLLARS_again_CS) charSheetPointerCS = INVENTORY_CS;
+					else if (charSheetPointerCS == 47) charSheetPointerCS = EURODOLLARS_CS;
+					else if (charSheetPointerCS % 2 == 1) charSheetPointerCS -= 2;
                 }
             }
 			
-            /*
             else if (KEY_TICKED(J_A)) {
+				//make sure to check if we are doing inventory or not
 				uint8_t stat_CS = 0;
 				int8_t value_CS = 0;
 				uint8_t cost_CS = 0;
@@ -566,7 +569,7 @@ uint8_t CharacterSheetUpdate(void) {
 					UpdateCharacterSheetStats();
 				}
 			}
-            else if (KEY_TICKED(J_SELECT)) CharacterSheetGetInfo();//display explanation
+            else if (KEY_TICKED(J_SELECT)) NULL;// CharacterSheetGetInfo();//display explanation -> make this pull up inventory fast or move to HELP.
             else if (KEY_TICKED(J_B || J_START)) {
                 pointerCS = 0;
                 if (charSheetIntro == 0) return PLAYING_STATE;//TODO: GAMESTATESENUM
@@ -575,7 +578,7 @@ uint8_t CharacterSheetUpdate(void) {
                     return HOSPITAL_1_STATE;
                 }
             }
-            */
+            
 			
             //move sprites
             switch (charSheetPointerCS) {
@@ -767,7 +770,7 @@ uint8_t CharacterSheetUpdate(void) {
 				
 				//bottom bitch
 				case HEAT_CS:
-                    move_sprite(0,26,57);
+                    move_sprite(0,26,149);
                 break;
 				
                 //Inventory
@@ -793,11 +796,15 @@ void DefineSheetStat(void) {
     
 }
 
-
+//MOVE THIS TO HELP
+/*
 void CharacterSheetGetInfo() {
-	/*
 	switch (charSheetPointerCS) {
 		//Attributes
+		case ATTRIBUTES_CS:
+			dialog_print("test", sizeof("test"));
+			break;
+		/*
 		case LEVEL_CS:
 			dialog_print("level(lvl) is a   representation of your power level. you can advance a level by finishing missions.", sizeof("level(lvl) is a   representation of your power level. you can advance a level by finishing missions."));
 		break;
@@ -959,5 +966,5 @@ void CharacterSheetGetInfo() {
 
 		break;
 	}
-	*/
 } 
+	*/
