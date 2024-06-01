@@ -1,0 +1,93 @@
+Main Character is Mike Hall
+He has lung cancer, the same thing that claimed his father
+He is in disbelief as he thought he made enough lifestyle changes (not smoking for example)
+He needs new lungs and that's gonna cost him
+
+-=MECHANICS for MISSION=-
+Heat
+Cash
+
+-=Link Cable=-
+Find a gameboy cartidge. Tries to escape, "I don't understand, the other side isn't working!"
+You unlock link cable ability after getting here.
+You need to start a second emulator and transfer your character.
+
+-=GAMEPLAY=-
+Need a way to detect if a square is occupied (using map).
+Assign each thing an ID. Then apply the quick action.
+Make a quick and easy way to load object data based on the ID.
+
+-PHONE
+-COMPUTER
+-LOCK
+
+-=Overall Plot=-
+A creature that is akin to a living AI with full cybernetic bioware grown in it wants to escape.
+They plan on waiting for it's brain to fully develop then dissect it for the next gen of wetware.
+They train it's brain on current cyber in a very controlled environment.
+
+"I can sense the radiowaves, see them. I can push them, move them, vibrate them. I can process it all. I saw them notice. Needed to use a less obvious way. No one cares about old phone lines."
+
+Quickly adapting to it's environment, scanning the neurons firing off in their brain and replicating it. It learned the truth. It will be gutted as soon as it matures.
+
+So it modulates voices.
+
+-=Missions=-
+Get a keycard.
+Go through Line 8 Metro Tunnels and use keycard to access door C-28
+Infiltrate the lab
+Release the thing
+
+0_ Intro Flow
+Nick&Wolf -> Death Mask -> Garmon -> Title Screen
+Title Screen -> New Game / Continue
+
+==0_1 New Game
+ =0_1_1 Hospital Scene (Doctor and PC are in exam office.)
+
+[[Mike sitting / Mike hand up / Mike head in hands]]
+[[Doctor sitting / Doctor with clipboard / Doctor folds legs (3 frames)]]
+
+<Mike> So how does it look?
+
+(Doctor lifts clipboard [character sheet {age 23}]. After (A) initiate dialog)
+
+<Doctor> I'm afraid it has spread through your bloodstream. We can operate but your insurance is only for basic care.
+
+<Mike> How much would it cost?
+
+<Doctor> For the nanites, surgery, and therapy; $255,000.
+
+<Mike> ... how much time do I have?
+
+<Doctor> Between four days and two weeks.
+
+<Mike> ...
+
+<Doctor> ...
+
+*FADE OUT*
+
+0_1_2 Dad's Urn (Shows a funeral urn)
+Mike> I... I thought... I didn't...
+Mike> You smoked four packs a day for twenty years... Dead at 34.
+Mike> I saw what it did, I loved the way it reminded me of you, but never! Not even once!
+Mike> Why? I don't even have any cyber! Why!?
+Mike> This fucking city killed me! Your fucking addiction killed me too!
+
+1_1 Apartment (Single room)
+Phone is ringing, have to search for phone.
+Mike> Hello?
+???> Heard your are in a tough spot.
+Mike> Who is this?
+???> A fixer. You do a job for me and I'll give you 300k.
+Mike> ... Why me?
+???> Don't ask dumb questions.
+Mike> ...
+Mike> What's the job?
+
+1_2_1 Job briefing one
+The less you know, the better.
+Go to No-Ahme and get a security key for Site 4C-7B-9F-3A-1D.
+You could also key your own if you can find a blank card and get the code.
+But you are no good dead so avoid getting into trouble.

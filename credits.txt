@@ -1,0 +1,8 @@
+-- dice roll credits to Kicked-in-Teeth @ https://kicked-in-teeth.itch.io/
+dialog system credit to Maury @ https://github.com/Mau-ryt0/
+
+sprites inspired by Pokemon Red/Blue
+
+sprites by
+http://finalbossblues.com
+https://www.patreon.com/finalbossblues

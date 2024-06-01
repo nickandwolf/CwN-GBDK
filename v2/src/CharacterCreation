@@ -1,0 +1,23 @@
+#include <gb/gb.h>
+#include <stdint.h>
+#include <stdio.h>
+
+#include "inc/CharacterCreation.h"
+//#include "inc/MainCharacter.h"
+#include "inc/textFunctions.h"
+
+void CharacterCreationInit() {
+	
+}
+
+void CharacterCreationUpdate() {
+	
+}
+
+void CharacterCreationName() {
+	
+}
+
+void CharacterCreationStats() {
+	
+}
